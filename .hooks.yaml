@@ -1,0 +1,9 @@
+  hooks:
+  - name: "PlantUML Image Generator"
+    type: pre-commit
+    url: https://github.com/jjimenez/pre-plantuml
+    args: [deflate]
+  - name: "Post-Commit Echo"
+    type: post-commit
+    exec: "echo"
+    args: ["Hello World"]
