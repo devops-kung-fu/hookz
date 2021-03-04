@@ -61,12 +61,14 @@ green='\033[42m'       # Green
 `
 	exitCodeBlock := `
 
-if [ $? -eq 0 ]
+commandexit=$?
+
+if [ $commandexit -eq 0 ]
 then
 	echo -e "$green[PASS]$reset $name ($type)"
 else
 	echo -e "$red[FAIL]$reset $name ($type)"
-	exit $?
+	exit $commandexit
 fi
 `
 
