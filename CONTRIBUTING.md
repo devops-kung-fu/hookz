@@ -12,8 +12,8 @@ Only pull requests that have been signed will be accepted.  For more information
 
 All Code Changes Happen Through Pull Requests.  Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests and review regularly.  We practice a single trunk development method.
 
-- Fork the repo and create your branch from master.
-- All code required test coverage.  Add new or modify existing tests.
+- Fork the repo and create your branch from main.
+- All code requires test coverage. 100% coverage is the target Add new or modify existing tests.
 - If you've changed APIs, update the documentation.
 - Ensure the tests pass.
 - Make sure your code lints (go)
