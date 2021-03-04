@@ -52,6 +52,24 @@ func writeHooks() error {
 		return err
 	}
 
+	header := `#!/bin/bash
+
+reset='\033[0m'        # Text Reset
+red='\033[41m'         # Red
+green='\033[42m'       # Green
+
+`
+	exitCodeBlock := `
+
+if [ $? -eq 0 ]
+then
+	echo -e "$green[PASS]$reset $name ($type)"
+else
+	echo -e "$red[FAIL]$reset $name ($type)"
+	exit $?
+fi
+`
+
 	for _, hook := range config.Hooks {
 		filename, _ := filepath.Abs(".git/hooks/" + hook.Type)
 		createFile(filename)
@@ -62,9 +80,22 @@ func writeHooks() error {
 		}
 		defer file.Close()
 
-		_, err = file.WriteString("#!/bin/sh\necho " + hook.Type + "\necho " + hook.Name)
+		_, err = file.WriteString(header + "\ntype='" + hook.Type + "'\nname='" + hook.Name + "'\n")
 		if err != nil {
 			return err
+		}
+
+		if hook.URL != nil {
+			//Download the binary, put it in the hooks folder and chmod 0777, and set the hook.Exec
+			temp := "echo TODO://"
+			hook.Exec = &temp
+		}
+
+		if hook.Exec != nil {
+			_, err = file.WriteString(*hook.Exec + " &> /dev/null\n" + exitCodeBlock)
+			if err != nil {
+				return err
+			}
 		}
 
 		err = file.Sync()

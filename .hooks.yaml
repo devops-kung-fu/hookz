@@ -5,5 +5,5 @@
     args: [deflate]
   - name: "Post-Commit Echo"
     type: post-commit
-    exec: "echo"
+    exec: "durp"
     args: ["Hello World"]
