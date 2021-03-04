@@ -41,6 +41,16 @@ Removing hooks can be done by executing the following command:
 ``` bash
 hookz remove
 ```
+## Example Hooks
+
+### Pull from your remote branch before committing
+
+``` yaml
+  - name: "Git Pre-Commit Pull"
+    type: pre-commit
+    exec: git
+    args: [pull]
+```
 
 
 
