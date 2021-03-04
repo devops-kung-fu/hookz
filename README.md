@@ -28,6 +28,10 @@ The pre-commit will download the binary from the defined URL and configure the p
 
 The post-commit in this configuration will execute a command named "derp" with the arguments "Hello World" after a commit has occurred. Note that the _derp_ command must be on your path. If it isn't this post-commit will fail because the command isn't found.
 
+## Return Codes
+
+Any non-zero return code from a command executed in a hook will return a FAIL.
+
 ## Running Hookz
 
 To generate the hooks as defined in your configuration simply execute the following:
@@ -52,5 +56,9 @@ hookz remove
     args: [pull]
 ```
 
+## TODO
 
+* Create a verbose flag that doesn't eat command error messages
+* Allow for multiple type actions
+* Download binary from URL and make executable in the .git/hooks directory
 
