@@ -7,3 +7,7 @@
     type: post-commit
     exec: derp
     args: ["Hello World"]
+  - name: "Pre-Commit Echo"
+    type: pre-commit
+    exec: echo
+    args: ["Hello World"]

@@ -13,6 +13,7 @@ import (
 )
 
 var (
+	Verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
@@ -64,6 +65,27 @@ func isErrorBool(err error, pre string) (b bool) {
 		b = true
 	}
 	return
+}
+
+func removeHooks() error {
+	var config, err = readConfig()
+	if err != nil {
+		return err
+	}
+
+	for _, hook := range config.Hooks {
+		filename, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s", hook.Type))
+		_, err = os.Stat(filename)
+
+		if _, err := os.Stat(filename); err == nil {
+			var err = os.Remove(filename)
+			fmt.Printf("[*] Deleted %s\n", hook.Type)
+			if err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }
 
 type Configuration struct {

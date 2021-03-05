@@ -2,8 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
-	"path/filepath"
 
 	"github.com/spf13/cobra"
 )
@@ -25,22 +23,4 @@ var (
 
 func init() {
 	rootCmd.AddCommand(removeCmd)
-}
-
-func removeHooks() error {
-	var config, err = readConfig()
-	if err != nil {
-		return err
-	}
-
-	for _, hook := range config.Hooks {
-		filename, _ := filepath.Abs(".git/hooks/" + hook.Type)
-		var err = os.Remove(filename)
-		if err != nil {
-			return err
-		}
-
-		fmt.Println("[*]" + " Deleted " + hook.Type)
-	}
-	return nil
 }

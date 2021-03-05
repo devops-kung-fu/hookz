@@ -10,9 +10,10 @@ import (
 
 var (
 	initCmd = &cobra.Command{
-		Use:   "init",
-		Short: "Initializes the hooks as defined in the .hookz.yaml file.",
-		Long:  "Initializes the hooks as defined in the .hookz.yaml file.",
+		Use:     "initialize",
+		Aliases: []string{"init"},
+		Short:   "Initializes the hooks as defined in the .hookz.yaml file.",
+		Long:    "Initializes the hooks as defined in the .hookz.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println("Initializing git hooks...")
 			if isErrorBool(writeHooks(), "[ERROR]") {
@@ -25,9 +26,11 @@ var (
 
 func init() {
 	rootCmd.AddCommand(initCmd)
+	initCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", false, "If true, output from commands is displayed when the hook executes.")
 }
 
-func createFile(filename string) error {
+func createFile(hookName string, hookType string) error {
+	filename, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s", hookType))
 	var _, err = os.Stat(filename)
 
 	if os.IsNotExist(err) {
@@ -35,7 +38,25 @@ func createFile(filename string) error {
 		if err != nil {
 			return err
 		}
+
 		defer file.Close()
+
+		file, err = os.OpenFile(filename, os.O_RDWR, 0644)
+		if err != nil {
+			return err
+		}
+
+		header := `#!/bin/bash
+
+reset='\033[0m'        # Text Reset
+red='\033[41m'         # Red
+green='\033[42m'       # Green
+		
+		`
+		_, err = file.WriteString(fmt.Sprintf("%s\ntype='%s'\n", header, hookType))
+		if err != nil {
+			return err
+		}
 
 		err = os.Chmod(filename, 0777)
 		if err != nil {
@@ -52,15 +73,7 @@ func writeHooks() error {
 		return err
 	}
 
-	header := `#!/bin/bash
-
-reset='\033[0m'        # Text Reset
-red='\033[41m'         # Red
-green='\033[42m'       # Green
-
-`
 	exitCodeBlock := `
-
 commandexit=$?
 
 if [ $commandexit -eq 0 ]
@@ -71,18 +84,20 @@ else
 	exit $commandexit
 fi
 `
+	for _, hook := range config.Hooks {
+		createFile(hook.Name, hook.Type)
+	}
 
 	for _, hook := range config.Hooks {
-		filename, _ := filepath.Abs(".git/hooks/" + hook.Type)
-		createFile(filename)
+		filename, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s", hook.Type))
 
-		var file, err = os.OpenFile(filename, os.O_RDWR, 0644)
+		var file, err = os.OpenFile(filename, os.O_APPEND|os.O_WRONLY, 0644)
 		if err != nil {
 			return err
 		}
 		defer file.Close()
 
-		_, err = file.WriteString(header + "\ntype='" + hook.Type + "'\nname='" + hook.Name + "'\n")
+		_, err = file.WriteString(fmt.Sprintf("\nname='%s'\n", hook.Name))
 		if err != nil {
 			return err
 		}
@@ -94,7 +109,11 @@ fi
 		}
 
 		if hook.Exec != nil {
-			_, err = file.WriteString(*hook.Exec + " &> /dev/null\n" + exitCodeBlock)
+			if Verbose {
+				_, err = file.WriteString(fmt.Sprintf("%s\n%s", *hook.Exec, exitCodeBlock))
+			} else {
+				_, err = file.WriteString(fmt.Sprintf("%s &> /dev/null\n %s", *hook.Exec, exitCodeBlock))
+			}
 			if err != nil {
 				return err
 			}
