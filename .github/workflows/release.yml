@@ -1,0 +1,131 @@
+name: hookz Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.upload_url.outputs.upload_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            This release has the following changes:
+            - README Updates.
+          draft: false
+          prerelease: false
+
+      - name: Fix Upload URL
+        id: upload_url
+        run: echo ::set-output name=upload_url::$(echo "${{ steps.create_release.outputs.upload_url }}" | cut -d"{" -f1)
+
+      - name: Echo upload url
+        run: echo "${{ steps.upload_url.outputs.upload_url }}"
+
+  build:
+    needs: release
+    strategy:
+      matrix:
+        os: ["darwin", "freebsd", "linux", "netbsd", "openbsd", "windows"]
+        arch: ["amd64", "arm64", "arm"]
+
+    env:
+      UPLOAD_URL: ${{ needs.release.outputs.upload_url }}
+
+    name: Build and Upload Assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.15'
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+
+      - name: Build amd64 Assets
+        if: matrix.arch == 'amd64'
+        run: |
+          echo "${{ matrix.os }} ${{ matrix.arch }}"
+          env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/devops-kung-fu/hookz
+        env:
+          FILE: build/hookz-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
+
+      - name: Build arm64 Assets
+        if: matrix.arch == 'arm64' && matrix.os == 'linux'
+        run: |
+          echo "${{ matrix.os }} ${{ matrix.arch }}"
+          env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/devops-kung-fu/hookz
+        env:
+          FILE: build/hookz-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
+
+      - name: Build arm Assets
+        if: matrix.arch == 'arm' && (matrix.os == 'freebsd' || matrix.os == 'netbsd' || matrix.os == 'openbsd')
+        run: |
+          echo "${{ matrix.os }} ${{ matrix.arch }}"
+          env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/devops-kung-fu/hookz
+        env:
+          FILE: build/hookz-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
+
+      - name: Upload amd64 Non-Windows
+        if: matrix.os != 'windows' && matrix.arch == 'amd64'
+        run: |
+          curl \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: $(file -b --mime-type $FILE)" \
+            --data-binary @$FILE \
+            "$UPLOAD_URL?name=$(basename $FILE)"
+        env:
+          FILE: build/hookz-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
+
+      - name: Upload amd64 Windows
+        if: matrix.os == 'windows' && matrix.arch == 'amd64'
+        run: |
+          curl \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: $(file -b --mime-type $FILE)" \
+            --data-binary @$FILE \
+            "$UPLOAD_URL?name=$(basename $FILE)"
+        env:
+          FILE: build/hookz-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}.exe
+
+      - name: Upload arm64
+        if: matrix.os == 'linux' && matrix.arch == 'arm64'
+        run: |
+          curl \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: $(file -b --mime-type $FILE)" \
+            --data-binary @$FILE \
+            "$UPLOAD_URL?name=$(basename $FILE)"
+        env:
+          FILE: build/hookz-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
+
+      - name: Upload arm
+        if: (matrix.os == 'freebsd' || matrix.os == 'netbsd' || matrix.os == 'openbsd') && matrix.arch == 'arm'
+        run: |
+          curl \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: $(file -b --mime-type $FILE)" \
+            --data-binary @$FILE \
+            "$UPLOAD_URL?name=$(basename $FILE)"
+        env:
+          FILE: build/hookz-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
