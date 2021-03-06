@@ -1,8 +1,8 @@
   hooks:
-  - name: "PlantUML Image Generator"
+  - name: "SHS Download"
     type: pre-commit
-    url: https://github.com/jjimenez/pre-plantuml
-    args: [deflate]
+    url: https://github.com/devops-kung-fu/shs/releases/download/v0.1.1/shs-0.1.1-linux-amd64
+    args: []
   - name: "Post-Commit Echo"
     type: post-commit
     exec: derp

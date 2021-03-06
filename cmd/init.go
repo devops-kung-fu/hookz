@@ -73,7 +73,6 @@ green='\033[42m'       # Green
 }
 
 func writeHooks() error {
-	var argsString string
 	var config, err = readConfig()
 	if err != nil {
 		return err
@@ -95,6 +94,7 @@ fi
 	}
 
 	for _, hook := range config.Hooks {
+		var argsString string
 		filename, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s", hook.Type))
 
 		var file, err = os.OpenFile(filename, os.O_APPEND|os.O_WRONLY, 0644)
@@ -113,9 +113,8 @@ fi
 		}
 
 		if hook.URL != nil {
-			//Download the binary, put it in the hooks folder and chmod 0777, and set the hook.Exec
-			temp := "echo TODO://"
-			hook.Exec = &temp
+			filename, _ := downloadURL(*hook.URL)
+			hook.Exec = &filename
 		}
 
 		if hook.Exec != nil {
