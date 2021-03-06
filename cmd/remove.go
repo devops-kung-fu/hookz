@@ -12,11 +12,12 @@ var (
 		Short: "Removes the hooks as defined in the .hooks.yaml file.",
 		Long:  "Removes the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Removing git hooks...")
+			hookzHeader()
+			fmt.Println("Removing git hooks...\n")
 			if isErrorBool(removeHooks(), "[ERROR]") {
 				return
 			}
-			fmt.Println("DONE")
+			fmt.Println("\nDONE!")
 		},
 	}
 )

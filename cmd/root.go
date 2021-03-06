@@ -35,7 +35,7 @@ func init() {
 
 func readConfig() (config Configuration, err error) {
 
-	filename, _ := filepath.Abs(".hooks.yaml")
+	filename, _ := filepath.Abs(".hookz.yaml")
 	_, err = os.Stat(filename)
 
 	if os.IsNotExist(err) {
@@ -50,6 +50,10 @@ func readConfig() (config Configuration, err error) {
 		return
 	}
 	return
+}
+
+func hookzHeader() {
+	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz\n")
 }
 
 func isError(err error, pre string) error {

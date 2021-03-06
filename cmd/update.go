@@ -12,10 +12,11 @@ var (
 		Short: "Updates any executable defined as an URL attribute in .hooks.yaml.",
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("UUpdating executables..")
+			hookzHeader()
+			fmt.Println("UUpdating executables...\n")
 			if isErrorBool(updateExecutables(), "[ERROR]") {
 			}
-			fmt.Println("DONE")
+			fmt.Println("\nDONE!")
 		},
 	}
 )
