@@ -80,6 +80,15 @@ hookz reset --verbose
 ```
 ## Example Hooks
 
+### Update all go modules to the latest version before committing
+
+```yaml
+  - name: "Update all go dependencies to latest"
+    type: pre-commit
+    exec: go
+    args: ["get", "-u", "./..."]
+```
+
 ### Pull from your remote branch before committing
 
 ``` yaml
