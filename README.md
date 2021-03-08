@@ -7,7 +7,7 @@ Manages commit hooks inside a local git repository based on a configuration.
 
 ## Configuration
 
-Hookz uses a configuration file to generate hooks in your local git repository. This file needs to be in the root of your repository and must be named *.hooks.yaml*
+Hookz uses a configuration file to generate hooks in your local git repository. This file needs to be in the root of your repository and must be named *.hookz.yaml*
 
 Take for example the following configuration:
 
