@@ -1,4 +1,4 @@
-name: Hookz Tests
+name: Go Quality Checks
 on: push
 jobs:
   tests:
@@ -20,7 +20,3 @@ jobs:
         run: go vet
       - name: Lint
         run: golint
-      - name: Tests
-        run: |
-          go test -v -coverprofile=coverage.out
-          go tool cover -func=coverage.out
