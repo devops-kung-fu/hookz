@@ -1,5 +1,5 @@
   hooks:
-  - name: "Git Pull"
+  - name: "Git Pull (Ensure there are no upstream changes that are not local"
     type: pre-commit
     exec: git
     args: ["pull"]  
@@ -9,7 +9,7 @@
     args: []
   - name: "Post-Commit Echo"
     type: post-commit
-    exec: derp
+    exec: dude
     args: ["Hello World"]
   - name: "Pre-Commit Echo"
     type: pre-commit

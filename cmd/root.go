@@ -15,6 +15,7 @@ import (
 )
 
 var (
+	//Verbose identifies if extended output should be configured during init and reset
 	Verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
@@ -55,7 +56,7 @@ func readConfig() (config Configuration, err error) {
 }
 
 func hookzHeader() {
-	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz\n")
+	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz")
 }
 
 func isError(err error, pre string) error {
@@ -132,6 +133,7 @@ Loop:
 	return resp.Filename, err
 }
 
+//Configuration holds the commit hook definition loaded out of .hookz.yaml
 type Configuration struct {
 	Hooks []struct {
 		Name string   `json:"name"`

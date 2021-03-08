@@ -13,7 +13,7 @@ var (
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
 			hookzHeader()
-			fmt.Println("Resetting git hooks...\n")
+			fmt.Println("Resetting git hooks...")
 			if isErrorBool(removeHooks(), "[ERROR]") {
 			}
 			if isErrorBool(writeHooks(), "[ERROR]") {

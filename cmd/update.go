@@ -13,7 +13,7 @@ var (
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
 			hookzHeader()
-			fmt.Println("UUpdating executables...\n")
+			fmt.Println("UUpdating executables...")
 			if isErrorBool(updateExecutables(), "[ERROR]") {
 			}
 			fmt.Println("\nDONE!")

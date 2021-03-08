@@ -16,7 +16,7 @@ var (
 		Long:    "Initializes the hooks as defined in the .hookz.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
 			hookzHeader()
-			fmt.Println("Initializing git hooks...\n")
+			fmt.Println("Initializing git hooks...")
 			if isErrorBool(writeHooks(), "[ERROR]") {
 				return
 			}
@@ -135,9 +135,9 @@ fi
 		err = file.Sync()
 		if err != nil {
 			return err
-		} else {
-			fmt.Println("[*] Successfully wrote " + hook.Type)
 		}
+		fmt.Println("[*] Successfully wrote " + hook.Type)
+
 	}
 	return nil
 }
