@@ -1,4 +1,8 @@
   hooks:
+  - name: "Git Pull"
+    type: pre-commit
+    exec: git
+    args: ["pull"]  
   - name: "SHS Download"
     type: pre-commit
     url: https://github.com/devops-kung-fu/shs/releases/download/v0.1.1/shs-0.1.1-linux-amd64
