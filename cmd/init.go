@@ -119,13 +119,13 @@ fi
 
 		if hook.Exec != nil {
 			if Verbose {
-				_, err = file.WriteString(fmt.Sprintf("[*] Executing %s: %s", hook.Type, hook.Name))
+				_, err = file.WriteString(fmt.Sprintf("echo '[*] Executing %s: %s'\n", hook.Type, hook.Name))
 				if err != nil {
 					return err
 				}
-				_, err = file.WriteString(fmt.Sprintf("%s %s\n%s", *hook.Exec, argsString, exitCodeBlock))
+				_, err = file.WriteString(fmt.Sprintf("%s%s\n%s", *hook.Exec, argsString, exitCodeBlock))
 			} else {
-				_, err = file.WriteString(fmt.Sprintf("%s %s&> /dev/null\n %s", *hook.Exec, argsString, exitCodeBlock))
+				_, err = file.WriteString(fmt.Sprintf("%s%s &> /dev/null\n %s", *hook.Exec, argsString, exitCodeBlock))
 			}
 			if err != nil {
 				return err
