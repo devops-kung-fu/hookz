@@ -1,0 +1,22 @@
+name: Go Quality Checks
+on: push
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.15'
+      - name: Install Dependencies
+        run: |
+          go version
+          go get -u golang.org/x/lint/golint
+      - name: Build
+        run: go build
+      - name: Vet
+        run: go vet
+      - name: Lint
+        run: golint

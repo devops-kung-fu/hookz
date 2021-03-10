@@ -3,9 +3,11 @@
 Manages commit hooks inside a local git repository based on a configuration.
 
 
+![](hookz.png)
+
 ## Configuration
 
-Hookz uses a configuration file to generate hooks in your local git repository. This file needs to be in the root of your repository and must be named *.hooks.yaml*
+Hookz uses a configuration file to generate hooks in your local git repository. This file needs to be in the root of your repository and must be named *.hookz.yaml*
 
 Take for example the following configuration:
 
@@ -14,10 +16,10 @@ Take for example the following configuration:
   - name: "PlantUML Image Generator"
     type: pre-commit
     url: https://github.com/jjimenez/pre-plantuml
-    args: [deflate]
+    args: ["deflate"]
   - name: "Post-Commit Echo"
     type: post-commit
-    exec: derp
+    exec: dude
     args: ["Hello World"]
 
 ```
@@ -26,7 +28,29 @@ Hooks will read this configuration and create a pre-commit hook and a post-commi
 
 The pre-commit will download the binary from the defined URL and configure the pre-commit to execute the command with the defined arguments before a commit happens.
 
-The post-commit in this configuration will execute a command named "derp" with the arguments "Hello World" after a commit has occurred. Note that the _derp_ command must be on your path. If it isn't this post-commit will fail because the command isn't found.
+The post-commit in this configuration will execute a command named "dude" with the arguments "Hello World" after a commit has occurred. Note that the _dude_ command must be on your path. If it isn't this post-commit will fail because the command isn't found.
+
+## Support for multiple commands in a hook
+
+If multiple hooks are defined in the configuration with the same type (ie: pre-commit) they will be configured to run in the order they appear in the file. There is no need to group types together, they will be written to the appropriate hooks.
+
+## Hook types
+
+Hook types that will execute are the same as supported by _git_. Examples are as follows:
+
+* applypatch-msg
+* commit-msg
+* fsmonitor-watchman
+* post-commit
+* post-update
+* pre-applypatch
+* pre-commit
+* pre-update
+* prepare-commit-msg
+* pre-push
+* pre-rebase
+* pre-receive
+* update
 
 ## Return Codes
 
@@ -37,7 +61,7 @@ Any non-zero return code from a command executed in a hook will return a FAIL.
 To generate the hooks as defined in your configuration simply execute the following:
 
 ``` bash
-hookz init
+hookz initialize # you can also use the init alias
 ```
 
 Removing hooks can be done by executing the following command:
@@ -45,7 +69,25 @@ Removing hooks can be done by executing the following command:
 ``` bash
 hookz remove
 ```
+
+## Verbose option
+
+The initialize (init) and reset command optionally take a verbosity flag to indicate extended output should be displayed when a hook executes. This is handy for debugging or seeing errors that may be suppressed by hookz.
+
+```
+hookz init --verbose
+hookz reset --verbose
+```
 ## Example Hooks
+
+### Update all go modules to the latest version before committing
+
+```yaml
+  - name: "Update all go dependencies to latest"
+    type: pre-commit
+    exec: go
+    args: ["get", "-u", "./..."]
+```
 
 ### Pull from your remote branch before committing
 
@@ -53,12 +95,5 @@ hookz remove
   - name: "Git Pre-Commit Pull"
     type: pre-commit
     exec: git
-    args: [pull]
+    args: ["pull"]
 ```
-
-## TODO
-
-* Create a verbose flag that doesn't eat command error messages
-* Allow for multiple type actions
-* Download binary from URL and make executable in the .git/hooks directory
-

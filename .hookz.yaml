@@ -1,0 +1,21 @@
+  hooks:
+  - name: "Git Pull (Ensure there are no upstream changes that are not local)"
+    type: pre-commit
+    exec: git
+    args: ["pull"]  
+  - name: "Update all go dependencies to latest"
+    type: pre-commit
+    exec: go
+    args: ["get", "-u", "./..."]
+  - name: "SHS Download"
+    type: pre-commit
+    url: https://github.com/devops-kung-fu/shs/releases/download/v0.1.1/shs-0.1.1-linux-amd64
+    args: []
+  - name: "Post-Commit Echo"
+    type: post-commit
+    exec: dude
+    args: ["Hello World"]
+  - name: "Pre-Commit Echo"
+    type: pre-commit
+    exec: echo
+    args: ["Hello World"]
