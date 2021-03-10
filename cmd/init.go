@@ -119,7 +119,7 @@ fi
 
 		if hook.Exec != nil {
 			if Verbose {
-				_, err = file.WriteString(fmt.Sprintf("echo \"[*] Executing %s: %s\"\n", hook.Type, hook.Name))
+				_, err = file.WriteString(fmt.Sprintf("echo '[*] Executing %s: %s'\n", hook.Type, hook.Name))
 				if err != nil {
 					return err
 				}
