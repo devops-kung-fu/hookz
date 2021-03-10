@@ -125,7 +125,7 @@ fi
 				}
 				_, err = file.WriteString(fmt.Sprintf("%s %s\n%s", *hook.Exec, argsString, exitCodeBlock))
 			} else {
-				_, err = file.WriteString(fmt.Sprintf("%s %s&> /dev/null\n %s", *hook.Exec, argsString, exitCodeBlock))
+				_, err = file.WriteString(fmt.Sprintf("%s %s &> /dev/null\n %s", *hook.Exec, argsString, exitCodeBlock))
 			}
 			if err != nil {
 				return err
