@@ -14,9 +14,13 @@ jobs:
         run: |
           go version
           go get -u golang.org/x/lint/golint
+          go get -u github.com/fzipp/gocyclo/cmd/gocyclo
       - name: Build
         run: go build
       - name: Vet
         run: go vet
       - name: Lint
         run: golint
+      - name: gocyclo
+        run: gocyclo .
+        

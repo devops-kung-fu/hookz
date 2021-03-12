@@ -1,9 +1,15 @@
 # hookz
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/hookz)](https://goreportcard.com/report/github.com/devops-kung-fu/hookz)
+
+
 Manages commit hooks inside a local git repository based on a configuration.
 
-
 ![](hookz.png)
+
+## Installation
+
+To install hookz, you can [download the latest release](https://github.com/devops-kung-fu/hookz/releases) and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
 
 ## Configuration
 
