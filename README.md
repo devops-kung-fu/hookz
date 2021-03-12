@@ -9,7 +9,16 @@ Manages commit hooks inside a local git repository based on a configuration.
 
 ## Installation
 
-To install hookz, you can [download the latest release](https://github.com/devops-kung-fu/hookz/releases) and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
+To install hookz,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to _hookz_ and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
+
+Example:
+
+```bash
+sudo chmod +x hookz-1.0.1-linux-amd64
+sudo mv hookz-1.0.1-linux-amd64 /usr/local/bin/hookz
+```
+
+
 
 ## Configuration
 
