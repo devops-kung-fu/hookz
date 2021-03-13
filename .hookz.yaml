@@ -17,3 +17,29 @@
     args: ["add", "."]
 
 
+  # hooks:
+  # - version: 1.1
+  # - hook:
+  #   - type: pre-commit
+  #   - action:     
+  #     - name: "Git Pull (Ensure there are no upstream changes that are not local)"
+  #       exec: git
+  #       args: ["pull"]
+  #   - action:     
+  #     - name: "Go Tidy"
+  #       exec: go
+  #       args: ["mod", "tidy"]
+  #   - action:
+  #     - name: "Update all go dependencies to latest"
+  #       exec: go
+  #       args: ["get", "-u", "./..."]
+  #   - action:
+  #     - name: "Add all changed files during the pre-commit stage"
+  #       exec: git
+  #       args: ["add", "."]
+  # - hook:
+  #   - type: post-commit
+  #   - action:
+  #     - name: "Post Echo"
+  #       exec: echo
+  #       args: ["-e", "Done"]

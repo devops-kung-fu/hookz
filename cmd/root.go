@@ -132,14 +132,3 @@ Loop:
 	}
 	return resp.Filename, err
 }
-
-//Configuration holds the commit hook definition loaded out of .hookz.yaml
-type Configuration struct {
-	Hooks []struct {
-		Name string   `json:"name"`
-		Type string   `json:"type"`
-		URL  *string  `json:"url,omitempty"`
-		Args []string `json:"args"`
-		Exec *string  `json:"exec,omitempty"`
-	}
-}
