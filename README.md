@@ -11,10 +11,10 @@ Manages commit hooks inside a local git repository based on a configuration.
 
 To install hookz,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to _hookz_ and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
 
-Example:
+Linux Example:
 
 ```bash
-sudo chmod +x hookz-1.0.1-linux-amd64
+sudo chmod +x hookz-1.1.0-linux-amd64
 sudo mv hookz-1.0.1-linux-amd64 /usr/local/bin/hookz
 ```
 
@@ -27,15 +27,28 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 Take for example the following configuration:
 
 ``` yaml
-  hooks:
-  - name: "PlantUML Image Generator"
-    type: pre-commit
-    url: https://github.com/jjimenez/pre-plantuml
-    args: ["deflate"]
-  - name: "Post-Commit Echo"
-    type: post-commit
-    exec: dude
-    args: ["Hello World"]
+version: 1.1
+hooks:
+  - type: pre-commit
+    actions:
+      - name: "PlantUML Image Generator"
+        url: https://github.com/jjimenez/pre-plantuml
+        args: ["deflate"]
+      - name: "Git Pull (Ensure there are no upstream changes)"
+        exec: git
+        args: ["pull"]
+      - name: "Go Tidy"
+        exec: go
+        args: ["mod", "tidy"]
+      - name: "Add all changed files during the pre-commit stage"
+        exec: git
+        args: ["add", "."]
+  - type: post-commit
+    actions:
+    - name: "Post Echo"
+      exec: echo
+      args: ["-e", "Done!"]
+
 
 ```
 
@@ -98,18 +111,24 @@ hookz reset --verbose
 ### Update all go modules to the latest version before committing
 
 ```yaml
-  - name: "Update all go dependencies to latest"
-    type: pre-commit
-    exec: go
-    args: ["get", "-u", "./..."]
+version: 1.1
+hooks:
+  - type: pre-commit
+    actions:
+      - name: "Update all go dependencies to latest"
+        exec: go
+        args: ["get", "-u", "./..."]
 ```
 
 ### Pull from your remote branch before committing
 
 ``` yaml
-  - name: "Git Pre-Commit Pull"
-    type: pre-commit
-    exec: git
-    args: ["pull"]
+version: 1.1
+hooks:
+  - type: pre-commit
+    actions:
+      - name: "Git Pre-Commit Pull"
+        exec: git
+        args: ["pull"]
 ```
 
