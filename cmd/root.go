@@ -7,6 +7,8 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
+	"strings"
 	"time"
 
 	"github.com/cavaliercoder/grab"
@@ -75,39 +77,43 @@ func isErrorBool(err error, pre string) (b bool) {
 	return
 }
 
-func removeHooks() error {
-
-	dirname, err := filepath.Abs(".git/hooks/")
-	if err != nil {
-		return err
-	}
-
-	d, err := os.Open(dirname)
-	if err != nil {
-		return err
-	}
-	defer d.Close()
-
-	files, err := d.Readdir(-1)
-	if err != nil {
-		return err
-	}
-
-	fmt.Println("Reading " + dirname)
-
-	for _, file := range files {
-		if file.Mode().IsRegular() {
-			if filepath.Ext(file.Name()) == ".hookz" {
-				var extension = filepath.Ext(file.Name())
-				var name = file.Name()[0 : len(file.Name())-len(extension)]
-				os.Remove("file.Name()")
-				os.Remove(name)
-				fmt.Printf("[*] Deleted %s\n", name)
+func checkExt(ext string, pathS string) (files []string, err error) {
+	filepath.Walk(pathS, func(path string, f os.FileInfo, err error) error {
+		if !f.IsDir() {
+			r, err := regexp.MatchString(ext, f.Name())
+			if err == nil && r {
+				files = append(files, f.Name())
 			}
+		}
+		return err
+	})
+	return files, nil
+}
+
+func removeHooks() (err error) {
+	ext := ".hookz"
+	p := ".git/hooks/"
+
+	dirRead, _ := os.Open(p)
+	dirFiles, _ := dirRead.Readdir(0)
+
+	for index := range dirFiles {
+		file := dirFiles[index]
+
+		name := file.Name()
+		fullPath := fmt.Sprintf("%s%s", p, name)
+
+		r, err := regexp.MatchString(ext, fullPath)
+		if err == nil && r {
+			os.Remove(fullPath)
+			var hookName = fullPath[0 : len(fullPath)-len(ext)]
+			os.Remove(hookName)
+			parts := strings.Split(hookName, "/")
+			fmt.Println(fmt.Sprintf("[*] Deleted %s", parts[len(parts)-1]))
 		}
 	}
 
-	return nil
+	return
 }
 
 func downloadURL(url string) (filename string, err error) {
