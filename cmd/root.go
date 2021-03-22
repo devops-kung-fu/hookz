@@ -59,7 +59,8 @@ func readConfig() (config Configuration, err error) {
 }
 
 func hookzHeader() {
-	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz)\n")
+	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz)")
+	fmt.Println("")
 }
 
 func isError(err error, pre string) error {
