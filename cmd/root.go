@@ -16,6 +16,7 @@ import (
 
 var (
 	//Verbose identifies if extended output should be configured during init and reset
+	Version float64
 	Verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
@@ -33,7 +34,7 @@ func Execute() {
 }
 
 func init() {
-
+	Version = 1.1
 }
 
 func readConfig() (config Configuration, err error) {
@@ -56,7 +57,7 @@ func readConfig() (config Configuration, err error) {
 }
 
 func hookzHeader() {
-	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz")
+	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz)\n")
 }
 
 func isError(err error, pre string) error {
@@ -75,23 +76,37 @@ func isErrorBool(err error, pre string) (b bool) {
 }
 
 func removeHooks() error {
-	var config, err = readConfig()
+
+	dirname, err := filepath.Abs(".git/hooks/")
 	if err != nil {
 		return err
 	}
 
-	for _, hook := range config.Hooks {
-		filename, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s", hook.Type))
-		_, err = os.Stat(filename)
+	d, err := os.Open(dirname)
+	if err != nil {
+		return err
+	}
+	defer d.Close()
 
-		if _, err := os.Stat(filename); err == nil {
-			var err = os.Remove(filename)
-			fmt.Printf("[*] Deleted %s\n", hook.Type)
-			if err != nil {
-				return err
+	files, err := d.Readdir(-1)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Reading " + dirname)
+
+	for _, file := range files {
+		if file.Mode().IsRegular() {
+			if filepath.Ext(file.Name()) == ".hookz" {
+				var extension = filepath.Ext(file.Name())
+				var name = file.Name()[0 : len(file.Name())-len(extension)]
+				os.Remove("file.Name()")
+				os.Remove(name)
+				fmt.Printf("[*] Deleted %s\n", name)
 			}
 		}
 	}
+
 	return nil
 }
 

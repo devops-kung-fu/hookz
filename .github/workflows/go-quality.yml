@@ -9,18 +9,26 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.15'
+          go-version: '1.16'
       - name: Install Dependencies
         run: |
           go version
           go get -u golang.org/x/lint/golint
           go get -u github.com/fzipp/gocyclo/cmd/gocyclo
+      - name: Tests
+        run: |
+          go test -v -coverprofile=coverage.out ./...
+          go tool cover -func=coverage.out
+      - name: CodeCov
+        run: bash <(curl -s https://codecov.io/bash)
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - name: Build
         run: go build
       - name: Vet
-        run: go vet
+        run: go vet -v
       - name: Lint
-        run: golint
+        run: golint ./...
       - name: gocyclo
         run: gocyclo .
         
