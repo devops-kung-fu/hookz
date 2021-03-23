@@ -10,7 +10,7 @@ Manages commit hooks inside a local git repository based on a configuration.
 
 ## Overview
 
-Have you ever wanted to integrate custom functionality into your git commits without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed Hookz. Hookz allows us to do a ton of commit tasks _before_ our code even hits our branches.  
+Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed Hookz. Hookz allows us to do a ton of commit tasks _before_ our code even hits our branches. As you commit and push code to a git based source repository, Hookz will trigger scripts, run tasks, or do just about anything for you.
 
 The best thing? We don't care what IDE you use to develop, what your back end source control system is, or what languages you program in. Operating System? We don't care. We wrote this in Go and have compiled it for every OS and architecture you'd ever want.
 

@@ -23,7 +23,7 @@ var (
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
-		Version: "0.0.1",
+		Version: "1.1.0",
 	}
 )
 
