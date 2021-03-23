@@ -6,7 +6,7 @@
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/hookz)](https://goreportcard.com/report/github.com/devops-kung-fu/hookz)
 
-Manages commit hooks inside a local git repository based on a configuration.
+Manages git hooks inside a local git repository based on a configuration.
 
 ## Overview
 
