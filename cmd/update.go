@@ -32,8 +32,10 @@ func updateExecutables() (err error) {
 		return err
 	}
 	for _, hook := range config.Hooks {
-		if hook.URL != nil {
-			_, _ = downloadURL(*hook.URL)
+		for _, action := range hook.Actions {
+			if action.URL != nil {
+				_, _ = downloadURL(*action.URL)
+			}
 		}
 	}
 	err = nil

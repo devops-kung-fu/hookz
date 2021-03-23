@@ -7,6 +7,8 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
+	"strings"
 	"time"
 
 	"github.com/cavaliercoder/grab"
@@ -16,11 +18,12 @@ import (
 
 var (
 	//Verbose identifies if extended output should be configured during init and reset
+	Version float64
 	Verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
-		Version: "0.0.1",
+		Version: "2.0.0",
 	}
 )
 
@@ -33,7 +36,7 @@ func Execute() {
 }
 
 func init() {
-
+	Version = 2.0
 }
 
 func readConfig() (config Configuration, err error) {
@@ -56,7 +59,8 @@ func readConfig() (config Configuration, err error) {
 }
 
 func hookzHeader() {
-	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz")
+	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz)")
+	fmt.Println("")
 }
 
 func isError(err error, pre string) error {
@@ -74,25 +78,43 @@ func isErrorBool(err error, pre string) (b bool) {
 	return
 }
 
-func removeHooks() error {
-	var config, err = readConfig()
-	if err != nil {
-		return err
-	}
-
-	for _, hook := range config.Hooks {
-		filename, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s", hook.Type))
-		_, err = os.Stat(filename)
-
-		if _, err := os.Stat(filename); err == nil {
-			var err = os.Remove(filename)
-			fmt.Printf("[*] Deleted %s\n", hook.Type)
-			if err != nil {
-				return err
+func checkExt(ext string, pathS string) (files []string, err error) {
+	filepath.Walk(pathS, func(path string, f os.FileInfo, err error) error {
+		if !f.IsDir() {
+			r, err := regexp.MatchString(ext, f.Name())
+			if err == nil && r {
+				files = append(files, f.Name())
 			}
 		}
+		return err
+	})
+	return files, nil
+}
+
+func removeHooks() (err error) {
+	ext := ".hookz"
+	p := ".git/hooks/"
+
+	dirRead, _ := os.Open(p)
+	dirFiles, _ := dirRead.Readdir(0)
+
+	for index := range dirFiles {
+		file := dirFiles[index]
+
+		name := file.Name()
+		fullPath := fmt.Sprintf("%s%s", p, name)
+
+		r, err := regexp.MatchString(ext, fullPath)
+		if err == nil && r {
+			os.Remove(fullPath)
+			var hookName = fullPath[0 : len(fullPath)-len(ext)]
+			os.Remove(hookName)
+			parts := strings.Split(hookName, "/")
+			fmt.Println(fmt.Sprintf("[*] Deleted %s", parts[len(parts)-1]))
+		}
 	}
-	return nil
+
+	return
 }
 
 func downloadURL(url string) (filename string, err error) {
@@ -131,15 +153,4 @@ Loop:
 		return resp.Filename, err
 	}
 	return resp.Filename, err
-}
-
-//Configuration holds the commit hook definition loaded out of .hookz.yaml
-type Configuration struct {
-	Hooks []struct {
-		Name string   `json:"name"`
-		Type string   `json:"type"`
-		URL  *string  `json:"url,omitempty"`
-		Args []string `json:"args"`
-		Exec *string  `json:"exec,omitempty"`
-	}
 }

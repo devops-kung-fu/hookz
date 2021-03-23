@@ -15,6 +15,7 @@ var (
 			hookzHeader()
 			fmt.Println("Resetting git hooks...")
 			if isErrorBool(removeHooks(), "[ERROR]") {
+				return
 			}
 			if isErrorBool(writeHooks(), "[ERROR]") {
 				return
