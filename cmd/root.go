@@ -81,8 +81,8 @@ func isErrorBool(err error, pre string) (b bool) {
 func checkExt(ext string, pathS string) (files []string, err error) {
 	filepath.Walk(pathS, func(path string, f os.FileInfo, err error) error {
 		if !f.IsDir() {
-			r, err := regexp.MatchString(ext, f.Name())
-			if err == nil && r {
+			match, _ := regexp.MatchString(ext, f.Name())
+			if match {
 				files = append(files, f.Name())
 			}
 		}
