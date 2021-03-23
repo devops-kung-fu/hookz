@@ -95,7 +95,7 @@ Any non-zero return code from a command executed in a hook will return a FAIL.
 
 ![](img/hookz.png)
 
-To generate the hooks as defined in your configuration simply execute the following:
+To generate the hooks as defined in your configuration simply execute the following command in the root of your local repository where the .hookz.yaml file resides:
 
 ``` bash
 hookz initialize # you can also use the init alias
@@ -105,6 +105,12 @@ Removing hooks can be done by executing the following command:
 
 ``` bash
 hookz remove
+```
+
+To re-download any file defined in an URL key:
+
+``` bash
+hookz update
 ```
 
 ## Verbose option
