@@ -1,15 +1,22 @@
 
 
-![](hookz-logo.png)
+![](img/hookz-logo.png)
 
 # hookz
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/hookz)](https://goreportcard.com/report/github.com/devops-kung-fu/hookz)
 
-
 Manages commit hooks inside a local git repository based on a configuration.
 
-![](hookz.png)
+## Overview
+
+Have you ever wanted to integrate custom functionality into your git commits without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed Hookz. Hookz allows us to do a ton of commit tasks _before_ our code even hits our branches.  
+
+The best thing? We don't care what IDE you use to develop, what your back end source control system is, or what languages you program in. Operating System? We don't care. We wrote this in Go and have compiled it for every OS and architecture you'd ever want.
+
+Here's what happens when we use Hookz on Hookz itself:
+
+![](img/run-hookz.png)
 
 ## Installation
 
@@ -21,8 +28,6 @@ Linux Example:
 sudo chmod +x hookz-1.1.0-linux-amd64
 sudo mv hookz-1.0.1-linux-amd64 /usr/local/bin/hookz
 ```
-
-
 
 ## Configuration
 
@@ -52,13 +57,11 @@ hooks:
     - name: "Post Echo"
       exec: echo
       args: ["-e", "Done!"]
-
-
 ```
 
-Hooks will read this configuration and create a pre-commit hook and a post-commit hook based on this yaml. 
+Hooks will read this exampe configuration and create a pre-commit hook and a post-commit hook based on this yaml. 
 
-The pre-commit will download the binary from the defined URL and configure the pre-commit to execute the command with the defined arguments before a commit happens.
+An action with an URL will download the binary from the defined URL and configure the hook to execute the command with the defined arguments before a commit happens.
 
 The post-commit in this configuration will execute a command named "dude" with the arguments "Hello World" after a commit has occurred. Note that the _dude_ command must be on your path. If it isn't this post-commit will fail because the command isn't found.
 
@@ -89,6 +92,8 @@ Hook types that will execute are the same as supported by _git_. Examples are as
 Any non-zero return code from a command executed in a hook will return a FAIL.
 
 ## Running Hookz
+
+![](img/hookz.png)
 
 To generate the hooks as defined in your configuration simply execute the following:
 
@@ -136,4 +141,6 @@ hooks:
         args: ["pull"]
 ```
 
+## Credits
 
+A big thank-you to our friends at [Freepik](https://www.freepik.com) for the Hookz logo.
