@@ -36,7 +36,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 Take for example the following configuration:
 
 ``` yaml
-version: 1.1
+version: 2.0
 hooks:
   - type: pre-commit
     actions:
@@ -126,7 +126,7 @@ hookz reset --verbose
 ### Update all go modules to the latest version before committing
 
 ```yaml
-version: 1.1
+version: 2.0
 hooks:
   - type: pre-commit
     actions:
@@ -138,7 +138,7 @@ hooks:
 ### Pull from your remote branch before committing
 
 ``` yaml
-version: 1.1
+version: 2.0
 hooks:
   - type: pre-commit
     actions:

@@ -23,7 +23,7 @@ var (
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
-		Version: "1.1.0",
+		Version: "2.0.0",
 	}
 )
 
@@ -36,7 +36,7 @@ func Execute() {
 }
 
 func init() {
-	Version = 1.1
+	Version = 2.0
 }
 
 func readConfig() (config Configuration, err error) {
