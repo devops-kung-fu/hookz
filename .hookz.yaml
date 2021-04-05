@@ -1,13 +1,19 @@
-  version: 2.0
+  version: 2.1.1
   hooks:
     - type: pre-commit
       actions:
         - name: "Git Pull (Ensure there are no upstream changes that are not local)"
           exec: git
           args: ["pull"]
-        - name: "Go Tidy"
-          exec: go
-          args: ["mod", "tidy"]
+        - name: "Go Tidy (Recursive)"
+          script: "
+            #!/bin/bash
+            echo -e In the script!!!
+            for f in $(find . -name go.mod); 
+              do (cd $(dirname $f);
+                go mod tidy -v); 
+            done
+            "
         - name: "Update all go dependencies to latest"
           exec: go
           args: ["get", "-u", "./..."]

@@ -36,7 +36,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 Take for example the following configuration:
 
 ``` yaml
-version: 2.0
+version: 2.1
 hooks:
   - type: pre-commit
     actions:

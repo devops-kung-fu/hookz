@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -51,9 +50,6 @@ func writeHooks() error {
 	var config, err = readConfig()
 	if err != nil {
 		return err
-	}
-	if config.Version != Version {
-		return errors.New("Version Mismatch: Expected v1.1 - Check your .hookz.yaml configuration\n")
 	}
 
 	exitCodeBlock := `

@@ -2,6 +2,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -18,12 +19,12 @@ import (
 
 var (
 	//Verbose identifies if extended output should be configured during init and reset
-	Version float64
+	Version = "2.1.0"
 	Verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
-		Version: "2.0.0",
+		Version: Version,
 	}
 )
 
@@ -36,7 +37,7 @@ func Execute() {
 }
 
 func init() {
-	Version = 2.0
+
 }
 
 func readConfig() (config Configuration, err error) {
@@ -54,6 +55,12 @@ func readConfig() (config Configuration, err error) {
 	err = yaml.Unmarshal(yamlFile, &config)
 	if err != nil {
 		return
+	}
+	// Check version
+	ver := strings.Split(config.Version, ".")
+	verMatch := strings.Split(Version, ".")
+	if fmt.Sprintf("%v.%v", ver[0], ver[1]) != fmt.Sprintf("%v.%v", verMatch[0], verMatch[1]) {
+		err = errors.New(fmt.Sprintf("Version Mismatch: Expected v%v.%v - Check your .hookz.yaml configuration\n", verMatch[0], verMatch[1]))
 	}
 	return
 }
