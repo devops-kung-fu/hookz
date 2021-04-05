@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
 
+	"github.com/segmentio/ksuid"
 	"github.com/spf13/cobra"
 )
 
@@ -47,13 +47,53 @@ func createFile(name string) error {
 	return nil
 }
 
+func createScriptFile(content string) (name string, err error) {
+	var _, statErr = os.Stat(name)
+	k, idErr := ksuid.NewRandom()
+	name, _ = filepath.Abs(fmt.Sprintf(".git/hooks/%s", k.String()))
+	if idErr != nil {
+		fmt.Printf("Error generating KSUID: %v\n", err)
+		return
+	}
+
+	if os.IsNotExist(statErr) {
+		hookzFile, hookzFileErr := filepath.Abs(fmt.Sprintf(".git/hooks/%s.hookz", k.String()))
+		createFile(hookzFile)
+		if err != nil {
+			err = hookzFileErr
+			return
+		}
+
+		var file, createErr = os.Create(name)
+		if err != nil {
+			err = createErr
+			return
+		}
+
+		err = os.Chmod(name, 0777)
+		if err != nil {
+			return
+		}
+
+		file, err = os.OpenFile(name, os.O_APPEND|os.O_WRONLY, 0644)
+		if err != nil {
+			return
+		}
+		_, err = file.WriteString(content)
+		if err != nil {
+			return
+		}
+
+		defer file.Close()
+	}
+
+	return
+}
+
 func writeHooks() error {
 	var config, err = readConfig()
 	if err != nil {
 		return err
-	}
-	if config.Version != Version {
-		return errors.New("Version Mismatch: Expected v1.1 - Check your .hookz.yaml configuration\n")
 	}
 
 	exitCodeBlock := `
@@ -99,23 +139,34 @@ blackText='\033[0;30m'
 		if err != nil {
 			return err
 		}
-		_, err = file.WriteString(fmt.Sprintf("%s", header))
+		_, err = file.WriteString(header)
 		if err != nil {
 			return err
 		}
 
 		defer file.Close()
-
+		fmt.Println(fmt.Sprintf("\n[*] Writing %s ", hook.Type))
 		for _, action := range hook.Actions {
+
 			var argsString string
 			for _, arg := range action.Args {
 				argsString = fmt.Sprintf("%s %s", argsString, arg)
 			}
 
-			if action.URL != nil {
+			if action.Exec == nil && action.URL != nil {
 				filename, _ := downloadURL(*action.URL)
 				action.Exec = &filename
 			}
+
+			if action.Exec == nil && action.Script != nil {
+				scriptFileName, err := createScriptFile(*action.Script)
+				if err != nil {
+					return err
+				}
+				action.Exec = &scriptFileName
+			}
+
+			fmt.Println(fmt.Sprintf("    	Adding %s action: %s", hook.Type, action.Name))
 			_, err = file.WriteString(fmt.Sprintf("name='%s'\ntype='%s'\n", action.Name, hook.Type))
 			if err != nil {
 				return err

@@ -2,6 +2,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -18,12 +19,12 @@ import (
 
 var (
 	//Verbose identifies if extended output should be configured during init and reset
-	Version float64
+	Version = "2.1.0"
 	Verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
-		Version: "2.0.0",
+		Version: Version,
 	}
 )
 
@@ -36,7 +37,7 @@ func Execute() {
 }
 
 func init() {
-	Version = 2.0
+
 }
 
 func readConfig() (config Configuration, err error) {
@@ -55,11 +56,19 @@ func readConfig() (config Configuration, err error) {
 	if err != nil {
 		return
 	}
+	// Check version
+	ver := strings.Split(config.Version, ".")
+	verMatch := strings.Split(Version, ".")
+	if fmt.Sprintf("%v.%v", ver[0], ver[1]) != fmt.Sprintf("%v.%v", verMatch[0], verMatch[1]) {
+		err = errors.New(fmt.Sprintf("Version Mismatch: Expected v%v.%v - Check your .hookz.yaml configuration\n", verMatch[0], verMatch[1]))
+	}
 	return
 }
 
 func hookzHeader() {
-	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz)")
+	fmt.Println("Hookz")
+	fmt.Println("https://github.com/devops-kung-fu/hookz")
+	fmt.Printf("Version: %s\n", Version)
 	fmt.Println("")
 }
 
@@ -81,8 +90,8 @@ func isErrorBool(err error, pre string) (b bool) {
 func checkExt(ext string, pathS string) (files []string, err error) {
 	filepath.Walk(pathS, func(path string, f os.FileInfo, err error) error {
 		if !f.IsDir() {
-			r, err := regexp.MatchString(ext, f.Name())
-			if err == nil && r {
+			match, _ := regexp.MatchString(ext, f.Name())
+			if match {
 				files = append(files, f.Name())
 			}
 		}
@@ -110,9 +119,10 @@ func removeHooks() (err error) {
 			var hookName = fullPath[0 : len(fullPath)-len(ext)]
 			os.Remove(hookName)
 			parts := strings.Split(hookName, "/")
-			fmt.Println(fmt.Sprintf("[*] Deleted %s", parts[len(parts)-1]))
+			fmt.Println(fmt.Sprintf("    	Deleted %s", parts[len(parts)-1]))
 		}
 	}
+	fmt.Println("[*] Successfully removed existing hooks!")
 
 	return
 }
