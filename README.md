@@ -78,8 +78,19 @@ The following notes apply to the elements in the YAML:
 
 ### Inline scripting
 
-//TODO:
+Scripts can be embedded into the .hookz.yaml in multiline format such as follows:
 
+``` yaml 
+- type: pre-commit
+    actions:
+      - name: "Go Tidy (Recursive)"
+        script: "
+          #!/bin/bash \n
+          echo -e Tidying all found go.mod occurrences\n
+          find . -name go.mod -print0 | xargs -0 -n1 dirname |  xargs -L 1 bash -c 'cd \"$0\" && pwd && go mod tidy' \n
+          "
+```
+If you have args flags set, they can be referenced as $1, $2, etc. in a similar manner as to passing parameters into a script. Any scripting language is supported.
 
 ### Support for multiple commands in a hook
 
@@ -146,6 +157,20 @@ hookz reset --verbose
 ```
 ## Example Hooks
 
+### Recursively tidy all go.mod files in subdirectories
+
+```yaml
+version: 2.1.0
+hooks:
+  - type: pre-commit
+    actions:
+      - name: "Go Tidy (Recursive)"
+        script: "
+          #!/bin/bash \n
+          echo -e Tidying all found go.mod occurrences\n
+          find . -name go.mod -print0 | xargs -0 -n1 dirname |  xargs -L 1 bash -c 'cd \"$0\" && pwd && go mod tidy' \n
+          "
+```
 ### Update all go modules to the latest version before committing
 
 ```yaml

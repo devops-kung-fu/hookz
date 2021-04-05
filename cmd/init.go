@@ -145,8 +145,9 @@ blackText='\033[0;30m'
 		}
 
 		defer file.Close()
-
+		fmt.Println(fmt.Sprintf("\n[*] Writing %s ", hook.Type))
 		for _, action := range hook.Actions {
+
 			var argsString string
 			for _, arg := range action.Args {
 				argsString = fmt.Sprintf("%s %s", argsString, arg)
@@ -165,6 +166,7 @@ blackText='\033[0;30m'
 				action.Exec = &scriptFileName
 			}
 
+			fmt.Println(fmt.Sprintf("    	Adding %s action: %s", hook.Type, action.Name))
 			_, err = file.WriteString(fmt.Sprintf("name='%s'\ntype='%s'\n", action.Name, hook.Type))
 			if err != nil {
 				return err
