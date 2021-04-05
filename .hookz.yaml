@@ -7,12 +7,12 @@
           args: ["pull"]
         - name: "Go Tidy (Recursive)"
           script: "
-            #!/bin/bash
-            echo -e In the script!!!
-            for f in $(find . -name go.mod); 
-              do (cd $(dirname $f);
-                go mod tidy -v); 
-            done
+            #!/bin/bash \n
+            echo -e In the script!!! \n
+            for f in $(find . -name go.mod); \n 
+              do (cd $(dirname $f); \n
+                go mod tidy -v); \n
+            done \n
             "
         - name: "Update all go dependencies to latest"
           exec: go
