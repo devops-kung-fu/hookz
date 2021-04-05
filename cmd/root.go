@@ -66,7 +66,9 @@ func readConfig() (config Configuration, err error) {
 }
 
 func hookzHeader() {
-	fmt.Println("Hookz (https://github.com/devops-kung-fu/hookz)")
+	fmt.Println("Hookz")
+	fmt.Println("https://github.com/devops-kung-fu/hookz")
+	fmt.Printf("Version: %s\n", Version)
 	fmt.Println("")
 }
 
@@ -117,9 +119,10 @@ func removeHooks() (err error) {
 			var hookName = fullPath[0 : len(fullPath)-len(ext)]
 			os.Remove(hookName)
 			parts := strings.Split(hookName, "/")
-			fmt.Println(fmt.Sprintf("[*] Deleted %s", parts[len(parts)-1]))
+			fmt.Println(fmt.Sprintf("    	Deleted %s", parts[len(parts)-1]))
 		}
 	}
+	fmt.Println("[*] Successfully removed existing hooks!")
 
 	return
 }

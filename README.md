@@ -92,7 +92,7 @@ __NOTE:__ There needs to be a \n at the end of a line if a multi-line statement 
           find . -name go.mod -print0 | xargs -0 -n1 dirname |  xargs -L 1 bash -c 'cd \"$0\" && pwd && go mod tidy' \n
           "
 ```
-If you have args flags set, they can be referenced as $1, $2, etc. in a similar manner as to passing parameters into a script. Any scripting language is supported.
+If you have args flags set, they can be referenced as $1, $2, etc. in your script in a similar manner as passing parameters in. Any scripting language is supported.
 
 ### Support for multiple commands in a hook
 
