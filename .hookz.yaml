@@ -8,12 +8,12 @@
         - name: "Go Tidy (Recursive)"
           script: "
             #!/bin/bash \n
-            echo -e In the script!!! \n
-            for f in $(find . -name go.mod); \n 
-              do (cd $(dirname $f); \n
-                go mod tidy -v); \n
-            done \n
+            echo -e Tidying all found go.mod occurrences\n
+            find . -name go.mod -print0 | xargs -0 -n1 dirname |  xargs -L 1 bash -c 'cd \"$0\" && pwd && go mod tidy' \n
             "
+        - name: "Go Build (ensure deps do not break)"
+          exec: go
+          args: ["build"]
         - name: "Update all go dependencies to latest"
           exec: go
           args: ["get", "-u", "./..."]
