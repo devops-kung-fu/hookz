@@ -80,13 +80,15 @@ The following notes apply to the elements in the YAML:
 
 Scripts can be embedded into the .hookz.yaml in multiline format such as follows:
 
+__NOTE:__ There needs to be a \n at the end of a line if a multi-line statement exists in the script: node, and special characters need to be escaped properly. 
+
 ``` yaml 
 - type: pre-commit
     actions:
       - name: "Go Tidy (Recursive)"
         script: "
           #!/bin/bash \n
-          echo -e Tidying all found go.mod occurrences\n
+          echo -e Tidying all found go.mod occurrences \n
           find . -name go.mod -print0 | xargs -0 -n1 dirname |  xargs -L 1 bash -c 'cd \"$0\" && pwd && go mod tidy' \n
           "
 ```

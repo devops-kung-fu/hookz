@@ -19,5 +19,9 @@ build: ## Builds the application
 test: ## Runs tests and coverage
 	go test -v -coverprofile=coverage.out ./... && go tool cover -func=coverage.out
 
+install: build ## Builds an executable local version of Hookz and puts in in /usr/local/bin
+	sudo chmod +x hookz
+	sudo mv hookz /usr/local/bin
+
 all: title build test ## Makes all targets
 
