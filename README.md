@@ -25,8 +25,8 @@ To install hookz,  [download the latest release](https://github.com/devops-kung-
 Linux Example:
 
 ```bash
-sudo chmod +x hookz-2.0.0-linux-amd64
-sudo mv hookz-2.0.0-linux-amd64 /usr/local/bin/hookz
+sudo chmod +x hookz-2.1.0-linux-amd64
+sudo mv hookz-2.1.0-linux-amd64 /usr/local/bin/hookz
 ```
 
 ## Configuration
