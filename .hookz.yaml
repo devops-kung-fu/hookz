@@ -19,7 +19,7 @@
           args: ["get", "-u", "./..."]
         - name: "Run gofmt to format the code"
           exec: gofmt
-          args: ["-w", "*/*.go"]
+          args: ["-s", "-w", "**/*.go"]
         - name: "Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]
