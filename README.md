@@ -102,8 +102,8 @@ If multiple hooks are defined in the configuration with the same type (ie: pre-c
 
 Hook types that will execute are the same as supported by _git_. Examples are as follows:
 
-* applypatch-msg
-* commit-msg
+* ```applypatch-msg```
+* ```commit-msg```
 * fsmonitor-watchman
 * post-commit
 * post-update
@@ -119,6 +119,12 @@ Hook types that will execute are the same as supported by _git_. Examples are as
 ### Return Codes
 
 Any non-zero return code from a command executed in a hook will return a FAIL.
+
+### Security
+
+**IMPORTANT:** the ```URL``` element will download a binary, store it in your .git/hookz folder and mark it executable. It is important to ensure that **YOU KNOW THE SAFETY**of the executable that you are downloading. A more secure way is to use the ```exec``` attribute to run an application which is already locally installed, or embed a script in the ```script``` element to download and check the ```shasum``` of the file.
+
+For additional security notes, view the [SECURITY.md](SECURITY.md)
 
 ## Running Hookz
 
@@ -157,6 +163,8 @@ The initialize (init) and reset command optionally take a verbosity flag to indi
 hookz init --verbose
 hookz reset --verbose
 ```
+
+
 ## Example Hooks
 
 ### Recursively tidy all go.mod files in subdirectories
