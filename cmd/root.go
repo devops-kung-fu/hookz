@@ -19,7 +19,7 @@ import (
 
 var (
 	//Verbose identifies if extended output should be configured during init and reset
-	Version = "2.1.0"
+	Version = "2.1.1"
 	Verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
