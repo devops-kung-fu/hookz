@@ -57,11 +57,17 @@ func readConfig() (config Configuration, err error) {
 	if err != nil {
 		return
 	}
+
+	if config.Version == "" {
+		err = errors.New("no configuration version value found in .hookz.yaml")
+		return
+	}
+
 	// Check version
 	ver := strings.Split(config.Version, ".")
 	verMatch := strings.Split(Version, ".")
 	if fmt.Sprintf("%v.%v", ver[0], ver[1]) != fmt.Sprintf("%v.%v", verMatch[0], verMatch[1]) {
-		err = errors.New(fmt.Sprintf("Version Mismatch: Expected v%v.%v - Check your .hookz.yaml configuration\n", verMatch[0], verMatch[1]))
+		err = fmt.Errorf("version mismatch: Expected v%v.%v - Check your .hookz.yaml configuration", verMatch[0], verMatch[1])
 	}
 	return
 }
