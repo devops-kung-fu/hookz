@@ -197,6 +197,35 @@ hooks:
         args: ["pull"]
 ```
 
+### Terraform Format and Terraform Docs
+
+Assumes `terraform` is in your `PATH` for `fmt`. 
+
+```yaml
+version: 2.1
+hooks:
+- type: pre-commit
+  actions:
+    - name: Terraform Format
+      exec: terraform
+      args: ["fmt"]
+    - name: Terraform Docs
+      url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.12.1/terraform-docs-v0.12.1-linux-amd64
+      args: ["markdown", "table", "--output-file", "README.md", "."]
+    - name: "Add all changed files during the pre-commit stage"
+      exec: git
+      args: ["add", "."]
+```
+
+`README.md` must contain the following tags where the documentation will be injected.
+
+```html
+<!-- BEGIN_TF_DOCS -->
+
+<!-- END_TF_DOCS -->
+```
+
+
 ## Credits
 
 A big thank-you to our friends at [Freepik](https://www.freepik.com) for the Hookz logo.
