@@ -11,15 +11,15 @@
             echo -e Tidying all found go.mod occurrences\n
             find . -name go.mod -print0 | xargs -0 -n1 dirname |  xargs -L 1 bash -c 'cd \"$0\" && pwd && go mod tidy' \n
             "
-        - name: "Go Build (Ensure pulled modules do not break the build)"
-          exec: go
-          args: ["build"]
         - name: "Update all go dependencies to latest"
           exec: go
           args: ["get", "-u", "./..."]
         - name: "Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
+        - name: "Go Build (Ensure pulled modules do not break the build)"
+          exec: go
+          args: ["build", "-v"]
         - name: "Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]
