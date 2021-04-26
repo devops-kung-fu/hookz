@@ -225,6 +225,23 @@ hooks:
 <!-- END_TF_DOCS -->
 ```
 
+### NPM
+
+```yaml
+version: 2.1
+hooks:
+- type: pre-commit
+  actions:
+    - name: NPM CI
+      exec: npm
+      args: ["ci"]
+    - name: NPM Test
+      exec: npm
+      args: ["test"]
+    - name: "Add all changed files during the pre-commit stage"
+      exec: git
+      args: ["add", "."]
+```
 
 ## Credits
 
