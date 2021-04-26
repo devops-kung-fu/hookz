@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/cavaliercoder/grab"
+	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v2"
 )
@@ -66,7 +67,7 @@ func readConfig() (config Configuration, err error) {
 }
 
 func hookzHeader() {
-	fmt.Println("Hookz")
+	color.Style{color.FgWhite, color.OpBold}.Println("Hookz")
 	fmt.Println("https://github.com/devops-kung-fu/hookz")
 	fmt.Printf("Version: %s\n", Version)
 	fmt.Println("")
