@@ -49,14 +49,16 @@ hooks:
       - name: "Go Tidy"
         exec: go
         args: ["mod", "tidy"]
-      - name: "Add all changed files during the pre-commit stage"
-        exec: git
-        args: ["add", "."]
   - type: post-commit
     actions:
     - name: "Post Echo"
       exec: echo
       args: ["-e", "Done!"]
+  - type: pre-push
+    actions:
+      - name: "Add all changed files during the pre-commit stage"
+        exec: git
+        args: ["add", "."]
 ```
 
 Hooks will read this example configuration and create a ```pre-commit``` hook and a ```post-commit``` hook based on this yaml. 
@@ -228,17 +230,19 @@ Assumes `terraform` is in your `PATH` for `fmt`.
 ```yaml
 version: 2.1
 hooks:
-- type: pre-commit
-  actions:
-    - name: Terraform Format
-      exec: terraform
-      args: ["fmt"]
-    - name: Terraform Docs
-      url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.12.1/terraform-docs-v0.12.1-linux-amd64
-      args: ["markdown", "table", "--output-file", "README.md", "."]
-    - name: "Add all changed files during the pre-commit stage"
-      exec: git
-      args: ["add", "."]
+  - type: pre-commit
+    actions:
+      - name: Terraform Format
+        exec: terraform
+        args: ["fmt"]
+      - name: Terraform Docs
+        url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.12.1/terraform-docs-v0.12.1-linux-amd64
+        args: ["markdown", "table", "--output-file", "README.md", "."]
+  - type: pre-push
+    actions:
+      - name: "Add all changed files during the pre-commit stage"
+        exec: git
+        args: ["add", "."]
 ```
 
 `README.md` must contain the following tags where the documentation will be injected.
@@ -254,17 +258,19 @@ hooks:
 ```yaml
 version: 2.1
 hooks:
-- type: pre-commit
-  actions:
-    - name: NPM CI
-      exec: npm
-      args: ["ci"]
-    - name: NPM Test
-      exec: npm
-      args: ["test"]
-    - name: "Add all changed files during the pre-commit stage"
-      exec: git
-      args: ["add", "."]
+  - type: pre-commit
+    actions:
+      - name: NPM CI
+        exec: npm
+        args: ["ci"]
+      - name: NPM Test
+        exec: npm
+        args: ["test"]
+  - type: pre-push
+    actions:
+      - name: "Add all changed files during the pre-commit stage"
+        exec: git
+        args: ["add", "."]
 ```
 
 ## Credits

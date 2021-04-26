@@ -20,11 +20,8 @@
         - name: "Go Build (Ensure pulled modules do not break the build)"
           exec: go
           args: ["build", "-v"]
+    - type: pre-push
+      actions:
         - name: "Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]
-    - type: post-commit
-      actions:
-      - name: "Post Echo"
-        exec: echo
-        args: ["-e", "Done!"]
