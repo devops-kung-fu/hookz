@@ -207,6 +207,8 @@ hooks:
 ### Check for open source component vulnerabilities
 Requires [Sonatype Nancy](https://ossindex.sonatype.org/integration/nancy)
 
+__NOTE:__ The ```|| true``` on the end of the command makes the hook always return a success return code. If you want to break the commit on a failure, then remove this directive.
+ 
 ```yaml
 version: 2.1.1
 hooks:

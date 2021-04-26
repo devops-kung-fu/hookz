@@ -17,11 +17,6 @@
         - name: "Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
-        - name: Sonatype Nancy
-          script: "
-            #!/bin/bash \n
-            go list -json -m all | nancy sleuth || true \n
-          "
         - name: "Go Build (Ensure pulled modules do not break the build)"
           exec: go
           args: ["build", "-v"]
