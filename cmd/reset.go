@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/devops-kung-fu/hookz/lib"
+	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 )
 
@@ -13,7 +14,7 @@ var (
 		Short: "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Resetting git hooks")
+			color.Style{color.FgGray, color.OpBold}.Println("Reset Hooks")
 			fmt.Println()
 			fmt.Println("[*] Removing existing hooks...")
 			config, err := lib.ReadConfig(version)

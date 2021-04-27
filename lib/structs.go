@@ -14,15 +14,6 @@ type Hook struct {
 	Actions []Action `json:"actions"`
 }
 
-func (hook *Hook) Create() (err error) {
-
-	// for _, a := range hook.Actions {
-
-	// }
-
-	return
-}
-
 //Action is a task that will execute when a hook executes.
 type Action struct {
 	Name   string   `json:"name"`
@@ -30,8 +21,4 @@ type Action struct {
 	Args   []string `json:"args,omitempty"`
 	Exec   *string  `json:"exec,omitempty"`
 	Script *string  `json:"script,omitempty"`
-}
-
-func (action *Action) Create() (err error) {
-	return
 }

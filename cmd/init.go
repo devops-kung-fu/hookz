@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/devops-kung-fu/hookz/lib"
+	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +15,7 @@ var (
 		Short:   "Initializes the hooks as defined in the .hookz.yaml file.",
 		Long:    "Initializes the hooks as defined in the .hookz.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Initializing git hooks...")
+			color.Style{color.FgGray, color.OpBold}.Println("Initializing Hooks")
 			config, err := lib.ReadConfig(version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return

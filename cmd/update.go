@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/devops-kung-fu/hookz/lib"
+	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 )
 
@@ -13,7 +14,7 @@ var (
 		Short: "Updates any executable defined as an URL attribute in .hooks.yaml.",
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Updating executables...")
+			color.Style{color.FgGray, color.OpBold}.Println("Update Executables")
 			config, err := lib.ReadConfig(version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
