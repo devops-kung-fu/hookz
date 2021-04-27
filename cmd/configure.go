@@ -26,7 +26,7 @@ var (
 			} else {
 				config = c
 			}
-			color.Style{color.FgWhite, color.OpBold}.Println("Configuring.hooks.yaml...")
+			color.Style{color.FgWhite, color.OpBold}.Println("Configuring .hooks.yaml...\n")
 			startInteractive()
 		},
 	}
@@ -129,5 +129,4 @@ func showConfiguration() {
 		log.Fatal("Failed to generate yaml", err)
 	}
 	fmt.Printf("%s\n", string(yaml))
-
 }

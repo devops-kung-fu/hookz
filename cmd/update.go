@@ -14,7 +14,8 @@ var (
 		Short: "Updates any executable defined as an URL attribute in .hooks.yaml.",
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			color.Style{color.FgGray, color.OpBold}.Println("Update Executables")
+			color.Style{color.FgLightBlue, color.OpBold}.Println("Update Executables")
+			fmt.Println()
 			config, err := lib.ReadConfig(version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
@@ -22,7 +23,7 @@ var (
 			if lib.IsErrorBool(lib.UpdateExecutables(config), "[ERROR]") {
 				return
 			}
-			fmt.Println("\nDONE!")
+			color.Style{color.FgLightGreen}.Println("\nDone!")
 		},
 	}
 )

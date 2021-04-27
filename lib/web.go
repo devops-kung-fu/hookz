@@ -12,16 +12,22 @@ import (
 //UpdateExecutables parses the configuration for URL's and re-downloads
 //the contents into the .git/hooks folder
 func UpdateExecutables(config Configuration) (err error) {
+	var updateCount = 0
 	if err != nil {
 		return err
 	}
 	for _, hook := range config.Hooks {
 		for _, action := range hook.Actions {
 			if action.URL != nil {
+				updateCount++
 				_, _ = DownloadURL(*action.URL)
 			}
 		}
 	}
+	if updateCount == 0 {
+		fmt.Println("Nothing to Update!")
+	}
+
 	return
 }
 
