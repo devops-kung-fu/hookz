@@ -1,3 +1,4 @@
+//Package lib Functionality for the Hookz CLI
 package lib
 
 import (
@@ -8,6 +9,8 @@ import (
 	"github.com/cavaliercoder/grab"
 )
 
+//UpdateExecutables parses the configuration for URL's and re-downloads
+//the contents into the .git/hooks folder
 func UpdateExecutables(config Configuration) (err error) {
 	if err != nil {
 		return err
@@ -22,6 +25,9 @@ func UpdateExecutables(config Configuration) (err error) {
 	return
 }
 
+//DownloadURL downloads content from the provided URL and returns the
+//filename after saving the content to the .git/hooks folder. Returns an
+//error if there were any problems.
 func DownloadURL(url string) (filename string, err error) {
 	client := grab.NewClient()
 	req, _ := grab.NewRequest(".git/hooks", url)
