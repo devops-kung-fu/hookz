@@ -18,6 +18,10 @@ Here's what happens when we use Hookz on Hookz itself:
 
 ![](img/run-hookz.png)
 
+## What are Git Hooks?
+
+Git hooks are a great way to run supplemental commands as you interact with git. For deeper information, check out what git-scm has to say about [hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+
 ## Installation
 
 To install hookz,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
@@ -25,8 +29,8 @@ To install hookz,  [download the latest release](https://github.com/devops-kung-
 Linux Example:
 
 ```bash
-sudo chmod +x hookz-2.1.1-linux-amd64
-sudo mv hookz-2.1.1-linux-amd64 /usr/local/bin/hookz
+sudo chmod +x hookz-2.1.2-linux-amd64
+sudo mv hookz-2.1.2-linux-amd64 /usr/local/bin/hookz
 ```
 
 ## Configuration
@@ -36,7 +40,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-version: 2.1.1
+version: 2.1.2
 hooks:
   - type: pre-commit
     actions:
@@ -172,7 +176,7 @@ hookz reset --verbose
 ### Recursively tidy all go.mod files in subdirectories
 
 ```yaml
-version: 2.1.1
+version: 2.1.2
 hooks:
   - type: pre-commit
     actions:
@@ -186,7 +190,7 @@ hooks:
 ### Update all go modules to the latest version before committing
 
 ```yaml
-version: 2.1.1
+version: 2.1.2
 hooks:
   - type: pre-commit
     actions:
@@ -198,7 +202,7 @@ hooks:
 ### Pull from your remote branch before committing
 
 ``` yaml
-version: 2.1.1
+version: 2.1.2
 hooks:
   - type: pre-commit
     actions:
@@ -212,7 +216,7 @@ Requires [Sonatype Nancy](https://ossindex.sonatype.org/integration/nancy)
 __NOTE:__ The ```|| true``` on the end of the command makes the hook always return a success return code. If you want to break the commit on a failure, then remove this directive.
  
 ```yaml
-version: 2.1.1
+version: 2.1.2
 hooks:
   - type: pre-commit
     actions:
@@ -228,7 +232,7 @@ hooks:
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.1
+version: 2.1.2
 hooks:
   - type: pre-commit
     actions:
@@ -256,7 +260,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.1
+version: 2.1.2
 hooks:
   - type: pre-commit
     actions:
