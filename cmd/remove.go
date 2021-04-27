@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/devops-kung-fu/hookz/lib"
 	"github.com/spf13/cobra"
 )
 
@@ -13,9 +14,8 @@ var (
 		Short:   "Removes the hooks as defined in the .hooks.yaml file and any generated scripts.",
 		Long:    "Removes the hooks as defined in the .hooks.yaml file and any generated scripts.",
 		Run: func(cmd *cobra.Command, args []string) {
-			hookzHeader()
 			fmt.Println("[*] Removing existing hooks...")
-			if isErrorBool(removeHooks(), "[ERROR]") {
+			if lib.IsErrorBool(lib.RemoveHooks(), "[ERROR]") {
 				return
 			}
 			fmt.Println("\nDONE!")

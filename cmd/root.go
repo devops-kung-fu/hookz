@@ -5,14 +5,10 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
-	"regexp"
 	"strings"
-	"time"
 
-	"github.com/cavaliercoder/grab"
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v2"
@@ -38,7 +34,10 @@ func Execute() {
 }
 
 func init() {
-
+	color.Style{color.FgWhite, color.OpBold}.Println("Hookz")
+	fmt.Println("https://github.com/devops-kung-fu/hookz")
+	fmt.Printf("Version: %s\n", Version)
+	fmt.Println("")
 }
 
 func readConfig() (config Configuration, err error) {
@@ -53,6 +52,10 @@ func readConfig() (config Configuration, err error) {
 	}
 
 	yamlFile, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return
+	}
+
 	err = yaml.Unmarshal(yamlFile, &config)
 	if err != nil {
 		return
@@ -70,104 +73,4 @@ func readConfig() (config Configuration, err error) {
 		err = fmt.Errorf("version mismatch: Expected v%v.%v - Check your .hookz.yaml configuration", verMatch[0], verMatch[1])
 	}
 	return
-}
-
-func hookzHeader() {
-	color.Style{color.FgWhite, color.OpBold}.Println("Hookz")
-	fmt.Println("https://github.com/devops-kung-fu/hookz")
-	fmt.Printf("Version: %s\n", Version)
-	fmt.Println("")
-}
-
-func isError(err error, pre string) error {
-	if err != nil {
-		log.Printf("%v: %v", pre, err)
-	}
-	return err
-}
-
-func isErrorBool(err error, pre string) (b bool) {
-	if err != nil {
-		log.Printf("%v: %v", pre, err)
-		b = true
-	}
-	return
-}
-
-func checkExt(ext string, pathS string) (files []string, err error) {
-	filepath.Walk(pathS, func(path string, f os.FileInfo, err error) error {
-		if !f.IsDir() {
-			match, _ := regexp.MatchString(ext, f.Name())
-			if match {
-				files = append(files, f.Name())
-			}
-		}
-		return err
-	})
-	return files, nil
-}
-
-func removeHooks() (err error) {
-	ext := ".hookz"
-	p := ".git/hooks/"
-
-	dirRead, _ := os.Open(p)
-	dirFiles, _ := dirRead.Readdir(0)
-
-	for index := range dirFiles {
-		file := dirFiles[index]
-
-		name := file.Name()
-		fullPath := fmt.Sprintf("%s%s", p, name)
-
-		r, err := regexp.MatchString(ext, fullPath)
-		if err == nil && r {
-			os.Remove(fullPath)
-			var hookName = fullPath[0 : len(fullPath)-len(ext)]
-			os.Remove(hookName)
-			parts := strings.Split(hookName, "/")
-			fmt.Println(fmt.Sprintf("    	Deleted %s", parts[len(parts)-1]))
-		}
-	}
-	fmt.Println("[*] Successfully removed existing hooks!")
-
-	return
-}
-
-func downloadURL(url string) (filename string, err error) {
-	client := grab.NewClient()
-	req, _ := grab.NewRequest(".git/hooks", url)
-
-	fmt.Printf("Downloading %v...\n", req.URL())
-	resp := client.Do(req)
-	fmt.Printf("  %v\n", resp.HTTPResponse.Status)
-
-	t := time.NewTicker(500 * time.Millisecond)
-	defer t.Stop()
-
-Loop:
-	for {
-		select {
-		case <-t.C:
-			fmt.Printf("  transferred %v / %v bytes (%.2f%%)\n",
-				resp.BytesComplete(),
-				resp.Size,
-				100*resp.Progress())
-
-		case <-resp.Done:
-			break Loop
-		}
-	}
-
-	if err := resp.Err(); err != nil {
-		fmt.Fprintf(os.Stderr, "Download failed: %v\n", err)
-		return resp.Filename, err
-	}
-
-	fmt.Printf("Download saved to ./%v \n", resp.Filename)
-	err = os.Chmod(resp.Filename, 0777)
-	if err != nil {
-		return resp.Filename, err
-	}
-	return resp.Filename, err
 }
