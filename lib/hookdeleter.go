@@ -40,7 +40,7 @@ func RemoveHooks() (err error) {
 			var hookName = fullPath[0 : len(fullPath)-len(ext)]
 			os.Remove(hookName)
 			parts := strings.Split(hookName, "/")
-			fmt.Printf("    	Deleted %s", parts[len(parts)-1])
+			fmt.Printf("    	Deleted %s\n", parts[len(parts)-1])
 		}
 	}
 	fmt.Println("[*] Successfully removed existing hooks!")

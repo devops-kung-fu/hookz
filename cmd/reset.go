@@ -16,10 +16,14 @@ var (
 			fmt.Println("Resetting git hooks")
 			fmt.Println()
 			fmt.Println("[*] Removing existing hooks...")
+			config, err := lib.ReadConfig(version)
+			if lib.IsErrorBool(err, "[ERROR]") {
+				return
+			}
 			if lib.IsErrorBool(lib.RemoveHooks(), "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(writeHooks(), "[ERROR]") {
+			if lib.IsErrorBool(lib.WriteHooks(config, verbose), "[ERROR]") {
 				return
 			}
 			fmt.Println("\nDONE!")
@@ -29,5 +33,5 @@ var (
 
 func init() {
 	rootCmd.AddCommand(resetCmd)
-	resetCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", false, "If true, output from commands is displayed when the hook executes.")
+	resetCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "If true, output from commands is displayed when the hook executes.")
 }

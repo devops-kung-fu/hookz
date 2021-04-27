@@ -1,4 +1,4 @@
-package cmd
+package lib
 
 type Configuration struct {
 	Version string `json:"version"`

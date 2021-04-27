@@ -14,7 +14,12 @@ var (
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println("Updating executables...")
-			if lib.IsErrorBool(updateExecutables(), "[ERROR]") {
+			config, err := lib.ReadConfig(version)
+			if lib.IsErrorBool(err, "[ERROR]") {
+				return
+			}
+			if lib.IsErrorBool(lib.UpdateExecutables(config), "[ERROR]") {
+				return
 			}
 			fmt.Println("\nDONE!")
 		},
@@ -23,20 +28,4 @@ var (
 
 func init() {
 	rootCmd.AddCommand(updateCmd)
-}
-
-func updateExecutables() (err error) {
-	var config Configuration
-	config, err = readConfig()
-	if err != nil {
-		return err
-	}
-	for _, hook := range config.Hooks {
-		for _, action := range hook.Actions {
-			if action.URL != nil {
-				_, _ = lib.DownloadURL(*action.URL)
-			}
-		}
-	}
-	return
 }

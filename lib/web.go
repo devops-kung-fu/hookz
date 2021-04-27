@@ -8,6 +8,20 @@ import (
 	"github.com/cavaliercoder/grab"
 )
 
+func UpdateExecutables(config Configuration) (err error) {
+	if err != nil {
+		return err
+	}
+	for _, hook := range config.Hooks {
+		for _, action := range hook.Actions {
+			if action.URL != nil {
+				_, _ = DownloadURL(*action.URL)
+			}
+		}
+	}
+	return
+}
+
 func DownloadURL(url string) (filename string, err error) {
 	client := grab.NewClient()
 	req, _ := grab.NewRequest(".git/hooks", url)
