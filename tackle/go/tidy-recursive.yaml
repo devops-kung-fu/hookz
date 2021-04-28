@@ -1,6 +1,6 @@
 # PURPOSE: Recursively tidy all go.mod files in subdirectories
 # HOOK: pre-commit 
-      - name: "Go Tidy (Recursive)"
+      - name: "go: Tidy (Recursive)"
         script: "
           #!/bin/bash \n
           echo -e Tidying all found go.mod occurrences\n
