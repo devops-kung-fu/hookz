@@ -161,8 +161,7 @@ blackText='\033[0;30m'  # Black Text
 boldWhite='\e[1m'  # Bold White
 orange='\e[30;48;5;208m'	# Orange Background
 
-echo -e "Hookz Action Pipeline"
-echo -e "DKFM - https://github.com/devops-kung-fu"
+echo -e "\e[1mHookz: Running $(basename $0)$reset"
 
 {{range .}}
 
