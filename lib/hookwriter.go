@@ -164,7 +164,7 @@ orange='\e[30;48;5;208m'	# Orange Background
 {{range .}}
 
 if ! [ -x "$(command -v  {{.ShortCommand}})" ]; then
-	echo -e "$blackText$orange WARN $reset Hookz: {{.ShortCommand}}c annot be run. Command doesn't exist.({{.Type}})"
+	echo -e "$blackText$orange WARN $reset Hookz: {{.ShortCommand}} cannot be run. Command doesn't exist.({{.Type}})"
 else
 	{{.FullCommand}}
 		
