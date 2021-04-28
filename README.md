@@ -71,6 +71,8 @@ An action with an ```URL``` will download the binary from the defined URL and co
 
 The post-commit in this configuration will execute a command named "dude" with the arguments "Hello World" after a commit has occurred. Note that the _dude_ command must be on your path. If it isn't this post-commit will fail because the command isn't found.
 
+__Check out the [tacklebox](tackle/README.md) for a curated collection of actions to get you up and running quickly.__
+
 ### Optional elements
 
 The following notes apply to the elements in the YAML:
@@ -155,6 +157,7 @@ hookz update
 ```
 
 ### Applying changes to the .hookz.yaml
+
 If there is a modification to the ```.hookz.yaml``` file in your application, you'll need to apply the changes using the following:
 
 ``` bash
@@ -170,6 +173,11 @@ hookz init --verbose
 hookz reset --verbose
 ```
 
+## Tacklebox
+
+We've assembled a collection of actions that you can lift into your ```.hooks.yaml``` file to add functionality to your hooks and get up and running quickly.
+
+Check out the collection [here](tackle/README.md).
 
 ## Example Hooks
 

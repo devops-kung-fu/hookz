@@ -1,5 +1,4 @@
-# Instructions
-# Ensure that errcheck is installed using the instructions at https://github.com/kisielk/errcheck
-        - name: "Go: Check that errors are checked"
+# Instructions: Ensure that errcheck is installed using the instructions at https://github.com/kisielk/errcheck
+        - name: "errcheck: Check that errors are checked"
           exec: errcheck
           args: ["./..."]

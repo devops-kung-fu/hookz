@@ -1,0 +1,4 @@
+# Instructions: Ensure that gocyclo is installed using the instructions at https://github.com/fzipp/gocyclo
+        - name: "gocyclo: Check cyclomatic complexities"
+          exec: gocyclo
+          args: ["."]

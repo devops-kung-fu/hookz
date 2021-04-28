@@ -17,14 +17,19 @@
         - name: "Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
-        - name: "Go: Check that errors are checked"
-          exec: errcheck
-          args: ["./..."]
+        - name: "errcheck: Check that errors are checked"
+          script: "
+            #!/bin/bash \n
+            errcheck ./... || true \n # remove true to FAIL the commit chain
+            "
+        - name: "gocyclo: Check cyclomatic complexities"
+          exec: gocyclo
+          args: ["."]
+    - type: pre-push
+      actions:
         - name: "Go Build (Ensure pulled modules do not break the build)"
           exec: go
           args: ["build", "-v"]
-    - type: pre-push
-      actions:
         - name: "Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]

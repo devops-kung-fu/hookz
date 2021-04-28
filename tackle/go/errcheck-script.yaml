@@ -1,0 +1,7 @@
+# Instructions: Ensure that errcheck is installed using the instructions at https://github.com/kisielk/errcheck
+# NOTE: This script will never fail because of the || true. Remove to fail the action chain
+        - name: "errcheck: Check that errors are checked"
+          script: "
+            #!/bin/bash \n
+            errcheck ./... || true \n # remove || true to FAIL the action chain
+            "
