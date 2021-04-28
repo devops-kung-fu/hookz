@@ -17,6 +17,9 @@
         - name: "Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
+        - name: "Go: Check that errors are checked"
+          exec: errcheck
+          args: ["./..."]
         - name: "Go Build (Ensure pulled modules do not break the build)"
           exec: go
           args: ["build", "-v"]
