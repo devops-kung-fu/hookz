@@ -166,7 +166,7 @@ hookz reset
 
 ### Verbose option
 
-The ```initialize``` (init) and ```reset``` command optionally take a verbosity flag to indicate extended output should be displayed when a hook executes. This is handy for debugging or seeing errors that may be suppressed by hookz.
+The ```initialize``` (init) and ```reset``` command optionally take a verbosity flag to indicate extended output should be displayed when a hook executes. All output from any action will be displayed during the commit process when this flag is used to build the hooks. This is handy for debugging or seeing errors that may be suppressed by hookz. 
 
 ```
 hookz init --verbose
