@@ -1,4 +1,6 @@
-# Instructions: Ensure that gocyclo is installed using the instructions at https://github.com/fzipp/gocyclo
+# PURPOSE: Checks cyclomatic complexities of you go code
+# INSTRUCTIONS: Ensure that gocyclo is installed using the instructions at https://github.com/fzipp/gocyclo
+# HOOK: pre-commit 
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
           args: ["."]

@@ -1,0 +1,5 @@
+# PURPOSE: Pull from your remote branch before committing
+# HOOK: pre-commit 
+        - name: "Git Pre-Commit Pull"
+          exec: git
+          args: ["pull"]

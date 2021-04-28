@@ -18,9 +18,21 @@ Here's what happens when we use Hookz on Hookz itself:
 
 ![](img/run-hookz.png)
 
-## What are Git Hooks?
+## So what exactly are Git Hooks?
 
 Git hooks are a great way to run supplemental commands as you interact with git. For deeper information, check out what git-scm has to say about [hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+
+## What Hookz Does
+
+```Hooks``` generates scripts from a configuration that get triggered when interacting with git locally. For example, in a pre-commit you could lint your code, test it, and then add any modifications of files into the commit before pushing it to your remote. As seen in the screenshot above, tasks come back with a status.
+
+```Hookz``` may return one of three different status codes as it executes the action pipeline:
+
+| Code | Description                                                  |
+| ---- | ------------------------------------------------------------ |
+| PASS | The action has successfully completed                        |
+| WARN | An executable defined in the ```.hookz.yaml`` file wasn't found on the local system. In this case, the action is ignored and no attempt is made to run it. Flow will continue without an exit code of PASS or FAIL. |
+| FAIL | The action has failed. Execution stops. Consider this like a build break in a CI/CD pipeline that executes on a pull request. Errors must be addressed before the code is allowed to be committed. |
 
 ## Installation
 
@@ -173,56 +185,19 @@ hookz init --verbose
 hookz reset --verbose
 ```
 
-## Tacklebox
+## Tacklebox (Curated Example Actions)
 
 We've assembled a collection of actions that you can lift into your ```.hooks.yaml``` file to add functionality to your hooks and get up and running quickly.
 
 Check out the collection [here](tackle/README.md).
 
-## Example Hooks
+## Other Example Hooks
 
-### Recursively tidy all go.mod files in subdirectories
-
-```yaml
-version: 2.1.2
-hooks:
-  - type: pre-commit
-    actions:
-      - name: "Go Tidy (Recursive)"
-        script: "
-          #!/bin/bash \n
-          echo -e Tidying all found go.mod occurrences\n
-          find . -name go.mod -print0 | xargs -0 -n1 dirname |  xargs -L 1 bash -c 'cd \"$0\" && pwd && go mod tidy' \n
-          "
-```
-### Update all go modules to the latest version before committing
-
-```yaml
-version: 2.1.2
-hooks:
-  - type: pre-commit
-    actions:
-      - name: "Update all go dependencies to latest"
-        exec: go
-        args: ["get", "-u", "./..."]
-```
-
-### Pull from your remote branch before committing
-
-``` yaml
-version: 2.1.2
-hooks:
-  - type: pre-commit
-    actions:
-      - name: "Git Pre-Commit Pull"
-        exec: git
-        args: ["pull"]
-```
 ### Check for open source component vulnerabilities
 Requires [Sonatype Nancy](https://ossindex.sonatype.org/integration/nancy)
 
 __NOTE:__ The ```|| true``` on the end of the command makes the hook always return a success return code. If you want to break the commit on a failure, then remove this directive.
- 
+
 ```yaml
 version: 2.1.2
 hooks:
@@ -252,9 +227,7 @@ hooks:
         args: ["markdown", "table", "--output-file", "README.md", "."]
   - type: pre-push
     actions:
-      - name: "Add all changed files during the pre-commit stage"
-        exec: git
-        args: ["add", "."]
+
 ```
 
 `README.md` must contain the following tags where the documentation will be injected.

@@ -1,4 +1,6 @@
-# Instructions: Ensure that errcheck is installed using the instructions at https://github.com/kisielk/errcheck
+# PURPOSE: Checks that all errors are handled inside your go codebase
+# INSTRUCTIONS: Ensure that errcheck is installed using the instructions at https://github.com/kisielk/errcheck
+# HOOK: pre-commit 
         - name: "errcheck: Check that errors are checked"
           exec: errcheck
           args: ["./..."]
