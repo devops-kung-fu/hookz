@@ -69,7 +69,10 @@ func WriteHooks(config Configuration, verbose bool) (err error) {
 		filename, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s", hook.Type))
 		hookzFile, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s.hookz", hook.Type))
 
-		createFile(hookzFile)
+		err = createFile(hookzFile)
+		if err != nil {
+			return err
+		}
 
 		var file, err = os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
 		if err != nil {

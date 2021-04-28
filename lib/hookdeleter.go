@@ -22,9 +22,15 @@ func RemoveHooks() (err error) {
 		fullPath := fmt.Sprintf("%s%s", p, name)
 		r, err := regexp.MatchString(ext, fullPath)
 		if err == nil && r {
-			os.Remove(fullPath)
+			removeErr := os.Remove(fullPath)
+			if removeErr != nil {
+				return removeErr
+			}
 			var hookName = fullPath[0 : len(fullPath)-len(ext)]
-			os.Remove(hookName)
+			removeErr = os.Remove(hookName)
+			if removeErr != nil {
+				return removeErr
+			}
 			parts := strings.Split(hookName, "/")
 			fmt.Printf("    	Deleted %s\n", parts[len(parts)-1])
 		}
