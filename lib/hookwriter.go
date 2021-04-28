@@ -158,8 +158,11 @@ reset='\033[0m'         # Text Reset
 red='\033[41m'          # Red Background
 green='\033[42m'        # Green Background
 blackText='\033[0;30m'  # Black Text
-boldWhite='\033[1;37m'  # Bold White
+boldWhite='\e[1m'  # Bold White
 orange='\e[30;48;5;208m'	# Orange Background
+
+echo -e "Hookz Action Pipeline"
+echo -e "DKFM - https://github.com/devops-kung-fu"
 
 {{range .}}
 
