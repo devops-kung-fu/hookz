@@ -10,11 +10,11 @@ Manages git hooks inside a local git repository based on a configuration.
 
 ## Overview
 
-Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed Hookz. Hookz allows us to do a ton of commit tasks _before_ our code even hits our branches. As you commit and push code to a git based source repository, Hookz will trigger scripts, run tasks, or do just about anything for you.
+Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed ```Hookz```. ```Hookz``` allows us to do a ton of commit tasks _before_ our code even hits our branches. As you commit and push code to a git based source repository, Hookz will trigger scripts, run tasks, or do just about anything for you.
 
 The best thing? We don't care what IDE you use to develop, what your back end source control system is, or what languages you program in. Operating System? We don't care. We wrote this in Go and have compiled it for every OS and architecture you'd ever want.
 
-Here's what happens when we use Hookz on Hookz itself:
+Here's what happens when we use ```hookz``` on ```Hookz``` itself:
 
 ![](img/run-hookz.png)
 
@@ -31,12 +31,12 @@ Git hooks are a great way to run supplemental commands as you interact with git.
 | Code | Description                                                  |
 | ---- | ------------------------------------------------------------ |
 | PASS | The action has successfully completed                        |
-| WARN | An executable defined in the ```.hookz.yaml`` file wasn't found on the local system. In this case, the action is ignored and no attempt is made to run it. Flow will continue without an exit code of PASS or FAIL. |
+| WARN | An executable defined in the ```.hookz.yaml``` file wasn't found on the local system. In this case, the action is ignored and no attempt is made to run it. Flow will continue without an exit code of PASS or FAIL. |
 | FAIL | The action has failed. Execution stops. Consider this like a build break in a CI/CD pipeline that executes on a pull request. Errors must be addressed before the code is allowed to be committed. |
 
 ## Installation
 
-To install hookz,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
+To install ```hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
 
 Linux Example:
 
@@ -81,13 +81,13 @@ Hooks will read this example configuration and create a ```pre-commit``` hook an
 
 An action with an ```URL``` will download the binary from the defined URL and configure the hook to execute the command with the defined arguments before a commit happens.
 
-The post-commit in this configuration will execute a command named "dude" with the arguments "Hello World" after a commit has occurred. Note that the _dude_ command must be on your path. If it isn't this post-commit will fail because the command isn't found.
+The post-commit in this configuration will execute a command named "```dude```" with the arguments ```"Hello World"``` after a commit has occurred. Note that the _dude_ command must be on your path. If it isn't this post-commit will return a WARN message because the command isn't found.
 
 __Check out the [tacklebox](tackle/README.md) for a curated collection of actions to get you up and running quickly.__
 
 ### Optional elements
 
-The following notes apply to the elements in the YAML:
+You must have at least an URL, exec, or script defined in your actions. If you select one, then you shouldn't define the others in the YAML. Don't worry if you do, we have you covered and explain what happens in the following table.
 
 |Attribute|Notes|
 |---|---|
