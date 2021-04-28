@@ -18,10 +18,8 @@
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
         - name: "errcheck: Check that errors are checked"
-          script: "
-            #!/bin/bash \n
-            errcheck ./... || true \n # remove true to FAIL the commit chain
-            "
+          exec: errcheck
+          args: ["./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
           args: ["."]

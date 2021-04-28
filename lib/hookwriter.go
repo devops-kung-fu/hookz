@@ -11,9 +11,10 @@ import (
 )
 
 type command struct {
-	Name        string
-	Type        string
-	FullCommand string
+	Name         string
+	Type         string
+	ShortCommand string
+	FullCommand  string
 }
 
 func createFile(name string) (err error) {
@@ -23,7 +24,10 @@ func createFile(name string) (err error) {
 		return err
 	}
 
-	defer file.Close()
+	defer func() {
+		err = file.Close()
+	}()
+
 	return
 }
 
@@ -36,9 +40,12 @@ func createScriptFile(content string) (name string, err error) {
 		return
 	}
 	hookzFile, hookzFileErr := filepath.Abs(fmt.Sprintf(".git/hooks/%s.hookz", k.String()))
-	createFile(hookzFile)
-	if err != nil {
+	if hookzFileErr != nil {
 		err = hookzFileErr
+		return
+	}
+	err = createFile(hookzFile)
+	if err != nil {
 		return
 	}
 
@@ -51,7 +58,9 @@ func createScriptFile(content string) (name string, err error) {
 		return
 	}
 
-	defer file.Close()
+	defer func() {
+		err = file.Close()
+	}()
 
 	err = os.Chmod(name, 0777)
 	if err != nil {
@@ -79,7 +88,10 @@ func WriteHooks(config Configuration, verbose bool) (err error) {
 			return err
 		}
 
-		defer file.Close()
+		defer func() {
+			err = file.Close()
+		}()
+
 		fmt.Printf("\n[*] Writing %s \n", hook.Type)
 
 		for _, action := range hook.Actions {
@@ -114,9 +126,10 @@ func WriteHooks(config Configuration, verbose bool) (err error) {
 			}
 
 			commands = append(commands, command{
-				Name:        action.Name,
-				Type:        hook.Type,
-				FullCommand: fullCommand,
+				Name:         action.Name,
+				Type:         hook.Type,
+				ShortCommand: *action.Exec,
+				FullCommand:  fullCommand,
 			})
 		}
 
@@ -145,20 +158,26 @@ reset='\033[0m'         # Text Reset
 red='\033[41m'          # Red Background
 green='\033[42m'        # Green Background
 blackText='\033[0;30m'  # Black Text
+boldWhite='\033[1;37m'  # Bold White
+orange='\e[30;48;5;208m'	# Orange Background
 
 {{range .}}
-{{.FullCommand}}
-	
-commandexit=$?
 
-if [ $commandexit -eq 0 ]
-then
-		echo -e "$blackText$green PASS $reset Hookz: {{.Name}} ({{.Type}})"
+if ! [ -x "$(command -v  {{.ShortCommand}})" ]; then
+	echo -e "$blackText$orange WARN $reset Hookz: {{.ShortCommand}}c annot be run. Command doesn't exist.({{.Type}})"
 else
-		echo -e "$blackText$red FAIL $reset Hookz: {{.Name}} ({{.Type}})"
-		exit $commandexit
-fi
+	{{.FullCommand}}
+		
+	commandexit=$?
 
+	if [ $commandexit -eq 0 ]
+	then
+			echo -e "$blackText$green PASS $reset Hookz: {{.Name}} ({{.Type}})"
+	else
+			echo -e "$blackText$red FAIL $reset Hookz: {{.Name}} ({{.Type}})"
+			exit $commandexit
+	fi
+fi
 {{end}}
 `
 	return template.Must(template.New(hookType).Parse(content))

@@ -21,3 +21,12 @@ func IsErrorBool(err error, prefix string) (b bool) {
 	}
 	return
 }
+
+//IfErrorLog Checks to see if an error exists, and if so
+//simply writes it to the log.
+func IfErrorLog(err error, prefix string) {
+	if err != nil {
+		log.Printf("%v: %v", prefix, err)
+	}
+	return
+}
