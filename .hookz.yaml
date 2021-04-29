@@ -22,7 +22,7 @@
           args: ["./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
-          args: ["."]
+          args: ["-over", "13", "."]
         - name: "go: Build (Ensure pulled modules do not break the build)"
           exec: go
           args: ["build", "-v"]

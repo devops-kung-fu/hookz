@@ -70,6 +70,21 @@ func createScriptFile(content string) (name string, err error) {
 	return
 }
 
+func buildFullCommand(action Action, verbose bool) string {
+	var argsString, fullCommand string
+	for _, arg := range action.Args {
+		argsString = fmt.Sprintf("%s %s", argsString, arg)
+	}
+	if action.Exec != nil {
+		if verbose {
+			fullCommand = fmt.Sprintf("%s%s", *action.Exec, argsString)
+		} else {
+			fullCommand = fmt.Sprintf("%s%s &> /dev/null", *action.Exec, argsString)
+		}
+	}
+	return fullCommand
+}
+
 func WriteHooks(config Configuration, verbose bool) (err error) {
 
 	for _, hook := range config.Hooks {
@@ -96,11 +111,6 @@ func WriteHooks(config Configuration, verbose bool) (err error) {
 
 		for _, action := range hook.Actions {
 
-			var argsString string
-			for _, arg := range action.Args {
-				argsString = fmt.Sprintf("%s %s", argsString, arg)
-			}
-
 			if action.Exec == nil && action.URL != nil {
 				filename, _ := DownloadURL(*action.URL)
 				action.Exec = &filename
@@ -116,14 +126,7 @@ func WriteHooks(config Configuration, verbose bool) (err error) {
 
 			fmt.Printf("    	Adding %s action: %s\n", hook.Type, action.Name)
 
-			var fullCommand string
-			if action.Exec != nil {
-				if verbose {
-					fullCommand = fmt.Sprintf("%s%s", *action.Exec, argsString)
-				} else {
-					fullCommand = fmt.Sprintf("%s%s &> /dev/null", *action.Exec, argsString)
-				}
-			}
+			fullCommand := buildFullCommand(action, verbose)
 
 			commands = append(commands, command{
 				Name:         action.Name,
