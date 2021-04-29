@@ -17,11 +17,12 @@ var (
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Reset Hooks")
 			fmt.Println()
 			fmt.Println("[*] Removing existing hooks...")
-			config, err := lib.ReadConfig(version)
-			if lib.IsErrorBool(err, "[ERROR]") {
+
+			if lib.IsErrorBool(lib.RemoveHooks(), "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(lib.RemoveHooks(), "[ERROR]") {
+			config, err := lib.ReadConfig(version)
+			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
 			if lib.IsErrorBool(lib.WriteHooks(config, verbose), "[ERROR]") {
