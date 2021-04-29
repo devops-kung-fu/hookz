@@ -19,7 +19,7 @@ func ReadConfig(version string) (config Configuration, err error) {
 	filename, _ := filepath.Abs(".hookz.yaml")
 	yamlFile, readErr := ioutil.ReadFile(filename)
 	if readErr != nil {
-		config, err = promptCreateConfig()
+		config, err = promptCreateConfig(version)
 		if err != nil {
 			return
 		}
@@ -50,7 +50,7 @@ func checkVersion(config Configuration, version string) (err error) {
 	return
 }
 
-func promptCreateConfig() (config Configuration, err error) {
+func promptCreateConfig(version string) (config Configuration, err error) {
 	fmt.Println("\nHookz was unable to find a .hookz.yaml file. Would you like")
 	fmt.Println("to create a starter configuration?")
 
@@ -68,7 +68,7 @@ func promptCreateConfig() (config Configuration, err error) {
 	if result == "y" {
 		command := "echo"
 		config = Configuration{
-			Version: "2.1.2",
+			Version: version,
 			Hooks: []Hook{
 				{
 					Type: "pre-commit",

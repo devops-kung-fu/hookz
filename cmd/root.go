@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	version = "2.1.2"
+	version = "2.2.0"
 	verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
