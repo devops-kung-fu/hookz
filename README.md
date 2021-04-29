@@ -206,9 +206,6 @@ hooks:
       - name: Terraform Docs
         url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.12.1/terraform-docs-v0.12.1-linux-amd64
         args: ["markdown", "table", "--output-file", "README.md", "."]
-  - type: pre-push
-    actions:
-
 ```
 
 `README.md` must contain the following tags where the documentation will be injected.
@@ -232,11 +229,6 @@ hooks:
       - name: NPM Test
         exec: npm
         args: ["test"]
-  - type: pre-push
-    actions:
-      - name: "Add all changed files during the pre-commit stage"
-        exec: git
-        args: ["add", "."]
 ```
 
 ## Credits
