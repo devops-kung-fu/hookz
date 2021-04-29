@@ -41,8 +41,8 @@ To install ```hookz```,  [download the latest release](https://github.com/devops
 Linux Example:
 
 ```bash
-sudo chmod +x hookz-2.1.2-linux-amd64
-sudo mv hookz-2.1.2-linux-amd64 /usr/local/bin/hookz
+sudo chmod +x hookz-2.2.0-linux-amd64
+sudo mv hookz-2.2.0-linux-amd64 /usr/local/bin/hookz
 ```
 
 ## Configuration
@@ -52,7 +52,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-version: 2.1.2
+version: 2.2.0
 hooks:
   - type: pre-commit
     actions:
@@ -191,31 +191,12 @@ We've assembled a collection of actions that you can lift into your ```.hooks.ya
 
 Check out the collection [here](tackle/README.md).
 
-## Other Example Hooks
-
-### Check for open source component vulnerabilities
-Requires [Sonatype Nancy](https://ossindex.sonatype.org/integration/nancy)
-
-__NOTE:__ The ```|| true``` on the end of the command makes the hook always return a success return code. If you want to break the commit on a failure, then remove this directive.
-
-```yaml
-version: 2.1.2
-hooks:
-  - type: pre-commit
-    actions:
-      - name: Sonatype Nancy
-        script: "
-          #!/bin/bash \n
-          go list -json -m all | nancy sleuth || true \n
-        "
-```
-
 ### Terraform Format and Terraform Docs
 
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.1.2
+version: 2.2.0
 hooks:
   - type: pre-commit
     actions:
@@ -241,7 +222,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.1.2
+version: 2.2.0
 hooks:
   - type: pre-commit
     actions:

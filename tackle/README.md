@@ -12,8 +12,11 @@ If you would like to contribute your own tackle, please follow the [contribution
 
 | Name                                             | Category | Action                                                       | Hook *           | Notes                                                        |
 | ------------------------------------------------ | -------- | ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ |
+| [add.yaml](git/add.yaml)                         | git      | Adds any changed files to the commit. Useful if the action pipeline changed anything. | ```pre-commit``` | Best added as the last action in hook.-                      |
+| [pull.yaml](git/pull.yaml)                       | git      | Pull from your remote branch before committing (ensure there are no upstream changes) | ```pre-commit``` | -Best added as the first action in hook.-                    |
 | [errcheck.yaml](go/errcheck.yaml)                | Go       | Checks for errors that are not handled in go code            | ```pre-commit``` | Requires ```errcheck``` (https://github.com/kisielk/errcheck) |
 | [errcheck-script.yaml](/go/errcheck-script.yaml) | Go       | Checks for errors that are not handled in go code. This is a script version that can be used to ignore errors | ```pre-commit``` | Requires ```errcheck``` (https://github.com/kisielk/errcheck) |
 | [gocyclo.yaml](go/gocyclo.yaml)                  | Go       | Outputs cyclomatic complexity of all files.                  | ```pre-commit``` | Requires ```gocyclo```(https://github.com/fzipp/gocyclo)     |
+| [nancy.yaml](go/nancy.yaml)                      | Go/SCM   | Check for open source component vulnerabilities in go code   | ```pre-commit``` | Ensure that nancy is installed using the instructions at https://ossindex.sonatype.org/integration/nancy |
 
 \* The recommended hook type for this action
