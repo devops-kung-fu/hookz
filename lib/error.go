@@ -1,4 +1,3 @@
-//Package lib Functionality for the Hookz CLI
 package lib
 
 import "log"
@@ -28,5 +27,4 @@ func IfErrorLog(err error, prefix string) {
 	if err != nil {
 		log.Printf("%v: %v", prefix, err)
 	}
-	return
 }

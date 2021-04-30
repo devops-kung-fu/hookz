@@ -17,15 +17,24 @@
         - name: "gofmt: Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
+        - name: "golint: Lint all go files"
+          exec: golint
+          args: ["./..."] #to error out, add the arg "-set_exit_status"
         - name: "errcheck: Check that errors are checked"
           exec: errcheck
-          args: ["./..."]
+          args: ["-ignoretests", "./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
           args: ["-over", "13", "."]
         - name: "go: Build (Ensure pulled modules do not break the build)"
           exec: go
           args: ["build", "-v"]
+        - name: "go: Run all tests"
+          exec: go
+          args: ["test", "-v", "-coverprofile=coverage.out", "./..."]
+        - name: "go: Test coverage"
+          exec: go
+          args: ["tool", "cover", "-func=coverage.out"]
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]
