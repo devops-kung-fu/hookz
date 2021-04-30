@@ -7,6 +7,8 @@ import (
 	"os"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestIsError(t *testing.T) {
@@ -15,10 +17,8 @@ func TestIsError(t *testing.T) {
 	})
 
 	if output.Len() == 0 {
-		t.Error("No information logged to STDOUT")
-	}
-	if strings.Count(output.String(), "\n") > 1 {
-		t.Error("Expected only a single line of log output")
+		assert.GreaterOrEqual(t, output.Len(), 0, "No information logged to STDOUT")
+		assert.GreaterOrEqual(t, strings.Count(output.String(), "\n"), 1, "Expected only a single line of log output")
 	}
 }
 
@@ -27,12 +27,8 @@ func TestIsErrorBool(t *testing.T) {
 		IsErrorBool(errors.New("Test Error"), "[TEST]")
 	})
 
-	if output.Len() == 0 {
-		t.Error("No information logged to STDOUT")
-	}
-	if strings.Count(output.String(), "\n") > 1 {
-		t.Error("Expected only a single line of log output")
-	}
+	assert.GreaterOrEqual(t, output.Len(), 0, "No information logged to STDOUT")
+	assert.GreaterOrEqual(t, strings.Count(output.String(), "\n"), 1, "Expected only a single line of log output")
 }
 
 func TestIfErrorLog(t *testing.T) {
@@ -40,12 +36,8 @@ func TestIfErrorLog(t *testing.T) {
 		IfErrorLog(errors.New("Test Error"), "[TEST]")
 	})
 
-	if output.Len() == 0 {
-		t.Error("No information logged to STDOUT")
-	}
-	if strings.Count(output.String(), "\n") > 1 {
-		t.Error("Expected only a single line of log output")
-	}
+	assert.GreaterOrEqual(t, output.Len(), 0, "No information logged to STDOUT")
+	assert.GreaterOrEqual(t, strings.Count(output.String(), "\n"), 1, "Expected only a single line of log output")
 }
 
 func captureOutput(f func()) bytes.Buffer {
