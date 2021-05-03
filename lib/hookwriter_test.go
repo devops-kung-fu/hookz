@@ -19,3 +19,14 @@ func Test_genTemplate(t *testing.T) {
 	template := genTemplate(content)
 	assert.Equal(t, content, template.ParseName, "Template should have a name `hooktype`")
 }
+
+func Test_buildFullCommand(t *testing.T) {
+	config, err := deps.createConfig(version)
+	assert.NoError(t, err, "createConfig should not have generated an error")
+
+	action := config.Hooks[0].Actions[0]
+	assert.NotNil(t, action, "Action should not be nil")
+
+	command := buildFullCommand(action, true)
+	assert.Equal(t, "echo -e Hello Hookz!", command, "Values are not equal")
+}

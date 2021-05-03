@@ -4,7 +4,7 @@
 
 # hookz
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/hookz)](https://goreportcard.com/report/github.com/devops-kung-fu/hookz) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/hookz)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/hookz) [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/hookz)](https://goreportcard.com/report/github.com/devops-kung-fu/hookz) [![codecov](https://codecov.io/gh/devops-kung-fu/hookz/branch/main/graph/badge.svg?token=P9WBOBQTOB)](https://codecov.io/gh/devops-kung-fu/hookz)
 
 Manages git hooks inside a local git repository based on a configuration.
 
