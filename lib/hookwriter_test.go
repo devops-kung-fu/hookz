@@ -2,6 +2,7 @@
 package lib
 
 import (
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -29,4 +30,16 @@ func Test_buildFullCommand(t *testing.T) {
 
 	command := buildFullCommand(action, true)
 	assert.Equal(t, "echo -e Hello Hookz!", command, "Values are not equal")
+}
+
+func Test_WriteHooks(t *testing.T) {
+	config, err := deps.createConfig(version)
+	assert.NoError(t, err, "createConfig should not have generated an error")
+
+	err = deps.WriteHooks(config, true)
+	assert.NoError(t, err, "WriteHooks should not have generated an error")
+
+	filename, _ := filepath.Abs(".git/hooks/pre-commit")
+	contains, _ := deps.Afero().FileContainsBytes(filename, []byte("Hookz"))
+	assert.True(t, contains, "Generated hook should have the word Hookz in it")
 }
