@@ -30,22 +30,22 @@ type Action struct {
 	Script *string  `json:"script,omitempty"`
 }
 
-type Deps struct {
+type FileSystem struct {
 	fs afero.Fs
 }
 
-func NewDeps() Deps {
-	var d Deps
+func NewDeps() FileSystem {
+	var d FileSystem
 	d.fs = afero.NewOsFs()
 	return d
 }
 
-func (d Deps) Afero() (afs *afero.Afero) {
+func (d FileSystem) Afero() (afs *afero.Afero) {
 	afs = &afero.Afero{Fs: d.fs}
 	return
 }
 
-func (d Deps) createConfig(version string) (config Configuration, err error) {
+func (f FileSystem) createConfig(version string) (config Configuration, err error) {
 	command := "echo"
 	config = Configuration{
 		Version: version,
@@ -69,7 +69,7 @@ func (d Deps) createConfig(version string) (config Configuration, err error) {
 		return
 	}
 	filename, _ := filepath.Abs(".hookz.yaml")
-	err = d.Afero().WriteFile(filename, file, 0644)
+	err = f.Afero().WriteFile(filename, file, 0644)
 	if err != nil {
 		return
 	}

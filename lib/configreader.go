@@ -13,13 +13,13 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-func (d Deps) ReadConfig(version string) (config Configuration, err error) {
+func (f FileSystem) ReadConfig(version string) (config Configuration, err error) {
 
 	filename, _ := filepath.Abs(".hookz.yaml")
 	//yamlFile, readErr := ioutil.ReadFile(filename)
-	yamlFile, readErr := d.Afero().ReadFile(filename)
+	yamlFile, readErr := f.Afero().ReadFile(filename)
 	if readErr != nil {
-		config, err = d.promptCreateConfig(version)
+		config, err = f.promptCreateConfig(version)
 		if err != nil {
 			return
 		}
@@ -48,7 +48,7 @@ func checkVersion(config Configuration, version string) (err error) {
 	return
 }
 
-func (d Deps) promptCreateConfig(version string) (config Configuration, err error) {
+func (f FileSystem) promptCreateConfig(version string) (config Configuration, err error) {
 	fmt.Println("\nHookz was unable to find a .hookz.yaml file. Would you like")
 	fmt.Println("to create a starter configuration?")
 
@@ -64,7 +64,7 @@ func (d Deps) promptCreateConfig(version string) (config Configuration, err erro
 	}
 
 	if result == "y" {
-		config, err = d.createConfig(version)
+		config, err = f.createConfig(version)
 	}
 
 CONFIG_ERR:

@@ -10,7 +10,7 @@ import (
 
 func TestDeps_CreateScriptFile(t *testing.T) {
 	content := "Test Script"
-	filename, err := deps.CreateScriptFile(content)
+	filename, err := f.CreateScriptFile(content)
 	assert.NoError(t, err, "CreateScriptFile should not have generated an error")
 	assert.NotEmpty(t, filename, "A filename should have been returned")
 }
@@ -22,7 +22,7 @@ func Test_genTemplate(t *testing.T) {
 }
 
 func Test_buildFullCommand(t *testing.T) {
-	config, err := deps.createConfig(version)
+	config, err := f.createConfig(version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
 	action := config.Hooks[0].Actions[0]
@@ -33,13 +33,13 @@ func Test_buildFullCommand(t *testing.T) {
 }
 
 func Test_WriteHooks(t *testing.T) {
-	config, err := deps.createConfig(version)
+	config, err := f.createConfig(version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
-	err = deps.WriteHooks(config, true)
+	err = f.WriteHooks(config, true)
 	assert.NoError(t, err, "WriteHooks should not have generated an error")
 
 	filename, _ := filepath.Abs(".git/hooks/pre-commit")
-	contains, _ := deps.Afero().FileContainsBytes(filename, []byte("Hookz"))
+	contains, _ := f.Afero().FileContainsBytes(filename, []byte("Hookz"))
 	assert.True(t, contains, "Generated hook should have the word Hookz in it")
 }

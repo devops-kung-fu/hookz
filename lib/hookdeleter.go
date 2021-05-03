@@ -7,11 +7,11 @@ import (
 	"strings"
 )
 
-func (d Deps) RemoveHooks() (err error) {
+func (f FileSystem) RemoveHooks() (err error) {
 	ext := ".hookz"
 	p := ".git/hooks/"
 
-	dirFiles, err := d.Afero().ReadDir(p)
+	dirFiles, err := f.Afero().ReadDir(p)
 	if err != nil {
 		return err
 	}
@@ -23,12 +23,12 @@ func (d Deps) RemoveHooks() (err error) {
 		fullPath := fmt.Sprintf("%s%s", p, name)
 		r, err := regexp.MatchString(ext, fullPath)
 		if err == nil && r {
-			removeErr := d.fs.Remove(fullPath)
+			removeErr := f.fs.Remove(fullPath)
 			if removeErr != nil {
 				return removeErr
 			}
 			var hookName = fullPath[0 : len(fullPath)-len(ext)]
-			removeErr = d.fs.Remove(hookName)
+			removeErr = f.fs.Remove(hookName)
 			if removeErr != nil {
 				return removeErr
 			}

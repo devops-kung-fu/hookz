@@ -9,11 +9,11 @@ import (
 )
 
 func TestNewDeps(t *testing.T) {
-	deps := Deps{}
+	f := FileSystem{}
 
 	var i interface{} = NewDeps()
 	var fs interface{} = afero.NewOsFs()
 
-	assert.IsType(t, deps, i, "NewDeps is not returning a Deps struct")
+	assert.IsType(t, f, i, "NewDeps is not returning a Deps struct")
 	assert.IsType(t, fs, NewDeps().fs, "fs should be an afero.OsFs")
 }
