@@ -4,7 +4,6 @@ package lib
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -20,7 +19,7 @@ func (d Deps) ReadConfig(version string) (config Configuration, err error) {
 	//yamlFile, readErr := ioutil.ReadFile(filename)
 	yamlFile, readErr := d.Afero().ReadFile(filename)
 	if readErr != nil {
-		config, err = promptCreateConfig(version)
+		config, err = d.promptCreateConfig(version)
 		if err != nil {
 			return
 		}
@@ -49,7 +48,7 @@ func checkVersion(config Configuration, version string) (err error) {
 	return
 }
 
-func promptCreateConfig(version string) (config Configuration, err error) {
+func (d Deps) promptCreateConfig(version string) (config Configuration, err error) {
 	fmt.Println("\nHookz was unable to find a .hookz.yaml file. Would you like")
 	fmt.Println("to create a starter configuration?")
 
@@ -65,35 +64,7 @@ func promptCreateConfig(version string) (config Configuration, err error) {
 	}
 
 	if result == "y" {
-		command := "echo"
-		config = Configuration{
-			Version: version,
-			Hooks: []Hook{
-				{
-					Type: "pre-commit",
-					Actions: []Action{
-						{
-							Name: "Hello Hookz!",
-							Exec: &command,
-							Args: []string{"-e", "Hello Hookz!"},
-						},
-					},
-				},
-			},
-		}
-
-		file, memoryErr := yaml.Marshal(config)
-		if memoryErr != nil {
-			err = memoryErr
-			return
-		}
-
-		err = ioutil.WriteFile(".hooks.yaml", file, 0644)
-		if err != nil {
-			return
-		}
-
-		return
+		config, err = d.createConfig(version)
 	}
 
 CONFIG_ERR:
