@@ -2,10 +2,13 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
+	"github.com/devops-kung-fu/hookz/lib"
 	"github.com/gookit/color"
+	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 )
 
@@ -21,6 +24,18 @@ var (
 
 // Execute creates the command tree and handles any error condition returned
 func Execute() {
+	cobra.OnInitialize(func() {
+		var fs = afero.NewOsFs()
+		afs := &afero.Afero{Fs: fs}
+		b, err := afs.DirExists(".git")
+		lib.IfErrorLog(err, "[ERROR]")
+
+		if !b {
+			e := errors.New("Hookz must be run in a local .git repository")
+			lib.IfErrorLog(e, "ERROR")
+			os.Exit(1)
+		}
+	})
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)

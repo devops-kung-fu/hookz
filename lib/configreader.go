@@ -14,10 +14,11 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-func ReadConfig(version string) (config Configuration, err error) {
+func (d Deps) ReadConfig(version string) (config Configuration, err error) {
 
 	filename, _ := filepath.Abs(".hookz.yaml")
-	yamlFile, readErr := ioutil.ReadFile(filename)
+	//yamlFile, readErr := ioutil.ReadFile(filename)
+	yamlFile, readErr := d.Afero().ReadFile(filename)
 	if readErr != nil {
 		config, err = promptCreateConfig(version)
 		if err != nil {
@@ -40,8 +41,6 @@ func checkVersion(config Configuration, version string) (err error) {
 		err = errors.New("no configuration version value found in .hookz.yaml")
 		return
 	}
-
-	// Check version
 	ver := strings.Split(config.Version, ".")
 	verMatch := strings.Split(version, ".")
 	if fmt.Sprintf("%v.%v", ver[0], ver[1]) != fmt.Sprintf("%v.%v", verMatch[0], verMatch[1]) {

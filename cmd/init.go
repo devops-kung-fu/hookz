@@ -13,12 +13,13 @@ var (
 		Short:   "Initializes the hooks as defined in the .hookz.yaml file.",
 		Long:    "Initializes the hooks as defined in the .hookz.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
+			deps := lib.NewDeps()
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Initializing Hooks")
-			config, err := lib.ReadConfig(version)
+			config, err := deps.ReadConfig(version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(lib.WriteHooks(config, verbose), "[ERROR]") {
+			if lib.IsErrorBool(deps.WriteHooks(config, verbose), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("\nDone!")

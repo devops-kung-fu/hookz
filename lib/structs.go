@@ -1,6 +1,8 @@
 //Package lib Functionality for the Hookz CLI
 package lib
 
+import "github.com/spf13/afero"
+
 //Configuration represents the content of .hookz.yaml
 type Configuration struct {
 	Version string `json:"version"`
@@ -21,4 +23,19 @@ type Action struct {
 	Args   []string `json:"args,omitempty"`
 	Exec   *string  `json:"exec,omitempty"`
 	Script *string  `json:"script,omitempty"`
+}
+
+type Deps struct {
+	fs afero.Fs
+}
+
+func NewDeps() Deps {
+	var d Deps
+	d.fs = afero.NewOsFs()
+	return d
+}
+
+func (d Deps) Afero() (afs *afero.Afero) {
+	afs = &afero.Afero{Fs: d.fs}
+	return
 }

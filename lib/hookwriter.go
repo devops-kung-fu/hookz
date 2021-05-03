@@ -17,9 +17,9 @@ type command struct {
 	FullCommand  string
 }
 
-func createFile(name string) (err error) {
+func (d Deps) CreateFile(name string) (err error) {
 
-	file, err := os.Create(name)
+	file, err := d.fs.Create(name)
 	if err != nil {
 		return err
 	}
@@ -31,7 +31,7 @@ func createFile(name string) (err error) {
 	return
 }
 
-func createScriptFile(content string) (name string, err error) {
+func (d Deps) CreateScriptFile(content string) (name string, err error) {
 
 	k, idErr := ksuid.NewRandom()
 	name, _ = filepath.Abs(fmt.Sprintf(".git/hooks/%s", k.String()))
@@ -44,12 +44,12 @@ func createScriptFile(content string) (name string, err error) {
 		err = hookzFileErr
 		return
 	}
-	err = createFile(hookzFile)
+	err = d.CreateFile(hookzFile)
 	if err != nil {
 		return
 	}
 
-	file, err := os.OpenFile(name, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	file, err := d.fs.OpenFile(name, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
 	if err != nil {
 		return
 	}
@@ -62,7 +62,7 @@ func createScriptFile(content string) (name string, err error) {
 		err = file.Close()
 	}()
 
-	err = os.Chmod(name, 0777)
+	err = d.fs.Chmod(name, 0777)
 	if err != nil {
 		return
 	}
@@ -85,7 +85,7 @@ func buildFullCommand(action Action, verbose bool) string {
 	return fullCommand
 }
 
-func WriteHooks(config Configuration, verbose bool) (err error) {
+func (d Deps) WriteHooks(config Configuration, verbose bool) (err error) {
 
 	for _, hook := range config.Hooks {
 		var commands []command
@@ -93,12 +93,12 @@ func WriteHooks(config Configuration, verbose bool) (err error) {
 		filename, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s", hook.Type))
 		hookzFile, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s.hookz", hook.Type))
 
-		err = createFile(hookzFile)
+		err = d.CreateFile(hookzFile)
 		if err != nil {
 			return err
 		}
 
-		var file, err = os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+		var file, err = d.fs.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
 		if err != nil {
 			return err
 		}
@@ -117,7 +117,7 @@ func WriteHooks(config Configuration, verbose bool) (err error) {
 			}
 
 			if action.Exec == nil && action.Script != nil {
-				scriptFileName, err := createScriptFile(*action.Script)
+				scriptFileName, err := d.CreateScriptFile(*action.Script)
 				if err != nil {
 					return err
 				}
@@ -141,7 +141,7 @@ func WriteHooks(config Configuration, verbose bool) (err error) {
 		if err != nil {
 			return err
 		}
-		err = os.Chmod(filename, 0777)
+		err = d.fs.Chmod(filename, 0777)
 		if err != nil {
 			return err
 		}
