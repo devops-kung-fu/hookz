@@ -82,9 +82,9 @@ func promptCreateConfig(version string) (config Configuration, err error) {
 			},
 		}
 
-		file, merr := yaml.Marshal(config)
-		if merr != nil {
-			err = merr
+		file, memoryErr := yaml.Marshal(config)
+		if memoryErr != nil {
+			err = memoryErr
 			return
 		}
 

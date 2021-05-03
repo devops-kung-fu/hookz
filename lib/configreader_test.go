@@ -2,7 +2,7 @@
 package lib
 
 import (
-	"fmt"
+	"path/filepath"
 	"testing"
 
 	"github.com/spf13/afero"
@@ -10,42 +10,32 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-func TestDeps_ReadConfig(t *testing.T) {
-	deps := Deps{
+var (
+	deps Deps = Deps{
 		fs: afero.NewMemMapFs(),
 	}
-	version := "1.0.0"
+	version string = "1.0.0"
+	config  Configuration
+)
 
-	config, err := createTestConfig(deps, version)
-	assert.NoError(t, err, "creteTestConfig error should be nil")
-	assert.Equal(t, version, config.Version, "Versions should match")
+func TestDeps_ReadConfig(t *testing.T) {
 
-	// type args struct {
-	// 	version string
-	// }
+	config, _ = createTestConfig(version)
+	readConfig, err := deps.ReadConfig(version)
 
-	// for _, tt := range tests {
-	// 	t.Run(tt.name, func(t *testing.T) {
-	// 		d := Deps{
-	// 			fs: tt.fields.fs,
-	// 		}
-	// 		gotConfig, err := d.ReadConfig(tt.args.version)
-	// 		if (err != nil) != tt.wantErr {
-	// 			t.Errorf("Deps.ReadConfig() error = %v, wantErr %v", err, tt.wantErr)
-	// 			return
-	// 		}
-	// 		if !reflect.DeepEqual(gotConfig, tt.wantConfig) {
-	// 			t.Errorf("Deps.ReadConfig() = %v, want %v", gotConfig, tt.wantConfig)
-	// 		}
-	// 	})
-	// }
+	assert.NoError(t, err, "ReadConfig should not have generated an error")
+	assert.Equal(t, version, readConfig.Version, "Versions should match")
 }
 
 func TestDeps_checkVersion(t *testing.T) {
+	readConfig, err := deps.ReadConfig(version)
+	assert.NoError(t, err, "ReadConfig should not have generated an error")
+	err = checkVersion(readConfig, version)
+	assert.NoError(t, err, "Check version should not have generated an error")
 
 }
 
-func createTestConfig(d Deps, version string) (config Configuration, err error) {
+func createTestConfig(version string) (config Configuration, err error) {
 	command := "echo"
 	config = Configuration{
 		Version: version,
@@ -63,16 +53,14 @@ func createTestConfig(d Deps, version string) (config Configuration, err error) 
 		},
 	}
 
-	file, merr := yaml.Marshal(config)
-	if merr != nil {
-		err = merr
-		fmt.Println(err)
+	file, memoryErr := yaml.Marshal(config)
+	if memoryErr != nil {
+		err = memoryErr
 		return
 	}
-
-	err = d.Afero().WriteFile(".hooks.yaml", file, 0644)
+	filename, _ := filepath.Abs(".hookz.yaml")
+	err = deps.Afero().WriteFile(filename, file, 0644)
 	if err != nil {
-		fmt.Println(err)
 		return
 	}
 
