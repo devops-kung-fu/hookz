@@ -12,5 +12,10 @@ func TestDeps_CreateScriptFile(t *testing.T) {
 	filename, err := deps.CreateScriptFile(content)
 	assert.NoError(t, err, "CreateScriptFile should not have generated an error")
 	assert.NotEmpty(t, filename, "A filename should have been returned")
+}
 
+func Test_genTemplate(t *testing.T) {
+	content := "hooktype"
+	template := genTemplate(content)
+	assert.Equal(t, content, template.ParseName, "Template should have a name `hooktype`")
 }
