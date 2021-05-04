@@ -31,4 +31,11 @@ func TestDeps_checkVersion(t *testing.T) {
 
 	err = checkVersion(readConfig, version)
 	assert.NoError(t, err, "Check version should not have generated an error")
+
+	err = checkVersion(readConfig, "2.0")
+	assert.Error(t, err, "Version mismatch not caught")
+
+	readConfig.Version = ""
+	err = checkVersion(readConfig, version)
+	assert.Error(t, err, "An empty config version should throw an error")
 }

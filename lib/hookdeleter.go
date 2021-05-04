@@ -3,13 +3,14 @@ package lib
 
 import (
 	"fmt"
+	"path/filepath"
 	"regexp"
 	"strings"
 )
 
 func (f FileSystem) RemoveHooks() (err error) {
 	ext := ".hookz"
-	p := ".git/hooks/"
+	p, _ := filepath.Abs(fmt.Sprintf(".git/hooks/"))
 
 	dirFiles, err := f.Afero().ReadDir(p)
 	if err != nil {
@@ -20,7 +21,7 @@ func (f FileSystem) RemoveHooks() (err error) {
 		file := dirFiles[index]
 
 		name := file.Name()
-		fullPath := fmt.Sprintf("%s%s", p, name)
+		fullPath := fmt.Sprintf("%s/%s", p, name)
 		r, err := regexp.MatchString(ext, fullPath)
 		if err == nil && r {
 			removeErr := f.fs.Remove(fullPath)
