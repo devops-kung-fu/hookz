@@ -13,6 +13,7 @@ func TestDeps_CreateScriptFile(t *testing.T) {
 	filename, err := f.CreateScriptFile(content)
 	assert.NoError(t, err, "CreateScriptFile should not have generated an error")
 	assert.NotEmpty(t, filename, "A filename should have been returned")
+
 	contains, _ := f.Afero().FileContainsBytes(filename, []byte(content))
 	assert.True(t, contains, "Script file should have the phrase `Test Script` in it")
 }
@@ -44,4 +45,14 @@ func Test_WriteHooks(t *testing.T) {
 	filename, _ := filepath.Abs(".git/hooks/pre-commit")
 	contains, _ := f.Afero().FileContainsBytes(filename, []byte("Hookz"))
 	assert.True(t, contains, "Generated hook should have the word Hookz in it")
+}
+
+func Test_createFile(t *testing.T) {
+	err := f.CreateFile("test")
+	assert.NoError(t, err, "Create file should not generate an error")
+	// assert.FileExists(t, "./test", "A file should have been created")
+
+	// err = f.CreateFile("")
+	// assert.Error(t, err, "A file should have not been created and an error thrown")
+
 }
