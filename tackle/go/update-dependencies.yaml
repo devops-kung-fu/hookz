@@ -1,0 +1,6 @@
+
+# PURPOSE: Update all go modules to the latest version before committing
+# HOOK: pre-commit 
+        - name: "go: Update all dependencies to latest"
+          exec: go
+          args: ["get", "-u", "./..."]

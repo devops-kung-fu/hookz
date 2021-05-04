@@ -1,0 +1,9 @@
+# PURPOSE: Check for open source component vulnerabilities in go code
+# INSTRUCTIONS: Ensure that nancy is installed using the instructions at https://ossindex.sonatype.org/integration/nancy
+# NOTES: The ```|| true``` on the end of the command makes the hook always return a success return code. If you want to break the commit on a failure, then remove this directive.
+# HOOK: pre-commit 
+        - name: Sonatype Nancy
+          script: "
+            #!/bin/bash \n
+            go list -json -m all | nancy sleuth || true \n
+          "

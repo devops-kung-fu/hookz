@@ -3,6 +3,8 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/devops-kung-fu/hookz/lib"
+	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 )
 
@@ -12,32 +14,20 @@ var (
 		Short: "Updates any executable defined as an URL attribute in .hooks.yaml.",
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			hookzHeader()
-			fmt.Println("Updating executables...")
-			if isErrorBool(updateExecutables(), "[ERROR]") {
+			color.Style{color.FgLightBlue, color.OpBold}.Println("Update Executables")
+			fmt.Println()
+			config, err := lib.NewDeps().ReadConfig(version)
+			if lib.IsErrorBool(err, "[ERROR]") {
+				return
 			}
-			fmt.Println("\nDONE!")
+			if lib.IsErrorBool(lib.UpdateExecutables(config), "[ERROR]") {
+				return
+			}
+			color.Style{color.FgLightGreen}.Println("\nDone!")
 		},
 	}
 )
 
 func init() {
 	rootCmd.AddCommand(updateCmd)
-}
-
-func updateExecutables() (err error) {
-	var config Configuration
-	config, err = readConfig()
-	if err != nil {
-		return err
-	}
-	for _, hook := range config.Hooks {
-		for _, action := range hook.Actions {
-			if action.URL != nil {
-				_, _ = downloadURL(*action.URL)
-			}
-		}
-	}
-	err = nil
-	return
 }

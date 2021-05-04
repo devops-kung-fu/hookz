@@ -3,6 +3,7 @@ package cmd
 import (
 	"os"
 
+	"github.com/devops-kung-fu/hookz/lib"
 	"github.com/spf13/cobra"
 )
 
@@ -54,13 +55,13 @@ PowerShell:
 	Run: func(cmd *cobra.Command, args []string) {
 		switch args[0] {
 		case "bash":
-			cmd.Root().GenBashCompletion(os.Stdout)
+			lib.IfErrorLog(cmd.Root().GenBashCompletion(os.Stdout), "ERROR")
 		case "zsh":
-			cmd.Root().GenZshCompletion(os.Stdout)
+			lib.IfErrorLog(cmd.Root().GenZshCompletion(os.Stdout), "ERROR")
 		case "fish":
-			cmd.Root().GenFishCompletion(os.Stdout, true)
+			lib.IfErrorLog(cmd.Root().GenFishCompletion(os.Stdout, true), "ERROR")
 		case "powershell":
-			cmd.Root().GenPowerShellCompletionWithDesc(os.Stdout)
+			lib.IfErrorLog(cmd.Root().GenPowerShellCompletionWithDesc(os.Stdout), "ERROR")
 		}
 	},
 }

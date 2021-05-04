@@ -1,0 +1,5 @@
+# PURPOSE: Adds any changed files to the commit. Useful if the action pipeline changed anything
+# HOOK: pre-commit 
+        - name: "git: Add all changed files during the pre-commit stage"
+          exec: git
+          args: ["add", "."]

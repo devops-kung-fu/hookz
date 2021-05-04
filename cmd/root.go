@@ -4,170 +4,48 @@ package cmd
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
-	"log"
 	"os"
-	"path/filepath"
-	"regexp"
-	"strings"
-	"time"
 
-	"github.com/cavaliercoder/grab"
+	"github.com/devops-kung-fu/hookz/lib"
 	"github.com/gookit/color"
+	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
-	"gopkg.in/yaml.v2"
 )
 
 var (
-	//Verbose identifies if extended output should be configured during init and reset
-	Version = "2.1.1"
-	Verbose bool
+	version = "2.2.0"
+	verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
-		Version: Version,
+		Version: version,
 	}
 )
 
 // Execute creates the command tree and handles any error condition returned
 func Execute() {
+	cobra.OnInitialize(func() {
+		var fs = afero.NewOsFs()
+		afs := &afero.Afero{Fs: fs}
+		b, err := afs.DirExists(".git")
+		lib.IfErrorLog(err, "[ERROR]")
+
+		if !b {
+			e := errors.New("Hookz must be run in a local .git repository")
+			lib.IfErrorLog(e, "ERROR")
+			os.Exit(1)
+		}
+	})
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 }
 
 func init() {
-
-}
-
-func readConfig() (config Configuration, err error) {
-
-	filename, _ := filepath.Abs(".hookz.yaml")
-	_, err = os.Stat(filename)
-
-	if os.IsNotExist(err) {
-		if err != nil {
-			return
-		}
-	}
-
-	yamlFile, err := ioutil.ReadFile(filename)
-	err = yaml.Unmarshal(yamlFile, &config)
-	if err != nil {
-		return
-	}
-
-	if config.Version == "" {
-		err = errors.New("no configuration version value found in .hookz.yaml")
-		return
-	}
-
-	// Check version
-	ver := strings.Split(config.Version, ".")
-	verMatch := strings.Split(Version, ".")
-	if fmt.Sprintf("%v.%v", ver[0], ver[1]) != fmt.Sprintf("%v.%v", verMatch[0], verMatch[1]) {
-		err = fmt.Errorf("version mismatch: Expected v%v.%v - Check your .hookz.yaml configuration", verMatch[0], verMatch[1])
-	}
-	return
-}
-
-func hookzHeader() {
 	color.Style{color.FgWhite, color.OpBold}.Println("Hookz")
 	fmt.Println("https://github.com/devops-kung-fu/hookz")
-	fmt.Printf("Version: %s\n", Version)
+	fmt.Printf("Version: %s\n", version)
 	fmt.Println("")
-}
-
-func isError(err error, pre string) error {
-	if err != nil {
-		log.Printf("%v: %v", pre, err)
-	}
-	return err
-}
-
-func isErrorBool(err error, pre string) (b bool) {
-	if err != nil {
-		log.Printf("%v: %v", pre, err)
-		b = true
-	}
-	return
-}
-
-func checkExt(ext string, pathS string) (files []string, err error) {
-	filepath.Walk(pathS, func(path string, f os.FileInfo, err error) error {
-		if !f.IsDir() {
-			match, _ := regexp.MatchString(ext, f.Name())
-			if match {
-				files = append(files, f.Name())
-			}
-		}
-		return err
-	})
-	return files, nil
-}
-
-func removeHooks() (err error) {
-	ext := ".hookz"
-	p := ".git/hooks/"
-
-	dirRead, _ := os.Open(p)
-	dirFiles, _ := dirRead.Readdir(0)
-
-	for index := range dirFiles {
-		file := dirFiles[index]
-
-		name := file.Name()
-		fullPath := fmt.Sprintf("%s%s", p, name)
-
-		r, err := regexp.MatchString(ext, fullPath)
-		if err == nil && r {
-			os.Remove(fullPath)
-			var hookName = fullPath[0 : len(fullPath)-len(ext)]
-			os.Remove(hookName)
-			parts := strings.Split(hookName, "/")
-			fmt.Println(fmt.Sprintf("    	Deleted %s", parts[len(parts)-1]))
-		}
-	}
-	fmt.Println("[*] Successfully removed existing hooks!")
-
-	return
-}
-
-func downloadURL(url string) (filename string, err error) {
-	client := grab.NewClient()
-	req, _ := grab.NewRequest(".git/hooks", url)
-
-	fmt.Printf("Downloading %v...\n", req.URL())
-	resp := client.Do(req)
-	fmt.Printf("  %v\n", resp.HTTPResponse.Status)
-
-	t := time.NewTicker(500 * time.Millisecond)
-	defer t.Stop()
-
-Loop:
-	for {
-		select {
-		case <-t.C:
-			fmt.Printf("  transferred %v / %v bytes (%.2f%%)\n",
-				resp.BytesComplete(),
-				resp.Size,
-				100*resp.Progress())
-
-		case <-resp.Done:
-			break Loop
-		}
-	}
-
-	if err := resp.Err(); err != nil {
-		fmt.Fprintf(os.Stderr, "Download failed: %v\n", err)
-		return resp.Filename, err
-	}
-
-	fmt.Printf("Download saved to ./%v \n", resp.Filename)
-	err = os.Chmod(resp.Filename, 0777)
-	if err != nil {
-		return resp.Filename, err
-	}
-	return resp.Filename, err
 }
