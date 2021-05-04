@@ -34,35 +34,29 @@ func (f FileSystem) CreateFile(name string) (err error) {
 func (f FileSystem) CreateScriptFile(content string) (name string, err error) {
 
 	k, idErr := ksuid.NewRandom()
-	name, _ = filepath.Abs(fmt.Sprintf(".git/hooks/%s", k.String()))
+	name = k.String()
 	if IsErrorBool(idErr, "ERROR") {
 		err = idErr
 		return
 	}
-	hookzFile, hookzFileErr := filepath.Abs(fmt.Sprintf(".git/hooks/%s.hookz", k.String()))
-	if hookzFileErr != nil {
-		err = hookzFileErr
-		return
-	}
+	path, _ := os.Getwd()
+
+	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
+
+	hookzFile := fmt.Sprintf("%s/%s.hookz", p, name)
+	scriptName := fmt.Sprintf("%s/%s", p, name)
+
 	err = f.CreateFile(hookzFile)
 	if err != nil {
 		return
 	}
 
-	file, err := f.fs.OpenFile(name, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
-	if err != nil {
-		return
-	}
-	_, err = file.WriteString(content)
+	err = f.Afero().WriteFile(scriptName, []byte(content), 0644)
 	if err != nil {
 		return
 	}
 
-	defer func() {
-		err = file.Close()
-	}()
-
-	err = f.fs.Chmod(name, 0777)
+	err = f.fs.Chmod(scriptName, 0777)
 	if err != nil {
 		return
 	}
@@ -121,7 +115,9 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool) (err error) {
 				if err != nil {
 					return err
 				}
-				action.Exec = &scriptFileName
+				path, _ := os.Getwd()
+				fullScriptFileName := fmt.Sprintf("%s/%s/%s", path, ".git/hooks", scriptFileName)
+				action.Exec = &fullScriptFileName
 			}
 
 			fmt.Printf("    	Adding %s action: %s\n", hook.Type, action.Name)

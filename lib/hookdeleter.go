@@ -3,32 +3,32 @@ package lib
 
 import (
 	"fmt"
-	"path/filepath"
-	"regexp"
+	"os"
 	"strings"
 )
 
 func (f FileSystem) RemoveHooks() (err error) {
-	ext := ".hookz"
-	p, _ := filepath.Abs(fmt.Sprintf(".git/hooks/"))
 
-	dirFiles, err := f.Afero().ReadDir(p)
-	if err != nil {
-		return err
-	}
+	path, _ := os.Getwd()
+
+	ext := ".hookz"
+	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
+
+	dirFiles, _ := f.Afero().ReadDir(p)
 
 	for index := range dirFiles {
 		file := dirFiles[index]
 
 		name := file.Name()
 		fullPath := fmt.Sprintf("%s/%s", p, name)
-		r, err := regexp.MatchString(ext, fullPath)
-		if err == nil && r {
+		info, _ := f.Afero().Stat(fullPath)
+		isHookzFile := strings.Contains(info.Name(), ext)
+		if isHookzFile {
+			var hookName = fullPath[0 : len(fullPath)-len(ext)]
 			removeErr := f.fs.Remove(fullPath)
 			if removeErr != nil {
 				return removeErr
 			}
-			var hookName = fullPath[0 : len(fullPath)-len(ext)]
 			removeErr = f.fs.Remove(hookName)
 			if removeErr != nil {
 				return removeErr
@@ -36,6 +36,7 @@ func (f FileSystem) RemoveHooks() (err error) {
 			parts := strings.Split(hookName, "/")
 			fmt.Printf("    	Deleted %s\n", parts[len(parts)-1])
 		}
+
 	}
 	fmt.Println("[*] Successfully removed existing hooks!")
 

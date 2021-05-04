@@ -2,6 +2,8 @@
 package lib
 
 import (
+	"fmt"
+	"os"
 	"path/filepath"
 	"testing"
 
@@ -14,7 +16,9 @@ func TestDeps_CreateScriptFile(t *testing.T) {
 	assert.NoError(t, err, "CreateScriptFile should not have generated an error")
 	assert.NotEmpty(t, filename, "A filename should have been returned")
 
-	contains, _ := f.Afero().FileContainsBytes(filename, []byte(content))
+	path, _ := os.Getwd()
+	fullFileName := fmt.Sprintf("%s/%s/%s", path, ".git/hooks", filename)
+	contains, _ := f.Afero().FileContainsBytes(fullFileName, []byte(content))
 	assert.True(t, contains, "Script file should have the phrase `Test Script` in it")
 }
 
