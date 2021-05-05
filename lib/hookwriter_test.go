@@ -65,3 +65,18 @@ func Test_writeTemplate(t *testing.T) {
 	err := f.writeTemplate(nil, "")
 	assert.Error(t, err, "writeTemplate should throw an error if there is no file created")
 }
+
+func Test_HasExistingHookz(t *testing.T) {
+	exists := f.HasExistingHookz()
+	assert.False(t, exists, "No hookz files should exist")
+
+	config, err := f.createConfig(version)
+	assert.NoError(t, err, "createConfig should not have generated an error")
+
+	err = f.WriteHooks(config, true)
+	assert.NoError(t, err, "WriteHooks should not have generated an error")
+
+	exists = f.HasExistingHookz()
+	assert.True(t, exists, "hookz files should exist")
+
+}

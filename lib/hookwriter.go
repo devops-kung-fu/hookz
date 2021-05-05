@@ -4,6 +4,7 @@ package lib
 import (
 	"fmt"
 	"os"
+	"strings"
 	"text/template"
 
 	"github.com/segmentio/ksuid"
@@ -143,6 +144,27 @@ func (f FileSystem) writeTemplate(commands []command, hookType string) (err erro
 	}
 	fmt.Println("[*] Successfully wrote " + hookType)
 	return
+}
+
+func (f FileSystem) HasExistingHookz() (exists bool) {
+	path, _ := os.Getwd()
+	ext := ".hookz"
+	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
+	dirFiles, _ := f.Afero().ReadDir(p)
+
+	for index := range dirFiles {
+		file := dirFiles[index]
+
+		name := file.Name()
+		fullPath := fmt.Sprintf("%s/%s", p, name)
+		info, _ := f.Afero().Stat(fullPath)
+		isHookzFile := strings.Contains(info.Name(), ext)
+		if isHookzFile {
+			return true
+		}
+	}
+
+	return false
 }
 
 func genTemplate(hookType string) (t *template.Template) {
