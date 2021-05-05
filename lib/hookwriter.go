@@ -4,7 +4,6 @@ package lib
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"text/template"
 
 	"github.com/segmentio/ksuid"
@@ -40,7 +39,6 @@ func (f FileSystem) CreateScriptFile(content string) (name string, err error) {
 		return
 	}
 	path, _ := os.Getwd()
-
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
 
 	hookzFile := fmt.Sprintf("%s/%s.hookz", p, name)
@@ -84,32 +82,11 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool) (err error) {
 	for _, hook := range config.Hooks {
 		var commands []command
 
-		filename, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s", hook.Type))
-		hookzFile, _ := filepath.Abs(fmt.Sprintf(".git/hooks/%s.hookz", hook.Type))
-
-		err = f.CreateFile(hookzFile)
-		if err != nil {
-			return err
-		}
-
-		var file, err = f.fs.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
-		if err != nil {
-			return err
-		}
-
-		defer func() {
-			err = file.Close()
-		}()
-
-		fmt.Printf("\n[*] Writing %s \n", hook.Type)
-
 		for _, action := range hook.Actions {
-
 			if action.Exec == nil && action.URL != nil {
-				filename, _ := DownloadURL(*action.URL)
+				filename, _ := f.DownloadURL(*action.URL)
 				action.Exec = &filename
 			}
-
 			if action.Exec == nil && action.Script != nil {
 				scriptFileName, err := f.CreateScriptFile(*action.Script)
 				if err != nil {
@@ -131,19 +108,41 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool) (err error) {
 				FullCommand:  fullCommand,
 			})
 		}
-
-		t := genTemplate(hook.Type)
-		err = t.ExecuteTemplate(file, hook.Type, commands)
+		err = f.writeTemplate(commands, hook.Type)
 		if err != nil {
-			return err
+			return
 		}
-		err = f.fs.Chmod(filename, 0777)
-		if err != nil {
-			return err
-		}
-		fmt.Println("[*] Successfully wrote " + hook.Type)
 	}
 	return nil
+}
+
+func (f FileSystem) writeTemplate(commands []command, hookType string) (err error) {
+	path, _ := os.Getwd()
+	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
+
+	hookzFile := fmt.Sprintf("%s/%s.hookz", p, hookType)
+	err = f.CreateFile(hookzFile)
+	if err != nil {
+		return
+	}
+
+	fmt.Printf("\n[*] Writing %s \n", hookType)
+	filename := fmt.Sprintf("%s/%s", p, hookType)
+	file, err := f.Afero().Create(filename)
+	if err != nil {
+		return err
+	}
+	t := genTemplate(hookType)
+	err = t.ExecuteTemplate(file, hookType, commands)
+	if err != nil {
+		return err
+	}
+	err = f.fs.Chmod(filename, 0777)
+	if err != nil {
+		return err
+	}
+	fmt.Println("[*] Successfully wrote " + hookType)
+	return
 }
 
 func genTemplate(hookType string) (t *template.Template) {

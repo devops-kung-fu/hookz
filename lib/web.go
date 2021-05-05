@@ -3,6 +3,7 @@ package lib
 
 import (
 	"fmt"
+	"net/url"
 	"os"
 	"time"
 
@@ -11,16 +12,13 @@ import (
 
 //UpdateExecutables parses the configuration for URL's and re-downloads
 //the contents into the .git/hooks folder
-func UpdateExecutables(config Configuration) (err error) {
+func (f FileSystem) UpdateExecutables(config Configuration) (err error) {
 	var updateCount = 0
-	if err != nil {
-		return err
-	}
 	for _, hook := range config.Hooks {
 		for _, action := range hook.Actions {
 			if action.URL != nil {
 				updateCount++
-				_, _ = DownloadURL(*action.URL)
+				_, _ = f.DownloadURL(*action.URL)
 			}
 		}
 	}
@@ -34,9 +32,16 @@ func UpdateExecutables(config Configuration) (err error) {
 //DownloadURL downloads content from the provided URL and returns the
 //filename after saving the content to the .git/hooks folder. Returns an
 //error if there were any problems.
-func DownloadURL(url string) (filename string, err error) {
+func (f FileSystem) DownloadURL(URL string) (filename string, err error) {
+	_, err = url.ParseRequestURI(URL)
+	if err != nil {
+		return
+	}
 	client := grab.NewClient()
-	req, _ := grab.NewRequest(".git/hooks", url)
+	req, err := grab.NewRequest(".git/hooks", URL)
+	if err != nil {
+		return
+	}
 
 	fmt.Printf("Downloading %v...\n", req.URL())
 	resp := client.Do(req)

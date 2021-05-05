@@ -60,3 +60,8 @@ func Test_createFile(t *testing.T) {
 	// assert.Error(t, err, "A file should have not been created and an error thrown")
 
 }
+
+func Test_writeTemplate(t *testing.T) {
+	err := f.writeTemplate(nil, "")
+	assert.Error(t, err, "writeTemplate should throw an error if there is no file created")
+}

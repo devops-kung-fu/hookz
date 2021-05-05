@@ -17,7 +17,6 @@ import (
 func (f FileSystem) ReadConfig(version string) (config Configuration, err error) {
 
 	filename, _ := filepath.Abs(".hookz.yaml")
-	//yamlFile, readErr := ioutil.ReadFile(filename)
 	yamlFile, readErr := f.Afero().ReadFile(filename)
 	if readErr != nil {
 		config, err = f.promptCreateConfig(version)
@@ -39,6 +38,10 @@ func (f FileSystem) ReadConfig(version string) (config Configuration, err error)
 func checkVersion(config Configuration, version string) (err error) {
 	if config.Version == "" {
 		err = errors.New("no configuration version value found in .hookz.yaml")
+		return
+	}
+	if version == "" {
+		err = errors.New("a version should not be empty")
 		return
 	}
 	ver := strings.Split(config.Version, ".")

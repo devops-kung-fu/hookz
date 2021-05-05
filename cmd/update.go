@@ -20,7 +20,7 @@ var (
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(lib.UpdateExecutables(config), "[ERROR]") {
+			if lib.IsErrorBool(lib.NewDeps().UpdateExecutables(config), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("\nDone!")
