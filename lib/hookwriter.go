@@ -107,10 +107,6 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool, debug bool) (
 				fmt.Printf("    	Adding %s action: %s\n", hook.Type, action.Name)
 			}, verbose)
 
-			PrintIf(func() {
-				fmt.Println()
-			}, verbose)
-
 			fullCommand := buildFullCommand(action, debug)
 
 			commands = append(commands, command{
@@ -127,6 +123,10 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool, debug bool) (
 		}
 		PrintIf(func() {
 			fmt.Println("[*] Successfully wrote " + hook.Type)
+		}, verbose)
+
+		PrintIf(func() {
+			fmt.Println()
 		}, verbose)
 	}
 	return nil
