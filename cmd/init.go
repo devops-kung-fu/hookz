@@ -27,16 +27,17 @@ var (
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			deps := lib.NewOsFs()
+			f := lib.NewOsFs()
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Initializing Hooks")
-			config, err := deps.ReadConfig(version)
+			fmt.Println()
+			config, err := f.ReadConfig(version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(deps.WriteHooks(config, debug), "[ERROR]") {
+			if lib.IsErrorBool(f.WriteHooks(config, verbose, debug), "[ERROR]") {
 				return
 			}
-			color.Style{color.FgLightGreen}.Println("\nDone!")
+			color.Style{color.FgLightGreen}.Println("Done!")
 		},
 	}
 )

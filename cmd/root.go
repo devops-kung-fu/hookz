@@ -50,5 +50,5 @@ func init() {
 	fmt.Printf("Version: %s\n", version)
 	fmt.Println("")
 
-	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "If true, output from commands is displayed when the hook executes.")
+	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Extended output as hookz executes.")
 }

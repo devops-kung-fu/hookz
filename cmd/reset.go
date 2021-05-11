@@ -17,19 +17,18 @@ var (
 			f := lib.NewOsFs()
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Reset Hooks")
 			fmt.Println()
-			fmt.Println("[*] Removing existing hooks...")
 
-			if lib.IsErrorBool(f.RemoveHooks(), "[ERROR]") {
+			if lib.IsErrorBool(f.RemoveHooks(verbose), "[ERROR]") {
 				return
 			}
 			config, err := f.ReadConfig(version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(f.WriteHooks(config, debug), "[ERROR]") {
+			if lib.IsErrorBool(f.WriteHooks(config, verbose, debug), "[ERROR]") {
 				return
 			}
-			color.Style{color.FgLightGreen}.Println("\nDone!")
+			color.Style{color.FgLightGreen}.Println("Done!")
 		},
 	}
 )

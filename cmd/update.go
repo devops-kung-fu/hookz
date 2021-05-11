@@ -23,7 +23,7 @@ var (
 			if lib.IsErrorBool(lib.NewOsFs().UpdateExecutables(config), "[ERROR]") {
 				return
 			}
-			color.Style{color.FgLightGreen}.Println("\nDone!")
+			color.Style{color.FgLightGreen}.Println("Done!")
 		},
 	}
 )

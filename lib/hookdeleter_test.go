@@ -19,7 +19,7 @@ func TestFileSystem_RemoveHooks(t *testing.T) {
 	dirFiles, _ := f.Afero().ReadDir(p)
 	assert.Equal(t, 2, len(dirFiles), "Incorrect number of created script files")
 
-	err := f.RemoveHooks()
+	err := f.RemoveHooks(true)
 	assert.NoError(t, err, "RemoveHooks should not have generated an error")
 
 	dirFiles, _ = f.Afero().ReadDir(p)

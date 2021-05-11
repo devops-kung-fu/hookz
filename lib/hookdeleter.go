@@ -7,7 +7,10 @@ import (
 	"strings"
 )
 
-func (f FileSystem) RemoveHooks() (err error) {
+func (f FileSystem) RemoveHooks(verbose bool) (err error) {
+	PrintIf(func() {
+		fmt.Println("[*] Removing existing hooks...")
+	}, verbose)
 
 	path, _ := os.Getwd()
 
@@ -34,11 +37,18 @@ func (f FileSystem) RemoveHooks() (err error) {
 				return removeErr
 			}
 			parts := strings.Split(hookName, "/")
-			fmt.Printf("    	Deleted %s\n", parts[len(parts)-1])
+			PrintIf(func() {
+				fmt.Printf("    	Deleted %s\n", parts[len(parts)-1])
+			}, verbose)
 		}
-
 	}
-	fmt.Println("[*] Successfully removed existing hooks!")
+	PrintIf(func() {
+		fmt.Println("[*] Successfully removed existing hooks!")
+	}, verbose)
+
+	PrintIf(func() {
+		fmt.Println()
+	}, verbose)
 
 	return
 }

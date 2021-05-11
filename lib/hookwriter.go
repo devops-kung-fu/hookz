@@ -15,7 +15,7 @@ type command struct {
 	Type         string
 	ShortCommand string
 	FullCommand  string
-	Verbose      bool
+	Debug        bool
 }
 
 func (f FileSystem) CreateFile(name string) (err error) {
@@ -64,13 +64,13 @@ func (f FileSystem) CreateScriptFile(content string) (name string, err error) {
 	return
 }
 
-func buildFullCommand(action Action, verbose bool) string {
+func buildFullCommand(action Action, debug bool) string {
 	var argsString, fullCommand string
 	for _, arg := range action.Args {
 		argsString = fmt.Sprintf("%s %s", argsString, arg)
 	}
 	if action.Exec != nil {
-		if verbose {
+		if debug {
 			fullCommand = fmt.Sprintf("%s%s", *action.Exec, argsString)
 		} else {
 			fullCommand = fmt.Sprintf("%s%s &> /dev/null", *action.Exec, argsString)
@@ -79,10 +79,14 @@ func buildFullCommand(action Action, verbose bool) string {
 	return fullCommand
 }
 
-func (f FileSystem) WriteHooks(config Configuration, verbose bool) (err error) {
+func (f FileSystem) WriteHooks(config Configuration, verbose bool, debug bool) (err error) {
 
 	for _, hook := range config.Hooks {
+
 		var commands []command
+		PrintIf(func() {
+			fmt.Printf("\n[*] Writing %s \n", hook.Type)
+		}, verbose)
 
 		for _, action := range hook.Actions {
 			if action.Exec == nil && action.URL != nil {
@@ -99,22 +103,31 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool) (err error) {
 				action.Exec = &fullScriptFileName
 			}
 
-			fmt.Printf("    	Adding %s action: %s\n", hook.Type, action.Name)
+			PrintIf(func() {
+				fmt.Printf("    	Adding %s action: %s\n", hook.Type, action.Name)
+			}, verbose)
 
-			fullCommand := buildFullCommand(action, verbose)
+			PrintIf(func() {
+				fmt.Println()
+			}, verbose)
+
+			fullCommand := buildFullCommand(action, debug)
 
 			commands = append(commands, command{
 				Name:         action.Name,
 				Type:         hook.Type,
 				ShortCommand: *action.Exec,
 				FullCommand:  fullCommand,
-				Verbose:      verbose,
+				Debug:        debug,
 			})
 		}
 		err = f.writeTemplate(commands, hook.Type)
 		if err != nil {
 			return
 		}
+		PrintIf(func() {
+			fmt.Println("[*] Successfully wrote " + hook.Type)
+		}, verbose)
 	}
 	return nil
 }
@@ -129,7 +142,6 @@ func (f FileSystem) writeTemplate(commands []command, hookType string) (err erro
 		return
 	}
 
-	fmt.Printf("\n[*] Writing %s \n", hookType)
 	filename := fmt.Sprintf("%s/%s", p, hookType)
 	file, err := f.Afero().Create(filename)
 	if err != nil {
@@ -144,7 +156,7 @@ func (f FileSystem) writeTemplate(commands []command, hookType string) (err erro
 	if err != nil {
 		return err
 	}
-	fmt.Println("[*] Successfully wrote " + hookType)
+
 	return
 }
 
@@ -188,7 +200,7 @@ echo -e "\e[1mHookz: Running $(basename $0)$reset"
 
 {{range .}}
 
-if {{.Verbose}}; then
+if {{.Debug}}; then
 	echo -e "$yellowText >> START: {{.Name}}$reset"
 fi
 
@@ -198,7 +210,7 @@ else
 
 	{{.FullCommand}}
 		
-if {{.Verbose}}; then
+if {{.Debug}}; then
 	echo -e "$yellowText >> END: {{.Name}}$reset"
 fi
 
