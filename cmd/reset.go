@@ -14,7 +14,7 @@ var (
 		Short: "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			deps := lib.NewDeps()
+			deps := lib.NewOsFs()
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Reset Hooks")
 			fmt.Println()
 			fmt.Println("[*] Removing existing hooks...")

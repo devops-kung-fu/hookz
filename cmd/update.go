@@ -16,11 +16,11 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Update Executables")
 			fmt.Println()
-			config, err := lib.NewDeps().ReadConfig(version)
+			config, err := lib.NewOsFs().ReadConfig(version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(lib.NewDeps().UpdateExecutables(config), "[ERROR]") {
+			if lib.IsErrorBool(lib.NewOsFs().UpdateExecutables(config), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("\nDone!")

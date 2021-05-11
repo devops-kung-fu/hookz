@@ -15,6 +15,7 @@ type command struct {
 	Type         string
 	ShortCommand string
 	FullCommand  string
+	Verbose      bool
 }
 
 func (f FileSystem) CreateFile(name string) (err error) {
@@ -107,6 +108,7 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool) (err error) {
 				Type:         hook.Type,
 				ShortCommand: *action.Exec,
 				FullCommand:  fullCommand,
+				Verbose:      verbose,
 			})
 		}
 		err = f.writeTemplate(commands, hook.Type)
@@ -178,18 +180,28 @@ reset='\033[0m'         # Text Reset
 red='\033[41m'          # Red Background
 green='\033[42m'        # Green Background
 blackText='\033[0;30m'  # Black Text
-boldWhite='\e[1m'  # Bold White
+yellowText='\033[0;33m' # Purple Text
+boldWhite='\e[1m'  		# Bold White
 orange='\e[30;48;5;208m'	# Orange Background
 
 echo -e "\e[1mHookz: Running $(basename $0)$reset"
 
 {{range .}}
 
+if {{.Verbose}}; then
+	echo -e "$yellowText >> START: {{.Name}}$reset"
+fi
+
 if ! [ -x "$(command -v  {{.ShortCommand}})" ]; then
 	echo -e "$blackText$orange WARN $reset Hookz: {{.ShortCommand}} cannot be run. Command doesn't exist.({{.Type}})"
 else
+
 	{{.FullCommand}}
 		
+if {{.Verbose}}; then
+	echo -e "$yellowText >> END: {{.Name}}$reset"
+fi
+
 	commandexit=$?
 
 	if [ $commandexit -eq 0 ]
@@ -200,6 +212,9 @@ else
 			exit $commandexit
 	fi
 fi
+
+
+
 {{end}}
 `
 	return template.Must(template.New(hookType).Parse(content))

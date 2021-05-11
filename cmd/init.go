@@ -16,7 +16,7 @@ var (
 		Short:   "Initializes the hooks as defined in the .hookz.yaml file.",
 		Long:    "Initializes the hooks as defined in the .hookz.yaml file.",
 		PreRun: func(cmd *cobra.Command, args []string) {
-			existingHookz := lib.NewDeps().HasExistingHookz()
+			existingHookz := lib.NewOsFs().HasExistingHookz()
 			if existingHookz {
 				fmt.Println("Existing hookz files detected")
 				fmt.Println("\nDid you mean to reset?")
@@ -27,7 +27,7 @@ var (
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			deps := lib.NewDeps()
+			deps := lib.NewOsFs()
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Initializing Hooks")
 			config, err := deps.ReadConfig(version)
 			if lib.IsErrorBool(err, "[ERROR]") {

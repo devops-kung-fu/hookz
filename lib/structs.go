@@ -34,14 +34,14 @@ type FileSystem struct {
 	fs afero.Fs
 }
 
-func NewDeps() FileSystem {
+func NewOsFs() FileSystem {
 	var d FileSystem
 	d.fs = afero.NewOsFs()
 	return d
 }
 
-func (d FileSystem) Afero() (afs *afero.Afero) {
-	afs = &afero.Afero{Fs: d.fs}
+func (f FileSystem) Afero() (afs *afero.Afero) {
+	afs = &afero.Afero{Fs: f.fs}
 	return
 }
 

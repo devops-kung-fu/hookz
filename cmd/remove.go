@@ -18,7 +18,7 @@ var (
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Removing Hooks")
 			fmt.Println()
 			fmt.Println("[*] Removing existing hooks...")
-			if lib.IsErrorBool(lib.NewDeps().RemoveHooks(), "[ERROR]") {
+			if lib.IsErrorBool(lib.NewOsFs().RemoveHooks(), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("\nDone!")
