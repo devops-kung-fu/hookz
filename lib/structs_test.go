@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNewDeps(t *testing.T) {
+func TestNewOsFs(t *testing.T) {
 	f := FileSystem{}
 
 	var i interface{} = NewOsFs()
