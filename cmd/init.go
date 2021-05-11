@@ -33,7 +33,7 @@ var (
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(deps.WriteHooks(config, verbose), "[ERROR]") {
+			if lib.IsErrorBool(deps.WriteHooks(config, debug), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("\nDone!")
@@ -43,5 +43,5 @@ var (
 
 func init() {
 	rootCmd.AddCommand(initCmd)
-	initCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "If true, output from commands is displayed when the hook executes.")
+	initCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "If true, output from commands is displayed when the hook executes.")
 }

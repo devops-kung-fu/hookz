@@ -14,19 +14,19 @@ var (
 		Short: "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			deps := lib.NewOsFs()
+			f := lib.NewOsFs()
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Reset Hooks")
 			fmt.Println()
 			fmt.Println("[*] Removing existing hooks...")
 
-			if lib.IsErrorBool(deps.RemoveHooks(), "[ERROR]") {
+			if lib.IsErrorBool(f.RemoveHooks(), "[ERROR]") {
 				return
 			}
-			config, err := deps.ReadConfig(version)
+			config, err := f.ReadConfig(version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(deps.WriteHooks(config, verbose), "[ERROR]") {
+			if lib.IsErrorBool(f.WriteHooks(config, debug), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("\nDone!")
@@ -36,5 +36,5 @@ var (
 
 func init() {
 	rootCmd.AddCommand(resetCmd)
-	resetCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "If true, output from commands is displayed when the hook executes.")
+	resetCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "If true, output from commands is displayed when the hook executes.")
 }

@@ -14,6 +14,7 @@ import (
 
 var (
 	version = "2.2.0"
+	debug   bool
 	verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
@@ -48,4 +49,6 @@ func init() {
 	fmt.Println("https://github.com/devops-kung-fu/hookz")
 	fmt.Printf("Version: %s\n", version)
 	fmt.Println("")
+
+	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "If true, output from commands is displayed when the hook executes.")
 }
