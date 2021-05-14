@@ -230,6 +230,7 @@ hooks:
         exec: npm
         args: ["test"]
 ```
+Identifies waste issues and unnecessary branches in a git repo and optionally remediates.
 
 ## Credits
 

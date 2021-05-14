@@ -215,6 +215,7 @@ if [ $commandexit -eq 0 ]
 			echo -e "$blackText$green PASS $reset Hookz: {{.Name}} ({{.Type}})"
 	else
 			echo -e "$blackText$red FAIL $reset Hookz: {{.Name}} ({{.Type}})"
+			exit $commandexit
 	fi
 fi
 {{if .Debug}}
