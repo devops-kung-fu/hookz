@@ -200,32 +200,27 @@ echo -e "\e[1mHookz: Running $(basename $0)$reset"
 
 {{range .}}
 
-if {{.Debug}}; then
-	echo -e "$yellowText >> START: {{.Name}}$reset"
-fi
+{{if .Debug}}
+echo -e "$yellowText >> START:$reset {{.Name}}"
+{{end}}
 
 if ! [ -x "$(command -v  {{.ShortCommand}})" ]; then
-	echo -e "$blackText$orange WARN $reset Hookz: {{.ShortCommand}} cannot be run. Command doesn't exist.({{.Type}})"
+echo -e "$blackText$orange WARN $reset Hookz: {{.ShortCommand}} cannot be run. Command doesn't exist.({{.Type}})"
 else
 
-	{{.FullCommand}}
-		
-if {{.Debug}}; then
-	echo -e "$yellowText >> END: {{.Name}}$reset"
-fi
-
-	commandexit=$?
-
-	if [ $commandexit -eq 0 ]
+{{.FullCommand}}
+commandexit=$?
+if [ $commandexit -eq 0 ]
 	then
 			echo -e "$blackText$green PASS $reset Hookz: {{.Name}} ({{.Type}})"
 	else
 			echo -e "$blackText$red FAIL $reset Hookz: {{.Name}} ({{.Type}})"
-			exit $commandexit
 	fi
 fi
-
-
+{{if .Debug}}
+echo -e "$yellowText >> END:$reset {{.Name}}"
+echo -e "--------------------------------------------"
+{{end}}
 
 {{end}}
 `
