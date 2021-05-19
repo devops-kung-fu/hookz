@@ -176,13 +176,22 @@ If there is a modification to the ```.hookz.yaml``` file in your application, yo
 hookz reset
 ```
 
-### Verbose option
+### Debug option
 
-The ```initialize``` (init) and ```reset``` command optionally take a verbosity flag to indicate extended output should be displayed when a hook executes. All output from any action will be displayed during the commit process when this flag is used to build the hooks. This is handy for debugging or seeing errors that may be suppressed by hookz. 
+The ```initialize``` (init) and ```reset``` command optionally take a debug flag to indicate extended output should be displayed while a hook executes. All output from any action will be displayed during the commit/push process when this flag is used to build the hooks. This is handy for debugging or seeing errors that may be suppressed by hookz. 
 
 ```
-hookz init --verbose
-hookz reset --verbose
+hookz init --debug
+hookz reset --debug
+```
+
+### Verbose flag
+
+If you want to see a log of what is happening when ```hookz``` executes, use the ```--verbose``` flag.
+
+```
+hookz init --debug
+hookz reset --debug
 ```
 
 ## Tacklebox (Curated Example Actions)
@@ -231,6 +240,12 @@ hooks:
         args: ["test"]
 ```
 
+## Software Bill of Materials
+
+```Hookz``` uses the CycloneDx tackle to generate a Software Bill of Materials in CycloneDx format every time a developer commits code to this repository. More information for CycloneDx is available [here](https://cyclonedx.org)
+
+The current SBoM for ```Hookz``` is available [here](hookz-sbom.json).
+
 ## Credits
 
-A big thank-you to our friends at [Freepik](https://www.freepik.com) for the Hookz logo.
+A big thank-you to our friends at [Freepik](https://www.freepik.com) for the ```Hookz``` logo.

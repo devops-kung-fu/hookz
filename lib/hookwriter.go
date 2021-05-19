@@ -15,6 +15,7 @@ type command struct {
 	Type         string
 	ShortCommand string
 	FullCommand  string
+	Debug        bool
 }
 
 func (f FileSystem) CreateFile(name string) (err error) {
@@ -63,13 +64,13 @@ func (f FileSystem) CreateScriptFile(content string) (name string, err error) {
 	return
 }
 
-func buildFullCommand(action Action, verbose bool) string {
+func buildFullCommand(action Action, debug bool) string {
 	var argsString, fullCommand string
 	for _, arg := range action.Args {
 		argsString = fmt.Sprintf("%s %s", argsString, arg)
 	}
 	if action.Exec != nil {
-		if verbose {
+		if debug {
 			fullCommand = fmt.Sprintf("%s%s", *action.Exec, argsString)
 		} else {
 			fullCommand = fmt.Sprintf("%s%s &> /dev/null", *action.Exec, argsString)
@@ -78,10 +79,14 @@ func buildFullCommand(action Action, verbose bool) string {
 	return fullCommand
 }
 
-func (f FileSystem) WriteHooks(config Configuration, verbose bool) (err error) {
+func (f FileSystem) WriteHooks(config Configuration, verbose bool, debug bool) (err error) {
 
 	for _, hook := range config.Hooks {
+
 		var commands []command
+		PrintIf(func() {
+			fmt.Printf("\n[*] Writing %s \n", hook.Type)
+		}, verbose)
 
 		for _, action := range hook.Actions {
 			if action.Exec == nil && action.URL != nil {
@@ -98,21 +103,31 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool) (err error) {
 				action.Exec = &fullScriptFileName
 			}
 
-			fmt.Printf("    	Adding %s action: %s\n", hook.Type, action.Name)
+			PrintIf(func() {
+				fmt.Printf("    	Adding %s action: %s\n", hook.Type, action.Name)
+			}, verbose)
 
-			fullCommand := buildFullCommand(action, verbose)
+			fullCommand := buildFullCommand(action, debug)
 
 			commands = append(commands, command{
 				Name:         action.Name,
 				Type:         hook.Type,
 				ShortCommand: *action.Exec,
 				FullCommand:  fullCommand,
+				Debug:        debug,
 			})
 		}
 		err = f.writeTemplate(commands, hook.Type)
 		if err != nil {
 			return
 		}
+		PrintIf(func() {
+			fmt.Println("[*] Successfully wrote " + hook.Type)
+		}, verbose)
+
+		PrintIf(func() {
+			fmt.Println()
+		}, verbose)
 	}
 	return nil
 }
@@ -127,7 +142,6 @@ func (f FileSystem) writeTemplate(commands []command, hookType string) (err erro
 		return
 	}
 
-	fmt.Printf("\n[*] Writing %s \n", hookType)
 	filename := fmt.Sprintf("%s/%s", p, hookType)
 	file, err := f.Afero().Create(filename)
 	if err != nil {
@@ -142,7 +156,7 @@ func (f FileSystem) writeTemplate(commands []command, hookType string) (err erro
 	if err != nil {
 		return err
 	}
-	fmt.Println("[*] Successfully wrote " + hookType)
+
 	return
 }
 
@@ -178,21 +192,25 @@ reset='\033[0m'         # Text Reset
 red='\033[41m'          # Red Background
 green='\033[42m'        # Green Background
 blackText='\033[0;30m'  # Black Text
-boldWhite='\e[1m'  # Bold White
+yellowText='\033[0;33m' # Purple Text
+boldWhite='\e[1m'  		# Bold White
 orange='\e[30;48;5;208m'	# Orange Background
 
 echo -e "\e[1mHookz: Running $(basename $0)$reset"
 
 {{range .}}
 
-if ! [ -x "$(command -v  {{.ShortCommand}})" ]; then
-	echo -e "$blackText$orange WARN $reset Hookz: {{.ShortCommand}} cannot be run. Command doesn't exist.({{.Type}})"
-else
-	{{.FullCommand}}
-		
-	commandexit=$?
+{{if .Debug}}
+echo -e "$yellowText >> START:$reset {{.Name}}"
+{{end}}
 
-	if [ $commandexit -eq 0 ]
+if ! [ -x "$(command -v  {{.ShortCommand}})" ]; then
+echo -e "$blackText$orange WARN $reset Hookz: {{.ShortCommand}} cannot be run. Command doesn't exist.({{.Type}})"
+else
+
+{{.FullCommand}}
+commandexit=$?
+if [ $commandexit -eq 0 ]
 	then
 			echo -e "$blackText$green PASS $reset Hookz: {{.Name}} ({{.Type}})"
 	else
@@ -200,6 +218,11 @@ else
 			exit $commandexit
 	fi
 fi
+{{if .Debug}}
+echo -e "$yellowText >> END:$reset {{.Name}}"
+echo -e "--------------------------------------------"
+{{end}}
+
 {{end}}
 `
 	return template.Must(template.New(hookType).Parse(content))

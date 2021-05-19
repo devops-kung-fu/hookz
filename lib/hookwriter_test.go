@@ -43,7 +43,7 @@ func Test_WriteHooks(t *testing.T) {
 	config, err := f.createConfig(version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
-	err = f.WriteHooks(config, true)
+	err = f.WriteHooks(config, true, true)
 	assert.NoError(t, err, "WriteHooks should not have generated an error")
 
 	filename, _ := filepath.Abs(".git/hooks/pre-commit")
@@ -73,7 +73,7 @@ func Test_HasExistingHookz(t *testing.T) {
 	config, err := f.createConfig(version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
-	err = f.WriteHooks(config, true)
+	err = f.WriteHooks(config, true, true)
 	assert.NoError(t, err, "WriteHooks should not have generated an error")
 
 	exists = f.HasExistingHookz()

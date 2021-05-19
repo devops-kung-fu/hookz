@@ -18,5 +18,6 @@ If you would like to contribute your own tackle, please follow the [contribution
 | [errcheck-script.yaml](/go/errcheck-script.yaml) | Go       | Checks for errors that are not handled in go code. This is a script version that can be used to ignore errors | ```pre-commit``` | Requires ```errcheck``` (https://github.com/kisielk/errcheck) |
 | [gocyclo.yaml](go/gocyclo.yaml)                  | Go       | Outputs cyclomatic complexity of all files.                  | ```pre-commit``` | Requires ```gocyclo```(https://github.com/fzipp/gocyclo)     |
 | [nancy.yaml](go/nancy.yaml)                      | Go/SCM   | Check for open source component vulnerabilities in go code   | ```pre-commit``` | Ensure that nancy is installed using the instructions at https://ossindex.sonatype.org/integration/nancy |
+| [cyclonedx.yaml](go/cyclonedx.yaml)              | Go       | Builds a Software Bill of Materials in CycloneDX format      | ```pre-commit``` | Ensure that cyclonedx-gomod is installed using the instructions at https://github.com/CycloneDX/cyclonedx-gomod |
 
 \* The recommended hook type for this action

@@ -17,11 +17,10 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Removing Hooks")
 			fmt.Println()
-			fmt.Println("[*] Removing existing hooks...")
-			if lib.IsErrorBool(lib.NewDeps().RemoveHooks(), "[ERROR]") {
+			if lib.IsErrorBool(lib.NewOsFs().RemoveHooks(verbose), "[ERROR]") {
 				return
 			}
-			color.Style{color.FgLightGreen}.Println("\nDone!")
+			color.Style{color.FgLightGreen}.Println("Done!")
 		},
 	}
 )
