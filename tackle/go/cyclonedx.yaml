@@ -1,0 +1,6 @@
+# PURPOSE: Builds a Software Bill of Materials in CycloneDX format
+# INSTRUCTIONS: Ensure that cyclonedx-gomod is installed using the instructions at https://github.com/CycloneDX/cyclonedx-gomod
+# HOOK: pre-commit 
+        - name: "cyclone-dx: Generate a Software Bill of Materials (SBoM)"
+          exec: cyclonedx-gomod
+          args: ["-json", "-output", "hookz-sbom.json", "-std", "-licenses"]
