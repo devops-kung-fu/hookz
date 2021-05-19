@@ -4,7 +4,7 @@
 
 # hookz
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/hookz) [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/hookz)](https://goreportcard.com/report/github.com/devops-kung-fu/hookz) [![codecov](https://codecov.io/gh/devops-kung-fu/hookz/branch/main/graph/badge.svg?token=P9WBOBQTOB)](https://codecov.io/gh/devops-kung-fu/hookz)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/hookz) [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/hookz)](https://goreportcard.com/report/github.com/devops-kung-fu/hookz) [![codecov](https://codecov.io/gh/devops-kung-fu/hookz/branch/main/graph/badge.svg?token=P9WBOBQTOB)](https://codecov.io/gh/devops-kung-fu/hookz) [![SBOM](https://img.shields.io/badge/CyloneDX-SBoM-informational)](hookz-sbom.json)
 
 Manages git hooks inside a local git repository based on a configuration.
 
@@ -41,8 +41,8 @@ To install ```hookz```,  [download the latest release](https://github.com/devops
 Linux Example:
 
 ```bash
-sudo chmod +x hookz-2.2.0-linux-amd64
-sudo mv hookz-2.2.0-linux-amd64 /usr/local/bin/hookz
+sudo chmod +x hookz-2.3.0-linux-amd64
+sudo mv hookz-2.3.0-linux-amd64 /usr/local/bin/hookz
 ```
 
 ## Configuration
@@ -52,7 +52,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-version: 2.2.0
+version: 2.3.0
 hooks:
   - type: pre-commit
     actions:
@@ -205,7 +205,7 @@ Check out the collection [here](tackle/README.md).
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.2.0
+version: 2.3.0
 hooks:
   - type: pre-commit
     actions:
@@ -228,7 +228,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.2.0
+version: 2.3.0
 hooks:
   - type: pre-commit
     actions:
@@ -242,7 +242,7 @@ hooks:
 
 ## Software Bill of Materials
 
-```Hookz``` uses the CycloneDx tackle to generate a Software Bill of Materials in CycloneDx format every time a developer commits code to this repository. More information for CycloneDx is available [here](https://cyclonedx.org)
+```Hookz``` uses the CycloneDX tackle to generate a Software Bill of Materials in CycloneDX format every time a developer commits code to this repository. More information for CycloneDX is available [here](https://cyclonedx.org)
 
 The current SBoM for ```Hookz``` is available [here](hookz-sbom.json).
 

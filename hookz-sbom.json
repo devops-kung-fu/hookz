@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.2",
-  "serialNumber": "urn:uuid:b1bf505c-4895-4010-9c1b-8bd0c71bb115",
+  "serialNumber": "urn:uuid:c0ad8085-8913-47ab-8fc9-e6ccf2df91d8",
   "version": 1,
   "metadata": {
-    "timestamp": "2021-05-19T14:27:45-06:00",
+    "timestamp": "2021-05-19T15:04:23-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -31,11 +31,11 @@
       }
     ],
     "component": {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210519141151-dcfca858b1ec",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210519143630-26a2aac25339",
       "type": "application",
       "name": "github.com/devops-kung-fu/hookz",
-      "version": "v0.0.0-20210519141151-dcfca858b1ec",
-      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210519141151-dcfca858b1ec",
+      "version": "v0.0.0-20210519143630-26a2aac25339",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210519143630-26a2aac25339",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/hookz",
@@ -5604,7 +5604,7 @@
       "ref": "pkg:golang/rsc.io/binaryregexp@v0.2.0"
     },
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210519141151-dcfca858b1ec",
+      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210519143630-26a2aac25339",
       "dependsOn": [
         "pkg:golang/github.com/cavaliercoder/grab@v2.0.0",
         "pkg:golang/github.com/gookit/color@v1.4.2",
