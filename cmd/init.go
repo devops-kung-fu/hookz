@@ -20,7 +20,7 @@ var (
 			if existingHookz {
 				fmt.Println("Existing hookz files detected")
 				fmt.Println("\nDid you mean to reset?")
-				fmt.Println("        hookz reset [--verbose]")
+				fmt.Println("        hookz reset [--verbose] [--debug]")
 				fmt.Println("\nRun 'hookz --help' for usage.")
 				fmt.Println()
 				os.Exit(1)
