@@ -38,6 +38,9 @@
         - name: "cyclone-dx: Generate a Software Bill of Materials (SBoM)"
           exec: cyclonedx-gomod
           args: ["-json", "-output", "hookz-sbom.json", "-std", "-licenses"]
+        - name: Hinge
+          url: https://github.com/devops-kung-fu/hinge/releases/download/v0.1.0/hinge-0.1.0-linux-amd64
+          args: ["."]
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]

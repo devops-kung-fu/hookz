@@ -1,7 +1,14 @@
 version: 2
 updates:
-- package-ecosystem: gomod
-  directory: "/"
+- package-ecosystem: github-actions
+  directory: /.github/workflows
   schedule:
     interval: daily
-  open-pull-requests-limit: 10
+    time: "05:00"
+    timezone: UTC
+- package-ecosystem: gomod
+  directory: /
+  schedule:
+    interval: daily
+    time: "05:00"
+    timezone: UTC
