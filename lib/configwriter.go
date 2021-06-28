@@ -6,6 +6,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+//CreateConfig creates a starter .hookz.yaml file
 func CreateConfig(fs FileSystem, version string) (config Configuration, err error) {
 	command := "echo"
 	config = Configuration{

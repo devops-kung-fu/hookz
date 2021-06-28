@@ -27,17 +27,20 @@ type Action struct {
 	Script *string  `json:"script,omitempty"`
 }
 
+//FileSystem wraps the afero.Fs interface to allow for mocking
 type FileSystem struct {
 	fs afero.Fs
 }
 
+//NewOsFs creates a new disk based file system
 func NewOsFs() FileSystem {
 	var d FileSystem
 	d.fs = afero.NewOsFs()
 	return d
 }
 
-func (f FileSystem) Afero() (afs *afero.Afero) {
-	afs = &afero.Afero{Fs: f.fs}
+//Afero returns a new Afero struct wraping the current file system
+func (fs FileSystem) Afero() (afs *afero.Afero) {
+	afs = &afero.Afero{Fs: fs.fs}
 	return
 }

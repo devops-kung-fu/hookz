@@ -7,8 +7,10 @@ import (
 	"strings"
 )
 
+//RemoveHooks purges all hooks from the filesystem that Hookz has created
+//and deletes any generated scripts
 func RemoveHooks(fs FileSystem, verbose bool) (err error) {
-	PrintIf(func() {
+	DoIf(func() {
 		fmt.Println("[*] Removing existing hooks...")
 	}, verbose)
 
@@ -37,16 +39,16 @@ func RemoveHooks(fs FileSystem, verbose bool) (err error) {
 				return removeErr
 			}
 			parts := strings.Split(hookName, "/")
-			PrintIf(func() {
+			DoIf(func() {
 				fmt.Printf("    	Deleted %s\n", parts[len(parts)-1])
 			}, verbose)
 		}
 	}
-	PrintIf(func() {
+	DoIf(func() {
 		fmt.Println("[*] Successfully removed existing hooks!")
 	}, verbose)
 
-	PrintIf(func() {
+	DoIf(func() {
 		fmt.Println()
 	}, verbose)
 

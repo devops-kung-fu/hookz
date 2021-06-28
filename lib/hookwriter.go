@@ -18,6 +18,7 @@ type command struct {
 	Debug        bool
 }
 
+//CreateFile creates a file for a provided FileSystem and file name
 func CreateFile(fs FileSystem, name string) (err error) {
 
 	file, err := fs.fs.Create(name)
@@ -32,6 +33,7 @@ func CreateFile(fs FileSystem, name string) (err error) {
 	return
 }
 
+//CreateScriptFile creates an executable script file with a random name given a string of content
 func CreateScriptFile(fs FileSystem, content string) (name string, err error) {
 
 	k, idErr := ksuid.NewRandom()
@@ -79,12 +81,13 @@ func buildFullCommand(action Action, debug bool) string {
 	return fullCommand
 }
 
+//WriteHooks writes all of the generated scripts to the .git/hooks directory
 func WriteHooks(fs FileSystem, config Configuration, verbose bool, debug bool) (err error) {
 
 	for _, hook := range config.Hooks {
 
 		var commands []command
-		PrintIf(func() {
+		DoIf(func() {
 			fmt.Printf("\n[*] Writing %s \n", hook.Type)
 		}, verbose)
 
@@ -103,7 +106,7 @@ func WriteHooks(fs FileSystem, config Configuration, verbose bool, debug bool) (
 				action.Exec = &fullScriptFileName
 			}
 
-			PrintIf(func() {
+			DoIf(func() {
 				fmt.Printf("    	Adding %s action: %s\n", hook.Type, action.Name)
 			}, verbose)
 
@@ -121,11 +124,11 @@ func WriteHooks(fs FileSystem, config Configuration, verbose bool, debug bool) (
 		if err != nil {
 			return
 		}
-		PrintIf(func() {
+		DoIf(func() {
 			fmt.Println("[*] Successfully wrote " + hook.Type)
 		}, verbose)
 
-		PrintIf(func() {
+		DoIf(func() {
 			fmt.Println()
 		}, verbose)
 	}
@@ -160,6 +163,7 @@ func writeTemplate(fs FileSystem, commands []command, hookType string) (err erro
 	return
 }
 
+//HasExistingHookz determines if any .hookz touch files exist in the .git/hooks directory
 func HasExistingHookz(fs FileSystem) (exists bool) {
 	path, _ := os.Getwd()
 	ext := ".hookz"

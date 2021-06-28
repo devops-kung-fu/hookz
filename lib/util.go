@@ -1,6 +1,7 @@
 package lib
 
-func PrintIf(f func(), condition bool) {
+//DoIf runs a passed function if the condition is true
+func DoIf(f func(), condition bool) {
 	if condition {
 		f()
 	}
