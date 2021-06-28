@@ -92,19 +92,7 @@ func WriteHooks(fs FileSystem, config Configuration, verbose bool, debug bool) (
 		}, verbose)
 
 		for _, action := range hook.Actions {
-			if action.Exec == nil && action.URL != nil {
-				filename, _ := DownloadURL(*action.URL)
-				action.Exec = &filename
-			}
-			if action.Exec == nil && action.Script != nil {
-				scriptFileName, err := CreateScriptFile(fs, *action.Script)
-				if err != nil {
-					return err
-				}
-				path, _ := os.Getwd()
-				fullScriptFileName := fmt.Sprintf("%s/%s/%s", path, ".git/hooks", scriptFileName)
-				action.Exec = &fullScriptFileName
-			}
+			buildExec(fs, &action)
 
 			DoIf(func() {
 				fmt.Printf("    	Adding %s action: %s\n", hook.Type, action.Name)
@@ -133,6 +121,19 @@ func WriteHooks(fs FileSystem, config Configuration, verbose bool, debug bool) (
 		}, verbose)
 	}
 	return nil
+}
+
+func buildExec(fs FileSystem, action *Action) {
+	if action.Exec == nil && action.URL != nil {
+		filename, _ := DownloadURL(*action.URL)
+		action.Exec = &filename
+	}
+	if action.Exec == nil && action.Script != nil {
+		scriptFileName, _ := CreateScriptFile(fs, *action.Script)
+		path, _ := os.Getwd()
+		fullScriptFileName := fmt.Sprintf("%s/%s/%s", path, ".git/hooks", scriptFileName)
+		action.Exec = &fullScriptFileName
+	}
 }
 
 func writeTemplate(fs FileSystem, commands []command, hookType string) (err error) {
