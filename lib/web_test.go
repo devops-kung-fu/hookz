@@ -34,3 +34,13 @@ func Test_DownloadURL(t *testing.T) {
 // 	URL := "https://github.com/devops-kung-fu/hinge/releases/download/v0.1.0/hinge-0.1.0-%%PLATFORM%%-amd64"
 // 	_, _ = DownloadURL(URL)
 // }
+
+func Test_getPlatformName(t *testing.T) {
+	platform := getPlatformName()
+	assert.NotEmpty(t, platform, "There should be a platform returned")
+}
+
+func Test_platformURLIfDefined(t *testing.T) {
+	processedURL := platformURLIfDefined("https://%%PLATFORM%%")
+	assert.NotContains(t, processedURL, "%%PLATFORM%%", "The token %%PLATFORM%% should not exist in the return")
+}
