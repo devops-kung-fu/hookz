@@ -1,41 +1,41 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.2",
-  "serialNumber": "urn:uuid:14af1d7d-e96e-4f05-9faf-9536e861fadc",
+  "serialNumber": "urn:uuid:2cb807c1-ca52-48ad-8bec-6a23ed430994",
   "version": 1,
   "metadata": {
-    "timestamp": "2021-06-07T16:04:37-04:00",
+    "timestamp": "2021-06-28T11:45:16-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
         "name": "cyclonedx-gomod",
-        "version": "v0.8.1",
+        "version": "v0.8.2",
         "hashes": [
           {
             "alg": "MD5",
-            "content": "9805d3c353474f2c88ff04ceb428c455"
+            "content": "2fae1b517e34f532b24f832d5282d34d"
           },
           {
             "alg": "SHA-1",
-            "content": "62234fe9f06680394b8d9d9fc9acd0b1fe9a7081"
+            "content": "aa7190bc32cecebaf98e8551f92335518d6ed1a5"
           },
           {
             "alg": "SHA-256",
-            "content": "5f459cca9a693579b7db7e07c5581a1c353292ed76a90657796beb5ef8cddcf7"
+            "content": "2fd17a0d03f6614a16c6ea87656ff96f0e4dce19859b4f597e87d52018dba923"
           },
           {
             "alg": "SHA-512",
-            "content": "ab31d76565ae55c0d9f9a49712a201437cc34746eacf037f7bff8ebfa3d777b1f3ef0ac112b9e4047fa801b59c2d4fe218e5ec3c33e36062b3bb44441a7b04ef"
+            "content": "03ec9560eb767b228f15ef3b611c0363f4493be758bb810620dd0ad93e223bd348160f68754163d11db3a99d827286b9889d8588835c5ae1b9438c70e200ad32"
           }
         ]
       }
     ],
     "component": {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210520144900-80759d0d3efd",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628113521-445c13fa2032",
       "type": "application",
       "name": "github.com/devops-kung-fu/hookz",
-      "version": "v0.0.0-20210520144900-80759d0d3efd",
-      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210520144900-80759d0d3efd",
+      "version": "v0.0.0-20210628113521-445c13fa2032",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628113521-445c13fa2032",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/hookz",
@@ -69,34 +69,6 @@
       "externalReferences": [
         {
           "url": "https://github.com/cavaliercoder/grab",
-          "type": "vcs"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/chzyer/readline@v0.0.0-20180603132655-2972be24d48e",
-      "type": "library",
-      "name": "github.com/chzyer/readline",
-      "version": "v0.0.0-20180603132655-2972be24d48e",
-      "scope": "required",
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "7d8e41392a72642a91a393a10ae0be5cdfabfdb04299ebae26d8f3f9b08d21ff"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT",
-            "url": "https://spdx.org/licenses/MIT.html"
-          }
-        }
-      ],
-      "purl": "pkg:golang/github.com/chzyer/readline@v0.0.0-20180603132655-2972be24d48e",
-      "externalReferences": [
-        {
-          "url": "https://github.com/chzyer/readline",
           "type": "vcs"
         }
       ]
@@ -153,146 +125,6 @@
       "externalReferences": [
         {
           "url": "https://github.com/inconshreveable/mousetrap",
-          "type": "vcs"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/juju/ansiterm@v0.0.0-20180109212912-720a0952cc2a",
-      "type": "library",
-      "name": "github.com/juju/ansiterm",
-      "version": "v0.0.0-20180109212912-720a0952cc2a",
-      "scope": "required",
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "15a58599f59d01429b482b4e5364230daa2b51ec6881f68c81b8a981801350c5"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "LGPL-3.0",
-            "url": "https://spdx.org/licenses/LGPL-3.0.html"
-          }
-        }
-      ],
-      "purl": "pkg:golang/github.com/juju/ansiterm@v0.0.0-20180109212912-720a0952cc2a",
-      "externalReferences": [
-        {
-          "url": "https://github.com/juju/ansiterm",
-          "type": "vcs"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/lunixbochs/vtclean@v1.0.0",
-      "type": "library",
-      "name": "github.com/lunixbochs/vtclean",
-      "version": "v1.0.0",
-      "scope": "required",
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "c6edac2c0ae2e251a2a2f04340ac65e66ad7c844abde052be66e52339f8b55bf"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT",
-            "url": "https://spdx.org/licenses/MIT.html"
-          }
-        }
-      ],
-      "purl": "pkg:golang/github.com/lunixbochs/vtclean@v1.0.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/lunixbochs/vtclean",
-          "type": "vcs"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/manifoldco/promptui@v0.8.0",
-      "type": "library",
-      "name": "github.com/manifoldco/promptui",
-      "version": "v0.8.0",
-      "scope": "required",
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "47de66305f8c72f5d943b8f583cb9c55913580b3f74afea3f6f945f64c91a90a"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "BSD-3-Clause",
-            "url": "https://spdx.org/licenses/BSD-3-Clause.html"
-          }
-        }
-      ],
-      "purl": "pkg:golang/github.com/manifoldco/promptui@v0.8.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/manifoldco/promptui",
-          "type": "vcs"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.8",
-      "type": "library",
-      "name": "github.com/mattn/go-colorable",
-      "version": "v0.1.8",
-      "scope": "required",
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "7358213ddc840daac2ef47ed9f4cbe03f11efbef73cfc9631c6d5bd77789d2cf"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT",
-            "url": "https://spdx.org/licenses/MIT.html"
-          }
-        }
-      ],
-      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.8",
-      "externalReferences": [
-        {
-          "url": "https://github.com/mattn/go-colorable",
-          "type": "vcs"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.13",
-      "type": "library",
-      "name": "github.com/mattn/go-isatty",
-      "version": "v0.0.13",
-      "scope": "required",
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "a9d97e1ae06372c28a0dca3906cc4f26521df7c99258d2aa600f82a34482d720"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT",
-            "url": "https://spdx.org/licenses/MIT.html"
-          }
-        }
-      ],
-      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.13",
-      "externalReferences": [
-        {
-          "url": "https://github.com/mattn/go-isatty",
           "type": "vcs"
         }
       ]
@@ -438,15 +270,15 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/sys@v0.0.0-20210603125802-9665404d3644",
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.0.0-20210616094352-59db8d763f22",
       "type": "library",
       "name": "golang.org/x/sys",
-      "version": "v0.0.0-20210603125802-9665404d3644",
+      "version": "v0.0.0-20210616094352-59db8d763f22",
       "scope": "required",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "080d43110e0d74aa6129e2fbd2dbec58d753e68161d653a38a145c10344e8b42"
+          "content": "46acada57191d6254d5fba6c8c1ddf7fccbbb0d1629d516f931d5cf128c1922a"
         }
       ],
       "licenses": [
@@ -457,7 +289,7 @@
           }
         }
       ],
-      "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20210603125802-9665404d3644"
+      "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20210616094352-59db8d763f22"
     },
     {
       "bom-ref": "pkg:golang/golang.org/x/text@v0.3.6",
@@ -510,13 +342,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/std@1.16.2",
+      "bom-ref": "pkg:golang/std@1.16.5",
       "type": "library",
       "name": "std",
-      "version": "1.16.2",
+      "version": "1.16.5",
       "description": "The Go standard library",
       "scope": "required",
-      "purl": "pkg:golang/std@1.16.2",
+      "purl": "pkg:golang/std@1.16.5",
       "externalReferences": [
         {
           "url": "https://golang.org/pkg/",
@@ -538,47 +370,14 @@
       "ref": "pkg:golang/github.com/cavaliercoder/grab@v2.0.0"
     },
     {
-      "ref": "pkg:golang/github.com/chzyer/readline@v0.0.0-20180603132655-2972be24d48e"
-    },
-    {
       "ref": "pkg:golang/github.com/gookit/color@v1.4.2",
       "dependsOn": [
-        "pkg:golang/golang.org/x/sys@v0.0.0-20210603125802-9665404d3644",
+        "pkg:golang/golang.org/x/sys@v0.0.0-20210616094352-59db8d763f22",
         "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778"
       ]
     },
     {
       "ref": "pkg:golang/github.com/inconshreveable/mousetrap@v1.0.0"
-    },
-    {
-      "ref": "pkg:golang/github.com/juju/ansiterm@v0.0.0-20180109212912-720a0952cc2a"
-    },
-    {
-      "ref": "pkg:golang/github.com/lunixbochs/vtclean@v1.0.0"
-    },
-    {
-      "ref": "pkg:golang/github.com/manifoldco/promptui@v0.8.0",
-      "dependsOn": [
-        "pkg:golang/golang.org/x/sys@v0.0.0-20210603125802-9665404d3644",
-        "pkg:golang/github.com/mattn/go-isatty@v0.0.13",
-        "pkg:golang/github.com/mattn/go-colorable@v0.1.8",
-        "pkg:golang/github.com/lunixbochs/vtclean@v1.0.0",
-        "pkg:golang/github.com/juju/ansiterm@v0.0.0-20180109212912-720a0952cc2a",
-        "pkg:golang/github.com/chzyer/readline@v0.0.0-20180603132655-2972be24d48e"
-      ]
-    },
-    {
-      "ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.8",
-      "dependsOn": [
-        "pkg:golang/golang.org/x/sys@v0.0.0-20210603125802-9665404d3644",
-        "pkg:golang/github.com/mattn/go-isatty@v0.0.13"
-      ]
-    },
-    {
-      "ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.13",
-      "dependsOn": [
-        "pkg:golang/golang.org/x/sys@v0.0.0-20210603125802-9665404d3644"
-      ]
     },
     {
       "ref": "pkg:golang/github.com/segmentio/ksuid@v1.0.3"
@@ -604,7 +403,7 @@
       "ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778"
     },
     {
-      "ref": "pkg:golang/golang.org/x/sys@v0.0.0-20210603125802-9665404d3644"
+      "ref": "pkg:golang/golang.org/x/sys@v0.0.0-20210616094352-59db8d763f22"
     },
     {
       "ref": "pkg:golang/golang.org/x/text@v0.3.6"
@@ -613,25 +412,21 @@
       "ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0"
     },
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210520144900-80759d0d3efd",
+      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628113521-445c13fa2032",
       "dependsOn": [
         "pkg:golang/github.com/cavaliercoder/grab@v2.0.0",
         "pkg:golang/github.com/gookit/color@v1.4.2",
-        "pkg:golang/github.com/lunixbochs/vtclean@v1.0.0",
-        "pkg:golang/github.com/manifoldco/promptui@v0.8.0",
-        "pkg:golang/github.com/mattn/go-colorable@v0.1.8",
-        "pkg:golang/github.com/mattn/go-isatty@v0.0.13",
         "pkg:golang/github.com/segmentio/ksuid@v1.0.3",
         "pkg:golang/github.com/spf13/afero@v1.6.0",
         "pkg:golang/github.com/spf13/cobra@v1.1.3",
-        "pkg:golang/golang.org/x/sys@v0.0.0-20210603125802-9665404d3644",
+        "pkg:golang/golang.org/x/sys@v0.0.0-20210616094352-59db8d763f22",
         "pkg:golang/golang.org/x/text@v0.3.6",
         "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
-        "pkg:golang/std@1.16.2"
+        "pkg:golang/std@1.16.5"
       ]
     },
     {
-      "ref": "pkg:golang/std@1.16.2"
+      "ref": "pkg:golang/std@1.16.5"
     }
   ]
 }
