@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -54,11 +55,8 @@ func Test_WriteHooks(t *testing.T) {
 func Test_createFile(t *testing.T) {
 	err := CreateFile(fs, "test")
 	assert.NoError(t, err, "Create file should not generate an error")
-	// assert.FileExists(t, "./test", "A file should have been created")
-
-	// err = f.CreateFile("")
-	// assert.Error(t, err, "A file should have not been created and an error thrown")
-
+	exists, _ := fs.Afero().Exists("test")
+	assert.True(t, exists, "A file should have been created")
 }
 
 func Test_writeTemplate(t *testing.T) {
@@ -79,4 +77,19 @@ func Test_HasExistingHookz(t *testing.T) {
 	exists = HasExistingHookz(fs)
 	assert.True(t, exists, "hookz files should exist")
 
+}
+
+func Test_buildExec(t *testing.T) {
+	newFs := FileSystem{
+		fs: afero.NewMemMapFs(),
+	}
+
+	script := "#!/bin/bash"
+	action := Action{
+		Script: &script,
+	}
+	err := buildExec(newFs, &action)
+
+	assert.NoError(t, err, "buildExec shouldn't have generated an error")
+	assert.NotNil(t, action.Exec, "action.Exec field should not be nil")
 }

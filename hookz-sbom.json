@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.2",
-  "serialNumber": "urn:uuid:5e907870-8bc5-4f87-b415-cdb7a37311ad",
+  "serialNumber": "urn:uuid:82b9034b-0203-482a-97d6-9b39e181a453",
   "version": 1,
   "metadata": {
-    "timestamp": "2021-06-28T14:02:13-06:00",
+    "timestamp": "2021-06-28T14:21:14-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -31,11 +31,11 @@
       }
     ],
     "component": {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628134638-793700627434",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628140206-a49c6a75eefc",
       "type": "application",
       "name": "github.com/devops-kung-fu/hookz",
-      "version": "v0.0.0-20210628134638-793700627434",
-      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628134638-793700627434",
+      "version": "v0.0.0-20210628140206-a49c6a75eefc",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628140206-a49c6a75eefc",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/hookz",
@@ -412,7 +412,7 @@
       "ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0"
     },
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628134638-793700627434",
+      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628140206-a49c6a75eefc",
       "dependsOn": [
         "pkg:golang/github.com/cavaliercoder/grab@v2.0.0",
         "pkg:golang/github.com/gookit/color@v1.4.2",

@@ -42,10 +42,3 @@ func TestDeps_checkVersion(t *testing.T) {
 	err = checkVersion(readConfig, version)
 	assert.Error(t, err, "An empty config version should throw an error")
 }
-
-// func Test_promptCreateConfig(t *testing.T) {
-
-// 	config, err := promptCreateConfig(fs, version)
-// 	assert.Equal(t, version, config.Version, "Version mismatch")
-// 	assert.NoError(t, err, "Expected no error to be thrown")
-// }
