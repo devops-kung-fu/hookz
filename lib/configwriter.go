@@ -32,9 +32,5 @@ func CreateConfig(fs FileSystem, version string) (config Configuration, err erro
 	filename, _ := filepath.Abs(".hookz.yaml")
 	err = fs.Afero().WriteFile(filename, file, 0644)
 
-	if err != nil {
-		return
-	}
-
 	return
 }
