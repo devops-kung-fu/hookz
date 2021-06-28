@@ -14,12 +14,12 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-func (f FileSystem) ReadConfig(version string) (config Configuration, err error) {
+func ReadConfig(fs FileSystem, version string) (config Configuration, err error) {
 
 	filename, _ := filepath.Abs(".hookz.yaml")
-	yamlFile, readErr := f.Afero().ReadFile(filename)
+	yamlFile, readErr := fs.Afero().ReadFile(filename)
 	if readErr != nil {
-		config, err = f.promptCreateConfig(version)
+		config, err = promptCreateConfig(fs, version)
 		if err != nil {
 			return
 		}
@@ -52,9 +52,9 @@ func checkVersion(config Configuration, version string) (err error) {
 	return
 }
 
-func (f FileSystem) promptCreateConfig(version string) (config Configuration, err error) {
+func promptCreateConfig(fs FileSystem, version string) (config Configuration, err error) {
 	var result string
-	fsType := reflect.TypeOf(f.fs)
+	fsType := reflect.TypeOf(fs.fs)
 
 	if fsType.String() == "*afero.OsFs" {
 		var promptErr error
@@ -77,7 +77,7 @@ func (f FileSystem) promptCreateConfig(version string) (config Configuration, er
 	}
 
 	if result == "y" {
-		config, err = f.createConfig(version)
+		config, err = createConfig(fs, version)
 	}
 
 	return

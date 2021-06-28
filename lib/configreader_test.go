@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	f FileSystem = FileSystem{
+	fs FileSystem = FileSystem{
 		fs: afero.NewMemMapFs(),
 	}
 	version string = "1.0.0"
@@ -18,18 +18,18 @@ var (
 
 func TestDeps_ReadConfig(t *testing.T) {
 
-	config, _ = f.createConfig(version)
-	readConfig, err := f.ReadConfig(version)
+	config, _ = createConfig(fs, version)
+	readConfig, err := ReadConfig(fs, version)
 
 	assert.NoError(t, err, "ReadConfig should not have generated an error")
 	assert.Equal(t, version, readConfig.Version, "Versions should match")
 
-	_, err = f.ReadConfig("")
+	_, err = ReadConfig(fs, "")
 	assert.Error(t, err, "Passing an empty string should cause an error")
 }
 
 func TestDeps_checkVersion(t *testing.T) {
-	readConfig, err := f.ReadConfig(version)
+	readConfig, err := ReadConfig(fs, version)
 	assert.NoError(t, err, "ReadConfig should not have generated an error")
 
 	err = checkVersion(readConfig, version)
@@ -45,7 +45,7 @@ func TestDeps_checkVersion(t *testing.T) {
 
 func Test_promptCreateConfig(t *testing.T) {
 
-	config, err := f.promptCreateConfig(version)
+	config, err := promptCreateConfig(fs, version)
 	assert.Equal(t, version, config.Version, "Version mismatch")
 	assert.NoError(t, err, "Expected no error to be thrown")
 }

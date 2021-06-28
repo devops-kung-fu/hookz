@@ -14,18 +14,18 @@ var (
 		Short: "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			f := lib.NewOsFs()
+			fs := lib.NewOsFs()
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Reset Hooks")
 			fmt.Println()
 
-			if lib.IsErrorBool(f.RemoveHooks(verbose), "[ERROR]") {
+			if lib.IsErrorBool(lib.RemoveHooks(fs, verbose), "[ERROR]") {
 				return
 			}
-			config, err := f.ReadConfig(version)
+			config, err := lib.ReadConfig(fs, version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(f.WriteHooks(config, verbose, debug), "[ERROR]") {
+			if lib.IsErrorBool(lib.WriteHooks(fs, config, verbose, debug), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("Done!")

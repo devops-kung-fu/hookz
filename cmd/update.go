@@ -14,13 +14,14 @@ var (
 		Short: "Updates any executable defined as an URL attribute in .hooks.yaml.",
 		Long:  "Rebuilds the hooks as defined in the .hooks.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
+			fs := lib.NewOsFs()
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Update Executables")
 			fmt.Println()
-			config, err := lib.NewOsFs().ReadConfig(version)
+			config, err := lib.ReadConfig(fs, version)
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(lib.NewOsFs().UpdateExecutables(config), "[ERROR]") {
+			if lib.IsErrorBool(lib.UpdateExecutables(fs, config), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("Done!")

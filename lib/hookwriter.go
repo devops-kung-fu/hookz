@@ -18,9 +18,9 @@ type command struct {
 	Debug        bool
 }
 
-func (f FileSystem) CreateFile(name string) (err error) {
+func CreateFile(fs FileSystem, name string) (err error) {
 
-	file, err := f.fs.Create(name)
+	file, err := fs.fs.Create(name)
 	if err != nil {
 		return err
 	}
@@ -32,7 +32,7 @@ func (f FileSystem) CreateFile(name string) (err error) {
 	return
 }
 
-func (f FileSystem) CreateScriptFile(content string) (name string, err error) {
+func CreateScriptFile(fs FileSystem, content string) (name string, err error) {
 
 	k, idErr := ksuid.NewRandom()
 	name = k.String()
@@ -46,17 +46,17 @@ func (f FileSystem) CreateScriptFile(content string) (name string, err error) {
 	hookzFile := fmt.Sprintf("%s/%s.hookz", p, name)
 	scriptName := fmt.Sprintf("%s/%s", p, name)
 
-	err = f.CreateFile(hookzFile)
+	err = CreateFile(fs, hookzFile)
 	if err != nil {
 		return
 	}
 
-	err = f.Afero().WriteFile(scriptName, []byte(content), 0644)
+	err = fs.Afero().WriteFile(scriptName, []byte(content), 0644)
 	if err != nil {
 		return
 	}
 
-	err = f.fs.Chmod(scriptName, 0777)
+	err = fs.fs.Chmod(scriptName, 0777)
 	if err != nil {
 		return
 	}
@@ -79,7 +79,7 @@ func buildFullCommand(action Action, debug bool) string {
 	return fullCommand
 }
 
-func (f FileSystem) WriteHooks(config Configuration, verbose bool, debug bool) (err error) {
+func WriteHooks(fs FileSystem, config Configuration, verbose bool, debug bool) (err error) {
 
 	for _, hook := range config.Hooks {
 
@@ -90,11 +90,11 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool, debug bool) (
 
 		for _, action := range hook.Actions {
 			if action.Exec == nil && action.URL != nil {
-				filename, _ := f.DownloadURL(*action.URL)
+				filename, _ := DownloadURL(*action.URL)
 				action.Exec = &filename
 			}
 			if action.Exec == nil && action.Script != nil {
-				scriptFileName, err := f.CreateScriptFile(*action.Script)
+				scriptFileName, err := CreateScriptFile(fs, *action.Script)
 				if err != nil {
 					return err
 				}
@@ -117,7 +117,7 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool, debug bool) (
 				Debug:        debug,
 			})
 		}
-		err = f.writeTemplate(commands, hook.Type)
+		err = writeTemplate(fs, commands, hook.Type)
 		if err != nil {
 			return
 		}
@@ -132,18 +132,18 @@ func (f FileSystem) WriteHooks(config Configuration, verbose bool, debug bool) (
 	return nil
 }
 
-func (f FileSystem) writeTemplate(commands []command, hookType string) (err error) {
+func writeTemplate(fs FileSystem, commands []command, hookType string) (err error) {
 	path, _ := os.Getwd()
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
 
 	hookzFile := fmt.Sprintf("%s/%s.hookz", p, hookType)
-	err = f.CreateFile(hookzFile)
+	err = CreateFile(fs, hookzFile)
 	if err != nil {
 		return
 	}
 
 	filename := fmt.Sprintf("%s/%s", p, hookType)
-	file, err := f.Afero().Create(filename)
+	file, err := fs.Afero().Create(filename)
 	if err != nil {
 		return err
 	}
@@ -152,7 +152,7 @@ func (f FileSystem) writeTemplate(commands []command, hookType string) (err erro
 	if err != nil {
 		return err
 	}
-	err = f.fs.Chmod(filename, 0777)
+	err = fs.fs.Chmod(filename, 0777)
 	if err != nil {
 		return err
 	}
@@ -160,18 +160,18 @@ func (f FileSystem) writeTemplate(commands []command, hookType string) (err erro
 	return
 }
 
-func (f FileSystem) HasExistingHookz() (exists bool) {
+func HasExistingHookz(fs FileSystem) (exists bool) {
 	path, _ := os.Getwd()
 	ext := ".hookz"
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
-	dirFiles, _ := f.Afero().ReadDir(p)
+	dirFiles, _ := fs.Afero().ReadDir(p)
 
 	for index := range dirFiles {
 		file := dirFiles[index]
 
 		name := file.Name()
 		fullPath := fmt.Sprintf("%s/%s", p, name)
-		info, _ := f.Afero().Stat(fullPath)
+		info, _ := fs.Afero().Stat(fullPath)
 		isHookzFile := strings.Contains(info.Name(), ext)
 		if isHookzFile {
 			return true
