@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.2",
-  "serialNumber": "urn:uuid:9280d73a-150b-45ce-9c01-be3bc5028963",
+  "serialNumber": "urn:uuid:27caab55-4f28-4973-bc3b-29fd21feb885",
   "version": 1,
   "metadata": {
-    "timestamp": "2021-06-28T12:31:35-06:00",
+    "timestamp": "2021-06-28T13:33:19-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -13,29 +13,29 @@
         "hashes": [
           {
             "alg": "MD5",
-            "content": "2fae1b517e34f532b24f832d5282d34d"
+            "content": "baede878ed3bc50701186dacc078b465"
           },
           {
             "alg": "SHA-1",
-            "content": "aa7190bc32cecebaf98e8551f92335518d6ed1a5"
+            "content": "6667be6a8dab4043e950e87f7f8c69737a128316"
           },
           {
             "alg": "SHA-256",
-            "content": "2fd17a0d03f6614a16c6ea87656ff96f0e4dce19859b4f597e87d52018dba923"
+            "content": "f95f6644c623ff2c5c4e4170ca542faafb3a6817b60852436af1ea0605cde08c"
           },
           {
             "alg": "SHA-512",
-            "content": "03ec9560eb767b228f15ef3b611c0363f4493be758bb810620dd0ad93e223bd348160f68754163d11db3a99d827286b9889d8588835c5ae1b9438c70e200ad32"
+            "content": "2ddcf69a911ddaa53274d1ab825754b02da5d1c9601916daed761d5b0d5426035a3bf2d476db471af807fa18d7175cf4087c8a131eeb83e39c6937010fc76d82"
           }
         ]
       }
     ],
     "component": {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628114506-a7a448384190",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628123122-64f4552824ac",
       "type": "application",
       "name": "github.com/devops-kung-fu/hookz",
-      "version": "v0.0.0-20210628114506-a7a448384190",
-      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628114506-a7a448384190",
+      "version": "v0.0.0-20210628123122-64f4552824ac",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628123122-64f4552824ac",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/hookz",
@@ -342,13 +342,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/std@1.16.5",
+      "bom-ref": "pkg:golang/std@1.16.3",
       "type": "library",
       "name": "std",
-      "version": "1.16.5",
+      "version": "1.16.3",
       "description": "The Go standard library",
       "scope": "required",
-      "purl": "pkg:golang/std@1.16.5",
+      "purl": "pkg:golang/std@1.16.3",
       "externalReferences": [
         {
           "url": "https://golang.org/pkg/",
@@ -412,7 +412,7 @@
       "ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0"
     },
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628114506-a7a448384190",
+      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210628123122-64f4552824ac",
       "dependsOn": [
         "pkg:golang/github.com/cavaliercoder/grab@v2.0.0",
         "pkg:golang/github.com/gookit/color@v1.4.2",
@@ -422,11 +422,11 @@
         "pkg:golang/golang.org/x/sys@v0.0.0-20210616094352-59db8d763f22",
         "pkg:golang/golang.org/x/text@v0.3.6",
         "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
-        "pkg:golang/std@1.16.5"
+        "pkg:golang/std@1.16.3"
       ]
     },
     {
-      "ref": "pkg:golang/std@1.16.5"
+      "ref": "pkg:golang/std@1.16.3"
     }
   ]
 }
