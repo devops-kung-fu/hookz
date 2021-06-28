@@ -18,7 +18,7 @@ var (
 
 func TestDeps_ReadConfig(t *testing.T) {
 
-	config, _ = createConfig(fs, version)
+	config, _ = CreateConfig(fs, version)
 	readConfig, err := ReadConfig(fs, version)
 
 	assert.NoError(t, err, "ReadConfig should not have generated an error")
@@ -43,9 +43,9 @@ func TestDeps_checkVersion(t *testing.T) {
 	assert.Error(t, err, "An empty config version should throw an error")
 }
 
-func Test_promptCreateConfig(t *testing.T) {
+// func Test_promptCreateConfig(t *testing.T) {
 
-	config, err := promptCreateConfig(fs, version)
-	assert.Equal(t, version, config.Version, "Version mismatch")
-	assert.NoError(t, err, "Expected no error to be thrown")
-}
+// 	config, err := promptCreateConfig(fs, version)
+// 	assert.Equal(t, version, config.Version, "Version mismatch")
+// 	assert.NoError(t, err, "Expected no error to be thrown")
+// }

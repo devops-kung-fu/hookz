@@ -29,7 +29,7 @@ func Test_genTemplate(t *testing.T) {
 }
 
 func Test_buildFullCommand(t *testing.T) {
-	config, err := createConfig(fs, version)
+	config, err := CreateConfig(fs, version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
 	action := config.Hooks[0].Actions[0]
@@ -40,7 +40,7 @@ func Test_buildFullCommand(t *testing.T) {
 }
 
 func Test_WriteHooks(t *testing.T) {
-	config, err := createConfig(fs, version)
+	config, err := CreateConfig(fs, version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
 	err = WriteHooks(fs, config, true, true)
@@ -70,7 +70,7 @@ func Test_HasExistingHookz(t *testing.T) {
 	exists := HasExistingHookz(fs)
 	assert.False(t, exists, "No hookz files should exist")
 
-	config, err := createConfig(fs, version)
+	config, err := CreateConfig(fs, version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
 	err = WriteHooks(fs, config, true, true)

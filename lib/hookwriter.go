@@ -196,7 +196,7 @@ yellowText='\033[0;33m' # Purple Text
 boldWhite='\e[1m'  		# Bold White
 orange='\e[30;48;5;208m'	# Orange Background
 
-echo -e "\e[1mHookz: Running $(basename $0)$reset"
+echo -e "Hookz: Running $(basename $0)"
 
 {{range .}}
 

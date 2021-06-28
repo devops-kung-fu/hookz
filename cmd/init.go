@@ -18,7 +18,7 @@ var (
 		PreRun: func(cmd *cobra.Command, args []string) {
 			existingHookz := lib.HasExistingHookz(lib.NewOsFs())
 			if existingHookz {
-				fmt.Println("Existing hookz files detected")
+				fmt.Println("Existing hooks detected")
 				fmt.Println("\nDid you mean to reset?")
 				fmt.Println("        hookz reset [--verbose] [--debug]")
 				fmt.Println("\nRun 'hookz --help' for usage.")

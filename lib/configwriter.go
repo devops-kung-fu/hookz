@@ -6,7 +6,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-func createConfig(fs FileSystem, version string) (config Configuration, err error) {
+func CreateConfig(fs FileSystem, version string) (config Configuration, err error) {
 	command := "echo"
 	config = Configuration{
 		Version: version,

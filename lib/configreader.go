@@ -4,25 +4,30 @@ package lib
 import (
 	"errors"
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 
-	"github.com/manifoldco/promptui"
 	"gopkg.in/yaml.v2"
 )
+
+func HasExistingHookzYaml(fs FileSystem) bool {
+	filename, _ := filepath.Abs(".hookz.yaml")
+	_, readErr := fs.Afero().ReadFile(filename)
+	return readErr == nil
+}
 
 func ReadConfig(fs FileSystem, version string) (config Configuration, err error) {
 
 	filename, _ := filepath.Abs(".hookz.yaml")
 	yamlFile, readErr := fs.Afero().ReadFile(filename)
 	if readErr != nil {
-		config, err = promptCreateConfig(fs, version)
-		if err != nil {
-			return
-		}
+		fmt.Println(".hookz.yaml file not found")
+		fmt.Println("\nTo create a sample configuration run:")
+		fmt.Println("        hookz init config")
+		fmt.Println("\nRun 'hookz --help' for usage.")
+		fmt.Println()
+		os.Exit(1)
 	} else {
 		err = yaml.Unmarshal(yamlFile, &config)
 		if err != nil {
@@ -52,38 +57,38 @@ func checkVersion(config Configuration, version string) (err error) {
 	return
 }
 
-func promptCreateConfig(fs FileSystem, version string) (config Configuration, err error) {
-	var result string
-	fsType := reflect.TypeOf(fs.fs)
+// func promptCreateConfig(fs FileSystem, version string) (config Configuration, err error) {
+// 	var result string
+// 	fsType := reflect.TypeOf(fs.fs)
 
-	if fsType.String() == "*afero.OsFs" {
-		var promptErr error
+// 	if fsType.String() == "*afero.OsFs" {
+// 		var promptErr error
 
-		fmt.Println("\nHookz was unable to find a .hookz.yaml file. Would you like")
-		fmt.Println("to create a starter configuration?")
+// 		fmt.Println("\nHookz was unable to find a .hookz.yaml file. Would you like")
+// 		fmt.Println("to create a starter configuration?")
 
-		prompt := promptui.Prompt{
-			Label:     "Create starter .hookz.yaml?",
-			IsConfirm: true,
-		}
+// 		prompt := promptui.Prompt{
+// 			Label:     "Create starter .hookz.yaml?",
+// 			IsConfirm: true,
+// 		}
 
-		result, promptErr = prompt.Run()
+// 		result, promptErr = prompt.Run()
 
-		if promptErr != nil {
-			goto CONFIG_ERR
-		}
-	} else {
-		result = "y"
-	}
+// 		if promptErr != nil {
+// 			goto CONFIG_ERR
+// 		}
+// 	} else {
+// 		result = "y"
+// 	}
 
-	if result == "y" {
-		config, err = createConfig(fs, version)
-	}
+// 	if result == "y" {
+// 		config, err = createConfig(fs, version)
+// 	}
 
-	return
+// 	return
 
-CONFIG_ERR:
-	log.Println("[ERROR]: Hookz cannot run without a .hookz.yaml file. Create one and try again")
-	os.Exit(1)
-	return
-}
+// CONFIG_ERR:
+// 	log.Println("[ERROR]: Hookz cannot run without a .hookz.yaml file. Create one and try again")
+// 	os.Exit(1)
+// 	return
+// }
