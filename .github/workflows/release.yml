@@ -56,11 +56,20 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.15'
+          go-version: '1.16'
 
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+      
+      - name: Generate SBOM
+        uses: CycloneDX/gh-gomod-generate-sbom@v0.3.0
+        with:
+          include-stdlib: true
+          json: true
+          output: sbom.json
+          resolve-licenses: true
+          version: "^v0"
 
       - name: Build amd64 Assets
         if: matrix.arch == 'amd64'
@@ -85,6 +94,16 @@ jobs:
           env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/devops-kung-fu/hookz
         env:
           FILE: build/hookz-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
+      
+      - name: Upload SBoM
+        run: |
+            curl \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Content-Type: $(file -b --mime-type $FILE)" \
+              --data-binary @$FILE \
+              "$UPLOAD_URL?name=$(basename $FILE)"
+        env:
+          FILE: sbom.json
 
       - name: Upload amd64 Non-Windows
         if: matrix.os != 'windows' && matrix.arch == 'amd64'

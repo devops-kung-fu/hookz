@@ -41,8 +41,8 @@ To install ```hookz```,  [download the latest release](https://github.com/devops
 Linux Example:
 
 ```bash
-sudo chmod +x hookz-2.2.1-linux-amd64
-sudo mv hookz-2.2.1-linux-amd64 /usr/local/bin/hookz
+sudo chmod +x hookz-2.2.2-linux-amd64
+sudo mv hookz-2.2.2-linux-amd64 /usr/local/bin/hookz
 ```
 
 ## Configuration
@@ -52,7 +52,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-version: 2.2.1
+version: 2.2.2
 hooks:
   - type: pre-commit
     actions:
@@ -84,6 +84,24 @@ An action with an ```URL``` will download the binary from the defined URL and co
 The post-commit in this configuration will execute a command named "```dude```" with the arguments ```"Hello World"``` after a commit has occurred. Note that the _dude_ command must be on your path. If it isn't this post-commit will return a WARN message because the command isn't found.
 
 __Check out the [tacklebox](tackle/README.md) for a curated collection of actions to get you up and running quickly.__
+
+### Dynamic Architecture URLs
+
+Quite often, downloadable binaries exist for multiple platforms when downloading. For example, [hinge](https://github.com/devops-kung-fu/hinge) is available for multiple architectures such as ```linux```, ```darwin``` (Mac), etc. By using the ```%%PLATFORM%%``` tag in your URL to replace an architecture, the download functionality will retrieve the right binary for your current architecture.
+
+For example, you can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
+
+``` yaml
+version: 2.2.2
+hooks:
+  - type: pre-commit
+    actions:
+        - name: Hinge
+          url: https://github.com/devops-kung-fu/hinge/releases/download/v0.1.0/hinge-0.1.0-%%PLATFORM%%-amd64
+          args: ["."]
+```
+
+If you are running Hookz on a Mac, this will bring down the ```hinge-0.1.0-darwin-amd64``` binary, if on linux, the ```hinge-0.1.0-linux-amd64``` binary will be downloaded.
 
 ### Optional elements
 
@@ -205,7 +223,7 @@ Check out the collection [here](tackle/README.md).
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.2.1
+version: 2.2.2
 hooks:
   - type: pre-commit
     actions:
@@ -213,7 +231,7 @@ hooks:
         exec: terraform
         args: ["fmt"]
       - name: Terraform Docs
-        url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.12.1/terraform-docs-v0.12.1-linux-amd64
+        url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.12.1/terraform-docs-v0.12.1-%%PLATFORM%%-amd64
         args: ["markdown", "table", "--output-file", "README.md", "."]
 ```
 
@@ -228,7 +246,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.2.1
+version: 2.2.2
 hooks:
   - type: pre-commit
     actions:

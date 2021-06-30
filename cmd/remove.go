@@ -17,7 +17,7 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Removing Hooks")
 			fmt.Println()
-			if lib.IsErrorBool(lib.NewOsFs().RemoveHooks(verbose), "[ERROR]") {
+			if lib.IsErrorBool(lib.RemoveHooks(lib.NewOsFs(), verbose), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("Done!")

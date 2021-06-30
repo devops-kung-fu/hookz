@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"runtime"
+	"strings"
 	"time"
 
 	"github.com/cavaliercoder/grab"
@@ -12,13 +14,13 @@ import (
 
 //UpdateExecutables parses the configuration for URL's and re-downloads
 //the contents into the .git/hooks folder
-func (f FileSystem) UpdateExecutables(config Configuration) (err error) {
+func UpdateExecutables(fs FileSystem, config Configuration) (err error) {
 	var updateCount = 0
 	for _, hook := range config.Hooks {
 		for _, action := range hook.Actions {
 			if action.URL != nil {
 				updateCount++
-				_, _ = f.DownloadURL(*action.URL)
+				_, err = DownloadURL(*action.URL)
 			}
 		}
 	}
@@ -32,7 +34,8 @@ func (f FileSystem) UpdateExecutables(config Configuration) (err error) {
 //DownloadURL downloads content from the provided URL and returns the
 //filename after saving the content to the .git/hooks folder. Returns an
 //error if there were any problems.
-func (f FileSystem) DownloadURL(URL string) (filename string, err error) {
+func DownloadURL(URL string) (filename string, err error) {
+	URL = platformURLIfDefined(URL)
 	_, err = url.ParseRequestURI(URL)
 	if err != nil {
 		return
@@ -75,4 +78,16 @@ Loop:
 		return resp.Filename, err
 	}
 	return resp.Filename, err
+}
+
+func platformURLIfDefined(URL string) string {
+	return strings.Replace(URL, "%%PLATFORM%%", getPlatformName(), 1)
+}
+
+func getPlatformName() string {
+	platform := strings.ToLower(runtime.GOOS)
+	if platform == "penguin" {
+		platform = "linux"
+	}
+	return platform
 }
