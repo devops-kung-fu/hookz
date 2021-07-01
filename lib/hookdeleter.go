@@ -4,14 +4,18 @@ package lib
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
+
+	"github.com/gookit/color"
 )
 
 //RemoveHooks purges all hooks from the filesystem that Hookz has created
 //and deletes any generated scripts
 func RemoveHooks(fs FileSystem, verbose bool) (err error) {
 	DoIf(func() {
-		fmt.Println("[*] Removing existing hooks...")
+		color.Style{color.FgLightYellow}.Print("■")
+		fmt.Println(" Removing existing hooks...")
 	}, verbose)
 
 	path, _ := os.Getwd()
@@ -40,12 +44,16 @@ func RemoveHooks(fs FileSystem, verbose bool) (err error) {
 			}
 			parts := strings.Split(hookName, "/")
 			DoIf(func() {
-				fmt.Printf("    	Deleted %s\n", parts[len(parts)-1])
+				fmt.Printf("  Deleted %s\n", parts[len(parts)-1])
 			}, verbose)
 		}
 	}
+
+	removeShasum(fs)
+
 	DoIf(func() {
-		fmt.Println("[*] Successfully removed existing hooks!")
+		color.Style{color.FgGreen}.Print("■")
+		fmt.Print(" Successfully removed existing hooks!\n")
 	}, verbose)
 
 	DoIf(func() {
@@ -53,4 +61,9 @@ func RemoveHooks(fs FileSystem, verbose bool) (err error) {
 	}, verbose)
 
 	return
+}
+
+func removeShasum(fs FileSystem) {
+	filename, _ := filepath.Abs(".git/hooks/hookz.shasum")
+	_ = fs.Afero().Remove(filename)
 }

@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	version = "2.2.2"
+	version = "2.2.3"
 	debug   bool
 	verbose bool
 	rootCmd = &cobra.Command{
