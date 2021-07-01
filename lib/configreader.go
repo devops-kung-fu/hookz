@@ -2,11 +2,9 @@
 package lib
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"gopkg.in/yaml.v2"
 )
@@ -38,24 +36,7 @@ func ReadConfig(fs FileSystem, version string) (config Configuration, err error)
 		}
 	}
 
-	err = checkVersion(config, version)
+	err = ValidateVersion(config, version)
 
-	return
-}
-
-func checkVersion(config Configuration, version string) (err error) {
-	if config.Version == "" {
-		err = errors.New("no configuration version value found in .hookz.yaml")
-		return
-	}
-	if version == "" {
-		err = errors.New("a version should not be empty")
-		return
-	}
-	ver := strings.Split(config.Version, ".")
-	verMatch := strings.Split(version, ".")
-	if fmt.Sprintf("%v.%v", ver[0], ver[1]) != fmt.Sprintf("%v.%v", verMatch[0], verMatch[1]) {
-		err = fmt.Errorf("version mismatch: Expected v%v.%v - Check your .hookz.yaml configuration", verMatch[0], verMatch[1])
-	}
 	return
 }
