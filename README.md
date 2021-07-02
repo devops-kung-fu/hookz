@@ -41,8 +41,8 @@ To install ```hookz```,  [download the latest release](https://github.com/devops
 Linux Example:
 
 ```bash
-sudo chmod +x hookz-2.2.3-linux-amd64
-sudo mv hookz-2.2.3-linux-amd64 /usr/local/bin/hookz
+sudo chmod +x hookz-2.3.0-linux-amd64
+sudo mv hookz-2.3.0-linux-amd64 /usr/local/bin/hookz
 ```
 
 ## Configuration
@@ -52,7 +52,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-version: 2.2.3
+version: 2.3.0
 hooks:
   - type: pre-commit
     actions:
@@ -77,7 +77,7 @@ hooks:
         args: ["add", "."]
 ```
 
-Hooks will read this example configuration and create a ```pre-commit``` hook and a ```post-commit``` hook based on this yaml. 
+Hookz will read this example configuration and create a ```pre-commit``` hook and a ```post-commit``` hook based on this yaml. 
 
 An action with an ```URL``` will download the binary from the defined URL and configure the hook to execute the command with the defined arguments before a commit happens.
 
@@ -87,12 +87,12 @@ __Check out the [tacklebox](tackle/README.md) for a curated collection of action
 
 ### Dynamic Architecture URLs
 
-Quite often, downloadable binaries exist for multiple platforms when downloading. For example, [hinge](https://github.com/devops-kung-fu/hinge) is available for multiple architectures such as ```linux```, ```darwin``` (Mac), etc. By using the ```%%PLATFORM%%``` tag in your URL to replace an architecture, the download functionality will retrieve the right binary for your current architecture.
+Quite often, downloadable binaries exist for multiple platforms when downloading. In order to get the right architecture for your current platform, Hookz ```v2.3.0``` introduces dynamic architecture URL support. For example, [hinge](https://github.com/devops-kung-fu/hinge) is available for multiple architectures such as ```linux```, ```darwin``` (Mac), etc. By using the ```%%PLATFORM%%``` tag in your URL to replace an architecture, the download functionality will retrieve the right binary for your current architecture.
 
-For example, you can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
+You can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
 
 ``` yaml
-version: 2.2.3
+version: 2.3.0
 hooks:
   - type: pre-commit
     actions:
@@ -223,7 +223,7 @@ Check out the collection [here](tackle/README.md).
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.2.3
+version: 2.3.0
 hooks:
   - type: pre-commit
     actions:
@@ -246,7 +246,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.2.3
+version: 2.3.0
 hooks:
   - type: pre-commit
     actions:

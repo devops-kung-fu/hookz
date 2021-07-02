@@ -3,6 +3,8 @@ package lib
 
 import (
 	"fmt"
+	"io"
+	"net/http"
 	"net/url"
 	"os"
 	"runtime"
@@ -10,7 +12,24 @@ import (
 	"time"
 
 	"github.com/cavaliercoder/grab"
+	"github.com/dustin/go-humanize"
 )
+
+type WriteCounter struct {
+	Total uint64
+}
+
+func (wc *WriteCounter) Write(p []byte) (int, error) {
+	n := len(p)
+	wc.Total += uint64(n)
+	wc.PrintProgress()
+	return n, nil
+}
+
+func (wc WriteCounter) PrintProgress() {
+	fmt.Printf("\r%s", strings.Repeat(" ", 35))
+	fmt.Printf("\rDownloading... %s complete", humanize.Bytes(wc.Total))
+}
 
 //UpdateExecutables parses the configuration for URL's and re-downloads
 //the contents into the .git/hooks folder
@@ -29,6 +48,38 @@ func UpdateExecutables(fs FileSystem, config Configuration) (err error) {
 	}
 
 	return
+}
+
+// DownloadFile will download a url to a local file. It's efficient because it will
+// write as it downloads and not load the whole file into memory. We pass an io.TeeReader
+// into Copy() to report progress on the download.
+func DownloadFile(filepath string, url string) error {
+	out, err := os.Create(filepath + ".tmp")
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	counter := &WriteCounter{}
+	_, err = io.Copy(out, io.TeeReader(resp.Body, counter))
+	if err != nil {
+		return err
+	}
+
+	fmt.Print("\n")
+
+	err = os.Rename(filepath+".tmp", filepath)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 //DownloadURL downloads content from the provided URL and returns the
