@@ -4,6 +4,8 @@ package lib
 import (
 	"testing"
 
+	"github.com/jarcoal/httpmock"
+	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -50,4 +52,22 @@ func TestWriteCounter_Write(t *testing.T) {
 	count, err := wc.Write([]byte("test"))
 	assert.NoError(t, err, "There should be no error")
 	assert.Equal(t, 4, count, "4 bytes should have been written")
+}
+
+func TestDownloadFile(t *testing.T) {
+	newFs := FileSystem{
+		fs: afero.NewMemMapFs(),
+	}
+	URL := "https://github.com/devops-kung-fu/hinge/releases/download/v0.1.0/hinge-0.1.0-linux-amd64"
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	httpmock.RegisterResponder("GET", URL,
+		httpmock.NewBytesResponder(200, []byte("test")))
+
+	filename, err := DownloadFile(newFs, ".git/hooks", URL)
+	assert.NoError(t, err)
+	assert.Equal(t, "hinge-0.1.0-linux-amd64", filename)
+
+	httpmock.GetTotalCallCount()
 }

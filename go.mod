@@ -5,6 +5,7 @@ go 1.16
 require (
 	github.com/dustin/go-humanize v1.0.0
 	github.com/gookit/color v1.4.2
+	github.com/jarcoal/httpmock v1.0.8
 	github.com/segmentio/ksuid v1.0.3
 	github.com/spf13/afero v1.6.0
 	github.com/spf13/cobra v1.2.0
