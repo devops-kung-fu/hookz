@@ -26,7 +26,7 @@ func TestUpdateExecutables(t *testing.T) {
 }
 
 func Test_DownloadFile(t *testing.T) {
-	err := DownloadFile(fs, "x", "x")
+	_, err := DownloadFile(fs, "x", "x")
 	assert.Error(t, err, "URL should be a valid URI")
 }
 

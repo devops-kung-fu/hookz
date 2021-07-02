@@ -19,7 +19,7 @@ var (
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Update Executables")
 			fmt.Println()
 			config, err := lib.ReadConfig(fs, version)
-			if err.Error() == "NO_CONFIG" {
+			if err != nil && err.Error() == "NO_CONFIG" {
 				os.Exit(1)
 			}
 			if lib.IsErrorBool(err, "[ERROR]") {

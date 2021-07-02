@@ -10,13 +10,13 @@ import (
 )
 
 func TestPrintIf(t *testing.T) {
-	result, err := captureStdout(func() { fmt.Println("Test") })
+	result, err := CaptureStdout(func() { fmt.Println("Test") })
 
 	assert.Equal(t, "Test\n", result, "Should match the string Test")
 	assert.NoError(t, err, "No error should have been generated")
 }
 
-func captureStdout(f func()) (captured string, err error) {
+func CaptureStdout(f func()) (captured string, err error) {
 	r, w, err := os.Pipe()
 	if err != nil {
 		log.Fatal(err)

@@ -132,7 +132,7 @@ func WriteHooks(fs FileSystem, config Configuration, verbose bool, debug bool) (
 
 func buildExec(fs FileSystem, action *Action) (err error) {
 	if action.Exec == nil && action.URL != nil {
-		filename, err := DownloadURL(*action.URL)
+		filename, err := DownloadFile(fs, ".git/hooks", *action.URL)
 		action.Exec = &filename
 		if err != nil {
 			return err

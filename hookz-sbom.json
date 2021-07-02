@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.2",
-  "serialNumber": "urn:uuid:11eda166-362e-4868-9768-7cb696458903",
+  "serialNumber": "urn:uuid:593308fc-88b9-401d-8877-a65a55f7397e",
   "version": 1,
   "metadata": {
-    "timestamp": "2021-07-01T21:54:37-06:00",
+    "timestamp": "2021-07-01T22:32:24-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -31,11 +31,11 @@
       }
     ],
     "component": {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210701214230-4b365d01f6a4",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210701215428-85441bdeca7e",
       "type": "application",
       "name": "github.com/devops-kung-fu/hookz",
-      "version": "v0.0.0-20210701214230-4b365d01f6a4",
-      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210701214230-4b365d01f6a4",
+      "version": "v0.0.0-20210701215428-85441bdeca7e",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210701215428-85441bdeca7e",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/hookz",
@@ -45,34 +45,6 @@
     }
   },
   "components": [
-    {
-      "bom-ref": "pkg:golang/github.com/cavaliercoder/grab@v2.0.0",
-      "type": "library",
-      "name": "github.com/cavaliercoder/grab",
-      "version": "v2.0.0",
-      "scope": "required",
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "1ae4c159eafdfa315de3e44ae51bc3e15c1d475245f7cde83ea4541a4e3c68e7"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "BSD-3-Clause",
-            "url": "https://spdx.org/licenses/BSD-3-Clause.html"
-          }
-        }
-      ],
-      "purl": "pkg:golang/github.com/cavaliercoder/grab@v2.0.0",
-      "externalReferences": [
-        {
-          "url": "https://github.com/cavaliercoder/grab",
-          "type": "vcs"
-        }
-      ]
-    },
     {
       "bom-ref": "pkg:golang/github.com/dustin/go-humanize@v1.0.0",
       "type": "library",
@@ -395,9 +367,6 @@
   ],
   "dependencies": [
     {
-      "ref": "pkg:golang/github.com/cavaliercoder/grab@v2.0.0"
-    },
-    {
       "ref": "pkg:golang/github.com/dustin/go-humanize@v1.0.0"
     },
     {
@@ -443,9 +412,8 @@
       "ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0"
     },
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210701214230-4b365d01f6a4",
+      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210701215428-85441bdeca7e",
       "dependsOn": [
-        "pkg:golang/github.com/cavaliercoder/grab@v2.0.0",
         "pkg:golang/github.com/dustin/go-humanize@v1.0.0",
         "pkg:golang/github.com/gookit/color@v1.4.2",
         "pkg:golang/github.com/segmentio/ksuid@v1.0.3",
