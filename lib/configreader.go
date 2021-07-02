@@ -30,11 +30,11 @@ func ReadConfig(fs FileSystem, version string) (config Configuration, err error)
 		fmt.Println()
 		err = errors.New("NO_CONFIG")
 		return
-	} else {
-		err = yaml.Unmarshal(yamlFile, &config)
-		if err != nil {
-			return
-		}
+	}
+
+	err = yaml.Unmarshal(yamlFile, &config)
+	if err != nil {
+		return
 	}
 
 	err = ValidateVersion(config, version)

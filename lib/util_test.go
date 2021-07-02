@@ -9,8 +9,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestPrintIf(t *testing.T) {
-	result, err := CaptureStdout(func() { fmt.Println("Test") })
+func TestDoIf(t *testing.T) {
+	result, err := CaptureStdout(func() { DoIf(func() { fmt.Println("Test") }, true) })
 
 	assert.Equal(t, "Test\n", result, "Should match the string Test")
 	assert.NoError(t, err, "No error should have been generated")
