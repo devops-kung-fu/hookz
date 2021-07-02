@@ -15,10 +15,12 @@ import (
 	"github.com/dustin/go-humanize"
 )
 
+//WriteCounter encapsulates the total number of bytes captured and rendered
 type WriteCounter struct {
 	Total uint64
 }
 
+//Write increments the total number of bytes and prints progress to STDOUT
 func (wc *WriteCounter) Write(p []byte) (int, error) {
 	n := len(p)
 	wc.Total += uint64(n)
@@ -26,6 +28,7 @@ func (wc *WriteCounter) Write(p []byte) (int, error) {
 	return n, nil
 }
 
+//PrintProgress prints the current download progress to STDOUT
 func (wc WriteCounter) PrintProgress() {
 	fmt.Printf("\r%s", strings.Repeat(" ", 35))
 	fmt.Printf("\rDownloading... %s complete", humanize.Bytes(wc.Total))
@@ -53,8 +56,13 @@ func UpdateExecutables(fs FileSystem, config Configuration) (err error) {
 // DownloadFile will download a url to a local file. It's efficient because it will
 // write as it downloads and not load the whole file into memory. We pass an io.TeeReader
 // into Copy() to report progress on the download.
-func DownloadFile(filepath string, url string) error {
-	out, err := os.Create(filepath + ".tmp")
+func DownloadFile(fs FileSystem, filepath string, URL string) (err error) {
+	URL = platformURLIfDefined(URL)
+	_, err = url.ParseRequestURI(URL)
+	if err != nil {
+		return
+	}
+	out, err := fs.Afero().Create(filepath + ".tmp")
 	if err != nil {
 		return err
 	}
@@ -62,7 +70,7 @@ func DownloadFile(filepath string, url string) error {
 		err = out.Close()
 	}()
 
-	resp, err := http.Get(url)
+	resp, err := http.Get(URL)
 	if err != nil {
 		return err
 	}

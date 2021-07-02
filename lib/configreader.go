@@ -2,8 +2,8 @@
 package lib
 
 import (
+	"errors"
 	"fmt"
-	"os"
 	"path/filepath"
 
 	"gopkg.in/yaml.v2"
@@ -28,7 +28,8 @@ func ReadConfig(fs FileSystem, version string) (config Configuration, err error)
 		fmt.Println("        hookz init config")
 		fmt.Println("\nRun 'hookz --help' for usage.")
 		fmt.Println()
-		os.Exit(1)
+		err = errors.New("NO_CONFIG")
+		return
 	} else {
 		err = yaml.Unmarshal(yamlFile, &config)
 		if err != nil {
