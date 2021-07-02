@@ -93,6 +93,9 @@ func DownloadFile(fs FileSystem, filepath string, URL string) (filename string, 
 		return
 	}
 
+	err = os.Chmod(fullFileName, 0777)
+	filename = fullFileName
+
 	return
 }
 
