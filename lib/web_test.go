@@ -25,8 +25,8 @@ func TestUpdateExecutables(t *testing.T) {
 	assert.NoError(t, err, "UpdateExecutables should only happen if action.URL != nil")
 }
 
-func Test_DownloadURL(t *testing.T) {
-	_, err := DownloadURL("x")
+func Test_DownloadFile(t *testing.T) {
+	err := DownloadFile(fs, "x", "x")
 	assert.Error(t, err, "URL should be a valid URI")
 }
 
@@ -43,4 +43,11 @@ func Test_getPlatformName(t *testing.T) {
 func Test_platformURLIfDefined(t *testing.T) {
 	processedURL := platformURLIfDefined("https://%%PLATFORM%%")
 	assert.NotContains(t, processedURL, "%%PLATFORM%%", "The token %%PLATFORM%% should not exist in the return")
+}
+
+func TestWriteCounter_Write(t *testing.T) {
+	wc := WriteCounter{}
+	count, err := wc.Write([]byte("test"))
+	assert.NoError(t, err, "There should be no error")
+	assert.Equal(t, 4, count, "4 bytes should have been written")
 }
