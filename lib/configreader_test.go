@@ -18,12 +18,18 @@ var (
 
 func TestDeps_ReadConfig(t *testing.T) {
 
-	config, _ = CreateConfig(fs, version)
-	readConfig, err := ReadConfig(fs, version)
+	newFs := FileSystem{
+		fs: afero.NewMemMapFs(),
+	}
+
+	_, err := ReadConfig(newFs, version)
+	assert.Error(t, err, "There should be no config created so an error should be thrown.")
+	config, _ = CreateConfig(newFs, version)
+	readConfig, err := ReadConfig(newFs, version)
 
 	assert.NoError(t, err, "ReadConfig should not have generated an error")
 	assert.Equal(t, version, readConfig.Version, "Versions should match")
 
-	_, err = ReadConfig(fs, "")
+	_, err = ReadConfig(newFs, "")
 	assert.Error(t, err, "Passing an empty string should cause an error")
 }

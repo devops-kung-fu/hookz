@@ -39,7 +39,13 @@ func Test_WriteShasum(t *testing.T) {
 }
 
 func TestDeps_CheckVersion(t *testing.T) {
-	readConfig, err := ReadConfig(fs, version)
+	newFs := FileSystem{
+		fs: afero.NewMemMapFs(),
+	}
+
+	CreateConfig(newFs, version)
+
+	readConfig, err := ReadConfig(newFs, version)
 	assert.NoError(t, err, "ReadConfig should not have generated an error")
 
 	err = ValidateVersion(readConfig, version)

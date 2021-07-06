@@ -1,4 +1,4 @@
-  version: 2.2.0
+  version: 2.3.0
   hooks:
     - type: pre-commit
       actions:
@@ -25,7 +25,7 @@
           args: ["-ignoretests", "./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
-          args: ["-over", "9", "."]
+          args: ["-over", "7", "."]
         - name: "go: Build (Ensure pulled modules do not break the build)"
           exec: go
           args: ["build", "-v"]

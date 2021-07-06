@@ -4,6 +4,8 @@ package lib
 import (
 	"testing"
 
+	"github.com/jarcoal/httpmock"
+	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -25,8 +27,8 @@ func TestUpdateExecutables(t *testing.T) {
 	assert.NoError(t, err, "UpdateExecutables should only happen if action.URL != nil")
 }
 
-func Test_DownloadURL(t *testing.T) {
-	_, err := DownloadURL("x")
+func Test_DownloadFile(t *testing.T) {
+	_, err := DownloadFile(fs, "x", "x")
 	assert.Error(t, err, "URL should be a valid URI")
 }
 
@@ -43,4 +45,29 @@ func Test_getPlatformName(t *testing.T) {
 func Test_platformURLIfDefined(t *testing.T) {
 	processedURL := platformURLIfDefined("https://%%PLATFORM%%")
 	assert.NotContains(t, processedURL, "%%PLATFORM%%", "The token %%PLATFORM%% should not exist in the return")
+}
+
+func TestWriteCounter_Write(t *testing.T) {
+	wc := WriteCounter{}
+	count, err := wc.Write([]byte("test"))
+	assert.NoError(t, err, "There should be no error")
+	assert.Equal(t, 4, count, "4 bytes should have been written")
+}
+
+func TestDownloadFile(t *testing.T) {
+	newFs := FileSystem{
+		fs: afero.NewMemMapFs(),
+	}
+	URL := "https://github.com/devops-kung-fu/hinge/releases/download/v0.1.0/hinge-0.1.0-linux-amd64"
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	httpmock.RegisterResponder("GET", URL,
+		httpmock.NewBytesResponder(200, []byte("test")))
+
+	filename, err := DownloadFile(newFs, ".git/hooks", URL)
+	assert.NoError(t, err)
+	assert.Equal(t, "hinge-0.1.0-linux-amd64", filename)
+
+	httpmock.GetTotalCallCount()
 }

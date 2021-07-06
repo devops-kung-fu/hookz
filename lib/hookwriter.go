@@ -132,7 +132,7 @@ func WriteHooks(fs FileSystem, config Configuration, verbose bool, debug bool) (
 
 func buildExec(fs FileSystem, action *Action) (err error) {
 	if action.Exec == nil && action.URL != nil {
-		filename, err := DownloadURL(*action.URL)
+		filename, err := DownloadFile(fs, ".git/hooks", *action.URL)
 		action.Exec = &filename
 		if err != nil {
 			return err
@@ -209,7 +209,7 @@ func genTemplate(hookType string) (t *template.Template) {
 
 echo -e "$(tput bold)Hookz$(tput sgr0)"
 echo -e "https://github.com/devops-kung-fu/hookz"
-echo -e "Version: 2.2.3"
+echo -e "Version: 2.3.0"
 echo
 
 shasum=$(cat .git/hooks/hookz.shasum)

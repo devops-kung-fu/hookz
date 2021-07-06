@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/devops-kung-fu/hookz/lib"
 	"github.com/gookit/color"
@@ -22,6 +23,9 @@ var (
 				return
 			}
 			config, err := lib.ReadConfig(fs, version)
+			if err != nil && err.Error() == "NO_CONFIG" {
+				os.Exit(1)
+			}
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
