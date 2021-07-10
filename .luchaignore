@@ -1,6 +1,9 @@
 # Test Comment
-# hookz-sbom.json
-# lucha.yaml
-# hookz
-# go.sum
+lib/configvalidator_test.go
+hookz-sbom.json
+lucha.yaml
+hookz
+go.sum
+go.mod
 .git
+

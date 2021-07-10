@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.2",
-  "serialNumber": "urn:uuid:c57624ba-2ee8-4fc7-a69c-7466346fd09e",
+  "serialNumber": "urn:uuid:40c04922-35d1-43a0-b4c2-4e449bb2cfb1",
   "version": 1,
   "metadata": {
-    "timestamp": "2021-07-01T23:29:27-06:00",
+    "timestamp": "2021-07-10T15:26:59-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -31,11 +31,11 @@
       }
     ],
     "component": {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210701232658-32b784d796fc",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210706171702-1c879079cb03",
       "type": "application",
       "name": "github.com/devops-kung-fu/hookz",
-      "version": "v0.0.0-20210701232658-32b784d796fc",
-      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210701232658-32b784d796fc",
+      "version": "v0.0.0-20210706171702-1c879079cb03",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210706171702-1c879079cb03",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/hookz",
@@ -186,15 +186,15 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.2.0",
+      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.2.1",
       "type": "library",
       "name": "github.com/spf13/cobra",
-      "version": "v1.2.0",
+      "version": "v1.2.1",
       "scope": "required",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "2071a8f772942638a1d06cf8e3d3020432ae6963ea70a71bb9433b1975859e5c"
+          "content": "f8a9a36d4c3586b89234c179e683eb91971bdbb6840b2ae3f15db2b6fee4583c"
         }
       ],
       "licenses": [
@@ -205,7 +205,7 @@
           }
         }
       ],
-      "purl": "pkg:golang/github.com/spf13/cobra@v1.2.0",
+      "purl": "pkg:golang/github.com/spf13/cobra@v1.2.1",
       "externalReferences": [
         {
           "url": "https://github.com/spf13/cobra",
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "ref": "pkg:golang/github.com/spf13/cobra@v1.2.0",
+      "ref": "pkg:golang/github.com/spf13/cobra@v1.2.1",
       "dependsOn": [
         "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
         "pkg:golang/github.com/spf13/pflag@v1.0.5",
@@ -412,13 +412,13 @@
       "ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0"
     },
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210701232658-32b784d796fc",
+      "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20210706171702-1c879079cb03",
       "dependsOn": [
         "pkg:golang/github.com/dustin/go-humanize@v1.0.0",
         "pkg:golang/github.com/gookit/color@v1.4.2",
         "pkg:golang/github.com/segmentio/ksuid@v1.0.3",
         "pkg:golang/github.com/spf13/afero@v1.6.0",
-        "pkg:golang/github.com/spf13/cobra@v1.2.0",
+        "pkg:golang/github.com/spf13/cobra@v1.2.1",
         "pkg:golang/golang.org/x/sys@v0.0.0-20210630005230-0f9fa26af87c",
         "pkg:golang/golang.org/x/text@v0.3.6",
         "pkg:golang/gopkg.in/yaml.v2@v2.4.0",

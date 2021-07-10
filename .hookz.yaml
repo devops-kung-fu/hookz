@@ -5,6 +5,9 @@
         - name: "git: Pull (Ensure there are no upstream changes that are not local)"
           exec: git
           args: ["pull"]
+        - name: "lucha: Scan source code for secrets and sensitive data"
+          url: https://github.com/devops-kung-fu/lucha/releases/download/v0.0.1/lucha-0.0.1-%%PLATFORM%%-amd64
+          args: ["scan", "--recursive", "."]
         - name: "go: Tidy (Recursive)"
           script: "
             #!/bin/bash \n
