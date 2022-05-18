@@ -5,7 +5,7 @@
     - source: github.com/devops-kung-fu/hinge@latest
     - source: github.com/kisielk/errcheck@latest      
     - source: golang.org/x/lint/golint@latest
-    - source: github.com/fzipp/gocyclo@latest
+    - source: github.com/fzipp/gocyclo/cmd/gocyclo@latest
   hooks:
     - type: pre-commit
       actions:

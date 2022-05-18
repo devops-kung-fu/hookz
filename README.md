@@ -57,15 +57,16 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
     - tool: github.com/devops-kung-fu/hookz@latest
     - tool: github.com/devops-kung-fu/lucha@latest
     - tool: github.com/devops-kung-fu/hinge@latest
+    - tool: github.com/devops-kung-fu/gardener@latest
     - tool: github.com/kisielk/errcheck@latest      
     - tool: golang.org/x/lint/golint@latest
-    - tool: github.com/fzipp/gocyclo@latest
+    - tool: github.com/fzipp/gocyclo/cmd/gocyclo@latest
   hooks:
     - type: pre-commit
       actions:
         - name: "PlantUML Image Generator"
-          url: https://github.com/jjimenez/pre-plantuml
-          args: ["deflate"]
+          exec: "gardener"
+          args: ["generate", "."]
         - name: "Git Pull (Ensure there are no upstream changes)"
           exec: git
           args: ["pull"]
@@ -116,7 +117,7 @@ You must have at least an URL, exec, or script defined in your actions. If you s
 
 |Attribute|Notes|
 |---|---|
-|```URL```|If this exists, then exec and script are ignored. The URL must be a link to an executable binary|
+|```URL```|If this exists, then exec and script are ignored. The URL must be a link to an executable binary| If you are developing in go then use the ```sources``` node in your ```.hookz.yaml``` to define sources to be installed.
 |```exec```|If this exists then URL and script are ignored|
 |```script```|If this exists then URL, exec, and args are ignored|
 |```args```|Optional in all cases|
