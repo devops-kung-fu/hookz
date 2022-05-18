@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/gookit/color"
@@ -36,6 +37,11 @@ var (
 			}
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
+			}
+			err = lib.InstallSources(config.Sources)
+			if err != nil {
+				log.Println("There was a problem installing sources")
+				log.Println(err)
 			}
 			if lib.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, debug), "[ERROR]") {
 				return

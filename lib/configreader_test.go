@@ -10,7 +10,6 @@ import (
 
 var (
 	version string = "1.0.0"
-	config  Configuration
 )
 
 func TestDeps_ReadConfig(t *testing.T) {
@@ -19,7 +18,7 @@ func TestDeps_ReadConfig(t *testing.T) {
 
 	_, err := ReadConfig(afs, version)
 	assert.Error(t, err, "There should be no config created so an error should be thrown.")
-	config, _ = CreateConfig(afs, version)
+	CreateConfig(afs, "1.0.0")
 	readConfig, err := ReadConfig(afs, version)
 
 	assert.NoError(t, err, "ReadConfig should not have generated an error")

@@ -84,7 +84,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
           args: ["add", "."]
   ```
 
-Hookz will read this example configuration and create a ```pre-commit``` hook and a ```post-commit``` hook based on this yaml. 
+Hookz will read this example configuration and create a ```pre-commit``` hook and a ```post-commit``` hook based on this yaml. It will also do a ```go install``` on any source listed in the sources section of the yaml.
 
 An action with an ```URL``` will download the binary from the defined URL and configure the hook to execute the command with the defined arguments before a commit happens.
 

@@ -12,6 +12,11 @@ func CreateConfig(afs *afero.Afero, version string) (config Configuration, err e
 	command := "echo"
 	config = Configuration{
 		Version: version,
+		Sources: []Source{
+			{
+				Source: "github.com/devops-kung-fu/hinge@latest",
+			},
+		},
 		Hooks: []Hook{
 			{
 				Type: "pre-commit",

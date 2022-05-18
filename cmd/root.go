@@ -33,7 +33,7 @@ var (
 				color.Style{color.FgWhite, color.OpBold}.Println("█ █ █▀█ █▀█ █▄▀ ▀█")
 				color.Style{color.FgWhite, color.OpBold}.Println("█▀█ █▄█ █▄█ █░█ █▄")
 				fmt.Println()
-				fmt.Println("https://github.com/devops-kung-fu/gardener")
+				fmt.Println("https://github.com/devops-kung-fu/hookz")
 				fmt.Printf("Version: %s\n", version)
 				fmt.Println()
 			})

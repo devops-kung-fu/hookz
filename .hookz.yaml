@@ -1,7 +1,6 @@
   version: 2.4.0
   sources:
     - source: github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
-    - source: github.com/devops-kung-fu/hookz@latest
     - source: github.com/devops-kung-fu/lucha@latest
     - source: github.com/devops-kung-fu/hinge@latest
     - source: github.com/kisielk/errcheck@latest      
@@ -47,7 +46,7 @@
           exec: cyclonedx-gomod
           args: ["app", "-json", "-output", "hookz-sbom.json"]
         - name: Hinge
-          url: https://github.com/devops-kung-fu/hinge/releases/download/v0.1.0/hinge-0.1.0-%%PLATFORM%%-amd64
+          exec: hinge
           args: ["."]
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git

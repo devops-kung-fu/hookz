@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/gookit/color"
@@ -16,7 +17,7 @@ var (
 		Short: "Rebuilds the hooks as defined in the .hookz.yaml file.",
 		Long:  "Rebuilds the hooks as defined in the .hookz.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			color.Style{color.FgLightBlue, color.OpBold}.Println("Reset Hooks")
+			color.Style{color.FgLightBlue, color.OpBold}.Println("Reset Hookz")
 			fmt.Println()
 
 			if lib.IsErrorBool(lib.RemoveHooks(Afs, Verbose), "[ERROR]") {
@@ -28,6 +29,11 @@ var (
 			}
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
+			}
+			err = lib.InstallSources(config.Sources)
+			if err != nil {
+				log.Println("There was a problem installing sources")
+				log.Println(err)
 			}
 			if lib.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, debug), "[ERROR]") {
 				return

@@ -15,7 +15,7 @@ func Test_generateShasum(t *testing.T) {
 
 	shasum, err := generateShasum(afs)
 	assert.NoError(t, err, "Likely .hookz.yaml couldn't be read")
-	assert.Equal(t, "c3efcbc9ba79990e3596215d0b3010b587b5120ff17f72544b0585210f7a3caa", shasum, "shasums do not match, but should")
+	assert.Equal(t, "0213f04ee70cc7b48d6de58e7dd62338259d16ae8e52016d19f83559051dd57c", shasum, "shasums do not match, but should")
 }
 
 func Test_WriteShasum(t *testing.T) {
@@ -31,7 +31,7 @@ func Test_WriteShasum(t *testing.T) {
 	exists, _ := afs.Exists(filename)
 	assert.True(t, exists)
 
-	contains, _ := afs.FileContainsBytes(filename, []byte("c3efcbc9ba79990e3596215d0b3010b587b5120ff17f72544b0585210f7a3caa"))
+	contains, _ := afs.FileContainsBytes(filename, []byte("0213f04ee70cc7b48d6de58e7dd62338259d16ae8e52016d19f83559051dd57c"))
 	assert.True(t, contains, "The expected shasum was not written to the hookz.shasum file")
 }
 
