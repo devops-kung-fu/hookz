@@ -6,22 +6,23 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"github.com/spf13/afero"
 	"gopkg.in/yaml.v2"
 )
 
 //HasExistingHookzYaml returns true if an existing .hookz.yaml file exists
-func HasExistingHookzYaml(fs FileSystem) bool {
+func HasExistingHookzYaml(afs *afero.Afero) bool {
 	filename, _ := filepath.Abs(".hookz.yaml")
-	_, readErr := fs.Afero().ReadFile(filename)
+	_, readErr := afs.ReadFile(filename)
 	return readErr == nil
 }
 
 //ReadConfig reads the .hookz.yaml file in from the filesystem and
 //ensures it matches the provided version
-func ReadConfig(fs FileSystem, version string) (config Configuration, err error) {
+func ReadConfig(afs *afero.Afero, version string) (config Configuration, err error) {
 
 	filename, _ := filepath.Abs(".hookz.yaml")
-	yamlFile, readErr := fs.Afero().ReadFile(filename)
+	yamlFile, readErr := afs.ReadFile(filename)
 	if readErr != nil {
 		fmt.Println(".hookz.yaml file not found")
 		fmt.Println("\nTo create a sample configuration run:")

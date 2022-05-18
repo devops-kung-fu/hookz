@@ -1,4 +1,12 @@
-  version: 2.3.0
+  version: 2.4.0
+  sources:
+    - source: github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
+    - source: github.com/devops-kung-fu/hookz@latest
+    - source: github.com/devops-kung-fu/lucha@latest
+    - source: github.com/devops-kung-fu/hinge@latest
+    - source: github.com/kisielk/errcheck@latest      
+    - source: golang.org/x/lint/golint@latest
+    - source: github.com/fzipp/gocyclo@latest
   hooks:
     - type: pre-commit
       actions:
@@ -37,7 +45,7 @@
           args: ["tool", "cover", "-func=coverage.out"]
         - name: "cyclone-dx: Generate a Software Bill of Materials (SBoM)"
           exec: cyclonedx-gomod
-          args: ["-json", "-output", "hookz-sbom.json", "-std", "-licenses"]
+          args: ["app", "-json", "-output", "hookz-sbom.json"]
         - name: Hinge
           url: https://github.com/devops-kung-fu/hinge/releases/download/v0.1.0/hinge-0.1.0-%%PLATFORM%%-amd64
           args: ["."]

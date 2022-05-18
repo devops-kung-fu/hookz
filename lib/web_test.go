@@ -10,6 +10,7 @@ import (
 )
 
 func TestUpdateExecutables(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 	botchedConfig := Configuration{
 		Version: "s",
 		Hooks: []Hook{
@@ -23,12 +24,13 @@ func TestUpdateExecutables(t *testing.T) {
 			},
 		},
 	}
-	err := UpdateExecutables(fs, botchedConfig)
+	err := UpdateExecutables(afs, botchedConfig)
 	assert.NoError(t, err, "UpdateExecutables should only happen if action.URL != nil")
 }
 
 func Test_DownloadFile(t *testing.T) {
-	_, err := DownloadFile(fs, "x", "x")
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+	_, err := DownloadFile(afs, "x", "x")
 	assert.Error(t, err, "URL should be a valid URI")
 }
 
@@ -55,9 +57,7 @@ func TestWriteCounter_Write(t *testing.T) {
 }
 
 func TestDownloadFile(t *testing.T) {
-	newFs := FileSystem{
-		fs: afero.NewMemMapFs(),
-	}
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 	URL := "https://github.com/devops-kung-fu/hinge/releases/download/v0.1.0/hinge-0.1.0-linux-amd64"
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
@@ -65,7 +65,7 @@ func TestDownloadFile(t *testing.T) {
 	httpmock.RegisterResponder("GET", URL,
 		httpmock.NewBytesResponder(200, []byte("test")))
 
-	filename, err := DownloadFile(newFs, ".git/hooks", URL)
+	filename, err := DownloadFile(afs, ".git/hooks", URL)
 	assert.NoError(t, err)
 	assert.Equal(t, "hinge-0.1.0-linux-amd64", filename)
 

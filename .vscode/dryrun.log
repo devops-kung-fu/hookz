@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/dj/code/hookz'
+awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $1, $2}'  Makefile
+make: Leaving directory `/Users/dj/code/hookz'
+ 

@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/devops-kung-fu/hookz/lib"
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
+
+	"github.com/devops-kung-fu/hookz/lib"
 )
 
 var (
@@ -16,7 +17,7 @@ var (
 		Short:   "Initializes the hooks as defined in the .hookz.yaml file.",
 		Long:    "Initializes the hooks as defined in the .hookz.yaml file.",
 		PreRun: func(cmd *cobra.Command, args []string) {
-			existingHookz := lib.HasExistingHookz(lib.NewOsFs())
+			existingHookz := lib.HasExistingHookz(Afs)
 			if existingHookz {
 				fmt.Println("Existing hooks detected")
 				fmt.Println("\nDid you mean to reset?")
@@ -27,17 +28,16 @@ var (
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			fs := lib.NewOsFs()
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Initializing Hooks")
 			fmt.Println()
-			config, err := lib.ReadConfig(fs, version)
+			config, err := lib.ReadConfig(Afs, version)
 			if err != nil && err.Error() == "NO_CONFIG" {
 				os.Exit(1)
 			}
 			if lib.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(lib.WriteHooks(fs, config, verbose, debug), "[ERROR]") {
+			if lib.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, debug), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("Done!")

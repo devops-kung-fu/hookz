@@ -10,7 +10,7 @@ import (
 )
 
 func TestDoIf(t *testing.T) {
-	result, err := CaptureStdout(func() { DoIf(func() { fmt.Println("Test") }, true) })
+	result, err := CaptureStdout(func() { DoIf(true, func() { fmt.Println("Test") }) })
 
 	assert.Equal(t, "Test\n", result, "Should match the string Test")
 	assert.NoError(t, err, "No error should have been generated")

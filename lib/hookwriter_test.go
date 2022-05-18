@@ -12,14 +12,15 @@ import (
 )
 
 func TestDeps_CreateScriptFile(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 	content := "Test Script"
-	filename, err := CreateScriptFile(fs, content)
+	filename, err := CreateScriptFile(afs, content)
 	assert.NoError(t, err, "CreateScriptFile should not have generated an error")
 	assert.NotEmpty(t, filename, "A filename should have been returned")
 
 	path, _ := os.Getwd()
 	fullFileName := fmt.Sprintf("%s/%s/%s", path, ".git/hooks", filename)
-	contains, _ := fs.Afero().FileContainsBytes(fullFileName, []byte(content))
+	contains, _ := afs.FileContainsBytes(fullFileName, []byte(content))
 	assert.True(t, contains, "Script file should have the phrase `Test Script` in it")
 }
 
@@ -30,7 +31,8 @@ func Test_genTemplate(t *testing.T) {
 }
 
 func Test_buildFullCommand(t *testing.T) {
-	config, err := CreateConfig(fs, version)
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+	config, err := CreateConfig(afs, version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
 	action := config.Hooks[0].Actions[0]
@@ -41,54 +43,56 @@ func Test_buildFullCommand(t *testing.T) {
 }
 
 func Test_WriteHooks(t *testing.T) {
-	config, err := CreateConfig(fs, version)
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+	config, err := CreateConfig(afs, version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
-	err = WriteHooks(fs, config, true, true)
+	err = WriteHooks(afs, config, true, true)
 	assert.NoError(t, err, "WriteHooks should not have generated an error")
 
 	filename, _ := filepath.Abs(".git/hooks/pre-commit")
-	contains, _ := fs.Afero().FileContainsBytes(filename, []byte("Hookz"))
+	contains, _ := afs.FileContainsBytes(filename, []byte("Hookz"))
 	assert.True(t, contains, "Generated hook should have the word Hookz in it")
 }
 
 func Test_createFile(t *testing.T) {
-	err := CreateFile(fs, "test")
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+	err := CreateFile(afs, "test")
 	assert.NoError(t, err, "Create file should not generate an error")
-	exists, _ := fs.Afero().Exists("test")
+	exists, _ := afs.Exists("test")
 	assert.True(t, exists, "A file should have been created")
 }
 
 func Test_writeTemplate(t *testing.T) {
-	err := writeTemplate(fs, nil, "")
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+	err := writeTemplate(afs, nil, "")
 	assert.Error(t, err, "writeTemplate should throw an error if there is no file created")
 }
 
 func Test_HasExistingHookz(t *testing.T) {
-	exists := HasExistingHookz(fs)
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+	exists := HasExistingHookz(afs)
 	assert.False(t, exists, "No hookz files should exist")
 
-	config, err := CreateConfig(fs, version)
+	config, err := CreateConfig(afs, version)
 	assert.NoError(t, err, "createConfig should not have generated an error")
 
-	err = WriteHooks(fs, config, true, true)
+	err = WriteHooks(afs, config, true, true)
 	assert.NoError(t, err, "WriteHooks should not have generated an error")
 
-	exists = HasExistingHookz(fs)
+	exists = HasExistingHookz(afs)
 	assert.True(t, exists, "hookz files should exist")
 
 }
 
 func Test_buildExec(t *testing.T) {
-	newFs := FileSystem{
-		fs: afero.NewMemMapFs(),
-	}
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
 	script := "#!/bin/bash"
 	action := Action{
 		Script: &script,
 	}
-	err := buildExec(newFs, &action)
+	err := buildExec(afs, &action)
 
 	assert.NoError(t, err, "buildExec shouldn't have generated an error")
 	assert.NotNil(t, action.Exec, "action.Exec field should not be nil")

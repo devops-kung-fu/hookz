@@ -4,31 +4,47 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"os"
 
-	"github.com/devops-kung-fu/hookz/lib"
 	"github.com/gookit/color"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
+
+	"github.com/devops-kung-fu/hookz/lib"
 )
 
 var (
-	version = "2.3.0"
+	version = "2.4.0"
+	Afs     = &afero.Afero{Fs: afero.NewOsFs()}
 	debug   bool
-	verbose bool
+	Verbose bool
 	rootCmd = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
 		Version: version,
+		PersistentPreRun: func(cmd *cobra.Command, args []string) {
+			if !debug {
+				log.SetOutput(ioutil.Discard)
+			}
+			lib.DoIf(Verbose, func() {
+				fmt.Println()
+				color.Style{color.FgWhite, color.OpBold}.Println("█ █ █▀█ █▀█ █▄▀ ▀█")
+				color.Style{color.FgWhite, color.OpBold}.Println("█▀█ █▄█ █▄█ █░█ █▄")
+				fmt.Println()
+				fmt.Println("https://github.com/devops-kung-fu/gardener")
+				fmt.Printf("Version: %s\n", version)
+				fmt.Println()
+			})
+		},
 	}
 )
 
 // Execute creates the command tree and handles any error condition returned
 func Execute() {
 	cobra.OnInitialize(func() {
-		var fs = afero.NewOsFs()
-		afs := &afero.Afero{Fs: fs}
-		b, err := afs.DirExists(".git")
+		b, err := Afs.DirExists(".git")
 		lib.IfErrorLog(err, "[ERROR]")
 
 		if !b {
@@ -45,10 +61,6 @@ func Execute() {
 }
 
 func init() {
-	color.Style{color.FgWhite, color.OpBold}.Println("Hookz")
-	fmt.Println("https://github.com/devops-kung-fu/hookz")
-	fmt.Printf("Version: %s\n", version)
-	fmt.Println("")
-
-	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Extended output as hookz executes.")
+	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "show debug output")
+	rootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", true, "show verbose output")
 }

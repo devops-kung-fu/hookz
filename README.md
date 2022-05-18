@@ -20,7 +20,7 @@ Here's what happens when we use ```hookz``` on ```Hookz``` itself:
 
 ## So what exactly are Git Hooks?
 
-Git hooks are a great way to run supplemental commands as you interact with git. For deeper information, check out what git-scm has to say about [hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+Git hooks are a great way to run supplemental commands as you interact with git. For deeper information, check out what git-scm has to say about [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 
 ## What Hookz Does
 
@@ -41,8 +41,8 @@ To install ```hookz```,  [download the latest release](https://github.com/devops
 Linux Example:
 
 ```bash
-sudo chmod +x hookz-2.3.0-linux-amd64
-sudo mv hookz-2.3.0-linux-amd64 /usr/local/bin/hookz
+sudo chmod +x hookz-2.4.0-linux-amd64
+sudo mv hookz-2.4.0-linux-amd64 /usr/local/bin/hookz
 ```
 
 ## Configuration
@@ -52,30 +52,37 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-version: 2.3.0
-hooks:
-  - type: pre-commit
-    actions:
-      - name: "PlantUML Image Generator"
-        url: https://github.com/jjimenez/pre-plantuml
-        args: ["deflate"]
-      - name: "Git Pull (Ensure there are no upstream changes)"
-        exec: git
-        args: ["pull"]
-      - name: "Go Tidy"
-        exec: go
-        args: ["mod", "tidy"]
-  - type: post-commit
-    actions:
-    - name: "Post Echo"
-      exec: echo
-      args: ["-e", "Done!"]
-  - type: pre-push
-    actions:
-      - name: "Add all changed files during the pre-commit stage"
-        exec: git
-        args: ["add", "."]
-```
+  version: 2.4.0
+  tools:
+    - tool: github.com/devops-kung-fu/hookz@latest
+    - tool: github.com/devops-kung-fu/lucha@latest
+    - tool: github.com/devops-kung-fu/hinge@latest
+    - tool: github.com/kisielk/errcheck@latest      
+    - tool: golang.org/x/lint/golint@latest
+    - tool: github.com/fzipp/gocyclo@latest
+  hooks:
+    - type: pre-commit
+      actions:
+        - name: "PlantUML Image Generator"
+          url: https://github.com/jjimenez/pre-plantuml
+          args: ["deflate"]
+        - name: "Git Pull (Ensure there are no upstream changes)"
+          exec: git
+          args: ["pull"]
+        - name: "Go Tidy"
+          exec: go
+          args: ["mod", "tidy"]
+    - type: post-commit
+      actions:
+      - name: "Post Echo"
+        exec: echo
+        args: ["-e", "Done!"]
+    - type: pre-push
+      actions:
+        - name: "Add all changed files during the pre-commit stage"
+          exec: git
+          args: ["add", "."]
+  ```
 
 Hookz will read this example configuration and create a ```pre-commit``` hook and a ```post-commit``` hook based on this yaml. 
 
@@ -214,7 +221,7 @@ hookz reset --debug
 
 ## Tacklebox (Curated Example Actions)
 
-We've assembled a collection of actions that you can lift into your ```.hooks.yaml``` file to add functionality to your hooks and get up and running quickly.
+We've assembled a collection of actions that you can lift into your ```.hookz.yaml``` file to add functionality to your hooks and get up and running quickly.
 
 Check out the collection [here](tackle/README.md).
 
@@ -223,7 +230,7 @@ Check out the collection [here](tackle/README.md).
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.3.0
+version: 2.4.0
 hooks:
   - type: pre-commit
     actions:
@@ -246,7 +253,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.3.0
+version: 2.4.0
 hooks:
   - type: pre-commit
     actions:
@@ -258,9 +265,30 @@ hooks:
         args: ["test"]
 ```
 
+## Development
+
+## Overview
+
+In order to use contribute and participate in the development of Hookz you'll need to have an updated Go environment. Before you start, please view the [Contributing](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) files in this repository.
+
+## Prerequisites
+
+This project makes use of [DKFM](https://github.com/devops-kung-fu) tools such as [Hookz](https://github.com/devops-kung-fu/hookz) and [Hinge](https://github.com/devops-kung-fu/hinge), as well as some other open source tooling. Install these tools with the following commands:
+
+``` bash
+
+go install github.com/devops-kung-fu/hookz@latest
+go install github.com/devops-kung-fu/lucha@latest
+go install github.com/devops-kung-fu/hinge@latest
+go install github.com/kisielk/errcheck@latest
+go install golang.org/x/lint/golint@latest
+go install github.com/fzipp/gocyclo@latest
+
+```
+
 ## Software Bill of Materials
 
-```Hookz``` uses the CycloneDX tackle to generate a Software Bill of Materials in CycloneDX format every time a developer commits code to this repository. More information for CycloneDX is available [here](https://cyclonedx.org)
+```Hookz``` uses the CycloneDX to generate a Software Bill of Materials in CycloneDX format (v1.4) every time a developer commits code to this repository. More information for CycloneDX is available [here](https://cyclonedx.org)
 
 The current SBoM for ```Hookz``` is available [here](hookz-sbom.json).
 

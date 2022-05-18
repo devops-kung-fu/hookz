@@ -1,14 +1,11 @@
 //Package lib Functionality for the Hookz CLI
 package lib
 
-import (
-	"github.com/spf13/afero"
-)
-
 //Configuration represents the content of .hookz.yaml
 type Configuration struct {
-	Version string `json:"version"`
-	Hooks   []Hook `json:"hooks"`
+	Version string   `json:"version"`
+	Hooks   []Hook   `json:"hooks"`
+	Sources []Source `json:"source"`
 }
 
 //Hook is the definition of a collection of actions to be run at
@@ -27,20 +24,6 @@ type Action struct {
 	Script *string  `json:"script,omitempty"`
 }
 
-//FileSystem wraps the afero.Fs interface to allow for mocking
-type FileSystem struct {
-	fs afero.Fs
-}
-
-//NewOsFs creates a new disk based file system
-func NewOsFs() FileSystem {
-	var d FileSystem
-	d.fs = afero.NewOsFs()
-	return d
-}
-
-//Afero returns a new Afero struct wraping the current file system
-func (fs FileSystem) Afero() (afs *afero.Afero) {
-	afs = &afero.Afero{Fs: fs.fs}
-	return
+type Source struct {
+	Source string `json:"source"`
 }
