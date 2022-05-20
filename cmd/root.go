@@ -8,11 +8,10 @@ import (
 	"log"
 	"os"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
-
-	"github.com/devops-kung-fu/hookz/lib"
 )
 
 var (
@@ -28,7 +27,7 @@ var (
 			if !debug {
 				log.SetOutput(ioutil.Discard)
 			}
-			lib.DoIf(Verbose, func() {
+			util.DoIf(Verbose, func() {
 				fmt.Println()
 				color.Style{color.FgWhite, color.OpBold}.Println("█ █ █▀█ █▀█ █▄▀ ▀█")
 				color.Style{color.FgWhite, color.OpBold}.Println("█▀█ █▄█ █▄█ █░█ █▄")
@@ -46,11 +45,11 @@ var (
 func Execute() {
 	cobra.OnInitialize(func() {
 		b, err := Afs.DirExists(".git")
-		lib.IfErrorLog(err, "[ERROR]")
+		util.IfErrorLog(err, "[ERROR]")
 
 		if !b {
-			e := errors.New("Hookz must be run in a local .git repository")
-			lib.IfErrorLog(e, "ERROR")
+			e := errors.New("hookz must be run in a local .git repository")
+			util.IfErrorLog(e, "ERROR")
 			os.Exit(1)
 		}
 	})

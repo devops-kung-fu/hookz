@@ -7,6 +7,7 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/segmentio/ksuid"
 	"github.com/spf13/afero"
@@ -40,7 +41,7 @@ func CreateScriptFile(afs *afero.Afero, content string) (name string, err error)
 
 	k, idErr := ksuid.NewRandom()
 	name = k.String()
-	if IsErrorBool(idErr, "ERROR") {
+	if util.IsErrorBool(idErr, "ERROR") {
 		err = idErr
 		return
 	}
@@ -89,7 +90,7 @@ func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, debug bool
 	for _, hook := range config.Hooks {
 
 		var commands []command
-		DoIf(verbose, func() {
+		util.DoIf(verbose, func() {
 			color.Style{color.FgLightYellow}.Print("■")
 			fmt.Printf(" Writing %s \n", hook.Type)
 		})
@@ -99,7 +100,7 @@ func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, debug bool
 			if err != nil {
 				return err
 			}
-			DoIf(verbose, func() {
+			util.DoIf(verbose, func() {
 				fmt.Printf("  Adding %s action: %s\n", hook.Type, action.Name)
 			})
 
@@ -117,12 +118,12 @@ func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, debug bool
 		if err != nil {
 			return
 		}
-		DoIf(verbose, func() {
+		util.DoIf(verbose, func() {
 			color.Style{color.FgGreen}.Print("■")
 			fmt.Printf(" Successfully wrote %s\n", hook.Type)
 		})
 
-		DoIf(verbose, func() {
+		util.DoIf(verbose, func() {
 			fmt.Println()
 		})
 	}

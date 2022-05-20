@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 
@@ -18,7 +19,7 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Removing Hooks")
 			fmt.Println()
-			if lib.IsErrorBool(lib.RemoveHooks(Afs, Verbose), "[ERROR]") {
+			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("Done!")

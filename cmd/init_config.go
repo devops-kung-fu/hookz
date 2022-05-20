@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 
@@ -28,7 +29,7 @@ var (
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Creating Sample Config")
 			fmt.Println()
 			_, err := lib.CreateConfig(Afs, version)
-			if lib.IsErrorBool(err, "[ERROR]") {
+			if util.IsErrorBool(err, "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("Done!")

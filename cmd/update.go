@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 
@@ -22,10 +23,10 @@ var (
 			if err != nil && err.Error() == "NO_CONFIG" {
 				os.Exit(1)
 			}
-			if lib.IsErrorBool(err, "[ERROR]") {
+			if util.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			if lib.IsErrorBool(lib.UpdateExecutables(Afs, config), "[ERROR]") {
+			if util.IsErrorBool(lib.UpdateExecutables(Afs, config), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("Done!")

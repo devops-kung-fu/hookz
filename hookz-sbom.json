@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:e015721c-7dba-4d26-bba6-a68ca72eade5",
+  "serialNumber": "urn:uuid:8f82518e-c1b1-44b3-93c7-6343e8009b4a",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-05-18T17:31:37-06:00",
+    "timestamp": "2022-05-20T10:06:17-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -77,6 +77,26 @@
     }
   },
   "components": [
+    {
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.1.0?type=module",
+      "type": "library",
+      "name": "github.com/devops-kung-fu/common",
+      "version": "v0.1.0",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "30749ed5b94219580a1edbedda5eae1302b6cfad4db0f476ed2423d042f29f53"
+        }
+      ],
+      "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.1.0?type=module",
+      "externalReferences": [
+        {
+          "url": "https://github.com/devops-kung-fu/common",
+          "type": "vcs"
+        }
+      ]
+    },
     {
       "bom-ref": "pkg:golang/github.com/dustin/go-humanize@v1.0.0?type=module",
       "type": "library",
@@ -256,12 +276,20 @@
     {
       "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v2.3.1-0.20210706231702-1c879079cb03?type=module",
       "dependsOn": [
+        "pkg:golang/github.com/devops-kung-fu/common@v0.1.0?type=module",
         "pkg:golang/github.com/dustin/go-humanize@v1.0.0?type=module",
         "pkg:golang/github.com/gookit/color@v1.5.0?type=module",
         "pkg:golang/github.com/segmentio/ksuid@v1.0.4?type=module",
         "pkg:golang/github.com/spf13/afero@v1.8.2?type=module",
         "pkg:golang/github.com/spf13/cobra@v1.4.0?type=module",
         "pkg:golang/gopkg.in/yaml.v2@v2.4.0?type=module"
+      ]
+    },
+    {
+      "ref": "pkg:golang/github.com/devops-kung-fu/common@v0.1.0?type=module",
+      "dependsOn": [
+        "pkg:golang/github.com/gookit/color@v1.5.0?type=module",
+        "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778?type=module"
       ]
     },
     {

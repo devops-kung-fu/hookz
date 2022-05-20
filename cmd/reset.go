@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 
@@ -20,14 +21,14 @@ var (
 			color.Style{color.FgLightBlue, color.OpBold}.Println("Reset Hookz")
 			fmt.Println()
 
-			if lib.IsErrorBool(lib.RemoveHooks(Afs, Verbose), "[ERROR]") {
+			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose), "[ERROR]") {
 				return
 			}
 			config, err := lib.ReadConfig(Afs, version)
 			if err != nil && err.Error() == "NO_CONFIG" {
 				os.Exit(1)
 			}
-			if lib.IsErrorBool(err, "[ERROR]") {
+			if util.IsErrorBool(err, "[ERROR]") {
 				return
 			}
 			err = lib.InstallSources(config.Sources)
@@ -35,7 +36,7 @@ var (
 				log.Println("There was a problem installing sources")
 				log.Println(err)
 			}
-			if lib.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, debug), "[ERROR]") {
+			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, debug), "[ERROR]") {
 				return
 			}
 			color.Style{color.FgLightGreen}.Println("Done!")

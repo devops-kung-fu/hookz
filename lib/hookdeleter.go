@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/afero"
 )
@@ -14,7 +15,7 @@ import (
 //RemoveHooks purges all hooks from the filesystem that Hookz has created
 //and deletes any generated scripts
 func RemoveHooks(afs *afero.Afero, verbose bool) (err error) {
-	DoIf(verbose, func() {
+	util.DoIf(verbose, func() {
 		color.Style{color.FgLightYellow}.Print("■")
 		fmt.Println(" Removing existing hooks...")
 	})
@@ -44,7 +45,7 @@ func RemoveHooks(afs *afero.Afero, verbose bool) (err error) {
 				return removeErr
 			}
 			parts := strings.Split(hookName, "/")
-			DoIf(verbose, func() {
+			util.DoIf(verbose, func() {
 				fmt.Printf("  Deleted %s\n", parts[len(parts)-1])
 			})
 		}
@@ -52,12 +53,12 @@ func RemoveHooks(afs *afero.Afero, verbose bool) (err error) {
 
 	removeShasum(afs)
 
-	DoIf(verbose, func() {
+	util.DoIf(verbose, func() {
 		color.Style{color.FgGreen}.Print("■")
 		fmt.Print(" Successfully removed existing hooks!\n")
 	})
 
-	DoIf(verbose, func() {
+	util.DoIf(verbose, func() {
 		fmt.Println()
 	})
 
