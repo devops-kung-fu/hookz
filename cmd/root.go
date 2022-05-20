@@ -64,3 +64,11 @@ func init() {
 	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "show debug output")
 	rootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", true, "show verbose output")
 }
+
+func NoConfig() {
+	fmt.Println(".hookz.yaml file not found")
+	fmt.Println("\nTo create a sample configuration run:")
+	fmt.Println("        hookz init config")
+	fmt.Println("\nRun 'hookz --help' for usage.")
+	fmt.Println()
+}

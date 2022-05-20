@@ -34,6 +34,7 @@ var (
 			fmt.Println()
 			config, err := lib.ReadConfig(Afs, version)
 			if err != nil && err.Error() == "NO_CONFIG" {
+				NoConfig()
 				os.Exit(1)
 			}
 			if util.IsErrorBool(err, "[ERROR]") {
