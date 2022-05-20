@@ -3,12 +3,12 @@ package lib
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strings"
 	"text/template"
 
 	"github.com/devops-kung-fu/common/util"
-	"github.com/gookit/color"
 	"github.com/segmentio/ksuid"
 	"github.com/spf13/afero"
 )
@@ -85,14 +85,12 @@ func buildFullCommand(action Action, debug bool) string {
 }
 
 //WriteHooks writes all of the generated scripts to the .git/hooks directory
-func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, debug bool) (err error) {
-
+func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, verboseOutput bool) (err error) {
+	log.Println("Writing hooks")
 	for _, hook := range config.Hooks {
-
 		var commands []command
 		util.DoIf(verbose, func() {
-			color.Style{color.FgLightYellow}.Print("■")
-			fmt.Printf(" Writing %s \n", hook.Type)
+			util.PrintInfo(fmt.Sprintf("Writing %s", hook.Type))
 		})
 
 		for _, action := range hook.Actions {
@@ -101,17 +99,17 @@ func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, debug bool
 				return err
 			}
 			util.DoIf(verbose, func() {
-				fmt.Printf("  Adding %s action: %s\n", hook.Type, action.Name)
+				util.PrintTabbed(fmt.Sprintf("Adding %s action: %s", hook.Type, action.Name))
 			})
 
-			fullCommand := buildFullCommand(action, debug)
+			fullCommand := buildFullCommand(action, verboseOutput)
 
 			commands = append(commands, command{
 				Name:         action.Name,
 				Type:         hook.Type,
 				ShortCommand: *action.Exec,
 				FullCommand:  fullCommand,
-				Debug:        debug,
+				Debug:        verboseOutput,
 			})
 		}
 		err = writeTemplate(afs, commands, hook.Type)
@@ -119,17 +117,12 @@ func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, debug bool
 			return
 		}
 		util.DoIf(verbose, func() {
-			color.Style{color.FgGreen}.Print("■")
-			fmt.Printf(" Successfully wrote %s\n", hook.Type)
-		})
-
-		util.DoIf(verbose, func() {
-			fmt.Println()
+			util.PrintSuccess(fmt.Sprintf("Successfully wrote %s", hook.Type))
 		})
 	}
 
 	_ = WriteShasum(afs)
-	return nil
+	return
 }
 
 func buildExec(afs *afero.Afero, action *Action) (err error) {
@@ -224,7 +217,7 @@ if [ "$check" != "$shasum" ]; then
 	echo "Please regenerate your hooks with the following"
 	echo "command and try again."
 	echo
-	echo "        hookz reset [--verbose] [--debug]"
+	echo "        hookz reset [--verbose] [--debug] [--verbose-output]"
 	echo
 	echo "Run 'hookz --help' for usage."
 	echo

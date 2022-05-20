@@ -3,7 +3,6 @@ module github.com/devops-kung-fu/hookz
 go 1.18
 
 require (
-	github.com/devops-kung-fu/common v0.1.0
 	github.com/dustin/go-humanize v1.0.0
 	github.com/gookit/color v1.5.0
 	github.com/jarcoal/httpmock v1.2.0
@@ -16,6 +15,7 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/devops-kung-fu/common v0.1.0
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect

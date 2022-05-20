@@ -3,10 +3,8 @@ package cmd
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/devops-kung-fu/common/util"
-	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 
 	"github.com/devops-kung-fu/hookz/lib"
@@ -18,34 +16,26 @@ var (
 		Short: "Rebuilds the hooks as defined in the .hookz.yaml file.",
 		Long:  "Rebuilds the hooks as defined in the .hookz.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			color.Style{color.FgLightBlue, color.OpBold}.Println("Reset Hookz")
+			util.PrintInfo("Resetting Hooks")
 			fmt.Println()
 
 			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose), "[ERROR]") {
 				return
 			}
-			config, err := lib.ReadConfig(Afs, version)
-			if err != nil && err.Error() == "NO_CONFIG" {
-				NoConfig()
-				os.Exit(1)
-			}
-			if util.IsErrorBool(err, "[ERROR]") {
-				return
-			}
-			err = lib.InstallSources(config.Sources)
+			config := CheckConfig()
+			err := lib.InstallSources(config.Sources)
 			if err != nil {
-				log.Println("There was a problem installing sources")
+				util.PrintErr("There was a problem installing sources", err)
 				log.Println(err)
 			}
-			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, debug), "[ERROR]") {
+			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, VerboseOutput), "[ERROR]") {
 				return
 			}
-			color.Style{color.FgLightGreen}.Println("Done!")
+			util.PrintSuccess("Done")
 		},
 	}
 )
 
 func init() {
 	rootCmd.AddCommand(resetCmd)
-	resetCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "If true, output from commands is displayed when the hook executes.")
 }

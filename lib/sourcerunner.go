@@ -7,7 +7,7 @@ import (
 
 func InstallSources(sources []Source) (err error) {
 	for _, s := range sources {
-		log.Printf("Installing: %s", s.Source)
+		log.Printf("installing: %s", s.Source)
 		cmd := exec.Command("go", "install", s.Source)
 
 		err = cmd.Run()

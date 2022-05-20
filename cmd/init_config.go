@@ -17,8 +17,7 @@ var (
 		Short: "Creates a starter .hookz.yaml file.",
 		Long:  "Creates a starter .hookz.yaml file.",
 		PreRun: func(cmd *cobra.Command, args []string) {
-			existingHookz := lib.HasExistingHookzYaml(Afs)
-			if existingHookz {
+			if lib.HasExistingHookzYaml(Afs) {
 				color.Style{color.FgRed, color.OpBold}.Println("Existing .hookz.yaml file detected!")
 				fmt.Println("\nThis file must be deleted before running this command.")
 				fmt.Println()
@@ -26,13 +25,12 @@ var (
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			color.Style{color.FgLightBlue, color.OpBold}.Println("Creating Sample Config")
-			fmt.Println()
+			util.PrintInfo("Creating Sample Config")
 			_, err := lib.CreateConfig(Afs, version)
 			if util.IsErrorBool(err, "[ERROR]") {
 				return
 			}
-			color.Style{color.FgLightGreen}.Println("Done!")
+			util.PrintSuccess("Done")
 		},
 	}
 )

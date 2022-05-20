@@ -15,11 +15,12 @@ import (
 )
 
 var (
-	version = "2.4.0"
-	Afs     = &afero.Afero{Fs: afero.NewOsFs()}
-	debug   bool
-	Verbose bool
-	rootCmd = &cobra.Command{
+	version       = "2.4.0"
+	Afs           = &afero.Afero{Fs: afero.NewOsFs()}
+	debug         bool
+	Verbose       bool
+	VerboseOutput bool
+	rootCmd       = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
 		Version: version,
@@ -49,7 +50,7 @@ func Execute() {
 
 		if !b {
 			e := errors.New("hookz must be run in a local .git repository")
-			util.IfErrorLog(e, "ERROR")
+			util.PrintErr("", e)
 			os.Exit(1)
 		}
 	})
@@ -63,12 +64,5 @@ func Execute() {
 func init() {
 	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "show debug output")
 	rootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", true, "show verbose output")
-}
-
-func NoConfig() {
-	fmt.Println(".hookz.yaml file not found")
-	fmt.Println("\nTo create a sample configuration run:")
-	fmt.Println("        hookz init config")
-	fmt.Println("\nRun 'hookz --help' for usage.")
-	fmt.Println()
+	rootCmd.PersistentFlags().BoolVar(&VerboseOutput, "verbose-output", false, "show verbose hook output while executing hooks")
 }

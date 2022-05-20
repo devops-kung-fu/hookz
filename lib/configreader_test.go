@@ -24,6 +24,9 @@ func TestDeps_ReadConfig(t *testing.T) {
 	assert.NoError(t, err, "ReadConfig should not have generated an error")
 	assert.Equal(t, version, readConfig.Version, "Versions should match")
 
+	readConfig, err = ReadConfig(afs, "0.1.0")
+	assert.Error(t, err)
+
 	_, err = ReadConfig(afs, "")
 	assert.Error(t, err, "Passing an empty string should cause an error")
 }

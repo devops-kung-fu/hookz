@@ -11,6 +11,7 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/dustin/go-humanize"
 	"github.com/spf13/afero"
 )
@@ -48,7 +49,7 @@ func UpdateExecutables(afs *afero.Afero, config Configuration) (err error) {
 		}
 	}
 	if updateCount == 0 {
-		fmt.Println("Nothing to Update!")
+		util.PrintInfo("Nothing to Update!")
 	}
 
 	return
