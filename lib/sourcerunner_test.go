@@ -19,4 +19,14 @@ func TestInstallSources(t *testing.T) {
 
 	assert.NotNil(t, output)
 	assert.Contains(t, output, "installing: github.com/devops-kung-fu/hinge@latest\n")
+
+	sources = []Source{
+		{
+			Source: "yeah",
+		},
+	}
+	output = util.CaptureOutput(func() {
+		_ = InstallSource(sources[len(sources)-1])
+	})
+	assert.Contains(t, output, "exit status 1\n")
 }

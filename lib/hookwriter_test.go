@@ -96,4 +96,11 @@ func Test_buildExec(t *testing.T) {
 
 	assert.NoError(t, err, "buildExec shouldn't have generated an error")
 	assert.NotNil(t, action.Exec, "action.Exec field should not be nil")
+
+	url := "test"
+	action = Action{
+		URL: &url,
+	}
+	err = buildExec(afs, &action)
+	assert.Error(t, err)
 }
