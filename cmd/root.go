@@ -46,11 +46,11 @@ var (
 func Execute() {
 	cobra.OnInitialize(func() {
 		b, err := Afs.DirExists(".git")
-		util.IfErrorLog(err, "[ERROR]")
+		util.IfErrorLog(err)
 
 		if !b {
 			e := errors.New("hookz must be run in a local .git repository")
-			util.PrintErr("", e)
+			util.PrintErr(e)
 			os.Exit(1)
 		}
 	})

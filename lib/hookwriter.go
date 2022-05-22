@@ -41,7 +41,7 @@ func CreateScriptFile(afs *afero.Afero, content string) (name string, err error)
 
 	k, idErr := ksuid.NewRandom()
 	name = k.String()
-	if util.IsErrorBool(idErr, "ERROR") {
+	if util.IsErrorBool(idErr) {
 		err = idErr
 		return
 	}

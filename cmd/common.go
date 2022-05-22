@@ -2,7 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
+
+	"github.com/devops-kung-fu/common/util"
 
 	"github.com/devops-kung-fu/hookz/lib"
 )
@@ -20,6 +23,23 @@ func CheckConfig() (config lib.Configuration) {
 	config, err := lib.ReadConfig(Afs, version)
 	if err != nil && err.Error() == "NO_CONFIG" {
 		noConfig()
+	}
+	return
+}
+
+func InstallSources(sources []lib.Source) (err error) {
+	util.DoIf(Verbose, func() {
+		util.PrintInfo(fmt.Sprintf("Installing Sources..."))
+	})
+	for _, s := range sources {
+		util.DoIf(Verbose, func() {
+			util.PrintTabbed(fmt.Sprintf("Installing Source: %s", s.Source))
+		})
+		err = lib.InstallSource(s)
+		if err != nil {
+			log.Printf("There was a problem installing source %s, error: %s", s.Source, err)
+			return
+		}
 	}
 	return
 }

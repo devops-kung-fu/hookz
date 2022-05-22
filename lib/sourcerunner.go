@@ -5,15 +5,15 @@ import (
 	"os/exec"
 )
 
-func InstallSources(sources []Source) (err error) {
-	for _, s := range sources {
-		log.Printf("installing: %s", s.Source)
-		cmd := exec.Command("go", "install", s.Source)
+func InstallSource(source Source) (err error) {
 
-		err = cmd.Run()
-		if err != nil {
-			log.Print(err)
-		}
+	log.Printf("installing: %s", source.Source)
+	cmd := exec.Command("go", "install", source.Source)
+
+	err = cmd.Run()
+	if err != nil {
+		log.Print(err)
 	}
+
 	return
 }

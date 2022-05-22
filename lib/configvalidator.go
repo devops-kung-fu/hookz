@@ -30,7 +30,7 @@ func WriteShasum(afs *afero.Afero) (err error) {
 	}
 	filename, _ := filepath.Abs(".git/hooks/hookz.shasum")
 	err = afs.WriteFile(filename, []byte(shasum), 0644)
-	util.IfErrorLog(err, "")
+	util.IfErrorLog(err)
 	log.Printf("generated shasum: %s", shasum)
 	return
 }
@@ -39,19 +39,19 @@ func WriteShasum(afs *afero.Afero) (err error) {
 func ValidateVersion(config Configuration, version string) (err error) {
 	if config.Version == "" {
 		err = errors.New("no configuration version value found in .hookz.yaml")
-		util.IfErrorLog(err, "")
+		util.IfErrorLog(err)
 		return
 	}
 	if version == "" {
 		err = errors.New("a version should not be empty")
-		util.IfErrorLog(err, "")
+		util.IfErrorLog(err)
 		return
 	}
 	ver := strings.Split(config.Version, ".")
 	verMatch := strings.Split(version, ".")
 	if fmt.Sprintf("%v.%v", ver[0], ver[1]) != fmt.Sprintf("%v.%v", verMatch[0], verMatch[1]) {
 		err = fmt.Errorf("version mismatch: Expected v%v.%v - Check your .hookz.yaml configuration", verMatch[0], verMatch[1])
-		util.IfErrorLog(err, "")
+		util.IfErrorLog(err)
 	}
 	return
 }

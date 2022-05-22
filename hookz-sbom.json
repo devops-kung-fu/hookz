@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:c3a4a3b3-9e9e-4349-afb2-7ee46edc5844",
+  "serialNumber": "urn:uuid:0076e11f-13ce-4952-826c-6812535b1a10",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-05-20T16:51:54-06:00",
+    "timestamp": "2022-05-22T12:59:44-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -13,23 +13,23 @@
         "hashes": [
           {
             "alg": "MD5",
-            "content": "3608f1314d2c9593715b014e703ed4c7"
+            "content": "fef17a9f71e43c899c3b0cb179fdbd1d"
           },
           {
             "alg": "SHA-1",
-            "content": "0c158788c3d29a4f7ec956d9ad00b39af3e26766"
+            "content": "1a28e1a8992dc85ed1e7b9662098d2f2209f3b42"
           },
           {
             "alg": "SHA-256",
-            "content": "d09fb57bb683db1a5f6a242147137b4b2572e37330d04e5425fbe13e2dec802d"
+            "content": "0f77e1e26d8ac88e210b19f67095a3068bf33e9216a8ce17b9f8f9d7b5c8d014"
           },
           {
             "alg": "SHA-384",
-            "content": "7989295d54fc827f0fdffa6f692fe407db8f1f2f554eecb2e2acad18c81f9a1ac2c872d1ffe7a9dfadc2f8393c5fc5c7"
+            "content": "a2d423df9bf4e5a92fcafe2eb9a9a97e4de5d62f7c4b1e002cbba6729546af4ec67251e23770895cace2c1f189c162e7"
           },
           {
             "alg": "SHA-512",
-            "content": "154c7bb55ac5e8935d8ca3355dfa8984a7923053996f1128d89654e4267149a31f5a29136a0bdb665ee697e0e642b81cc9bafab4c55daccda901676be87124a6"
+            "content": "1b1ddce1c9d3aa659e428c2afcc9d5f3ba3fca6b507517d3e988ba73515869ee623289c5829e21c9b45bc58dbf1446ee668865dcf47aa0fce503f2d660098228"
           }
         ],
         "externalReferences": [
@@ -71,25 +71,25 @@
         },
         {
           "name": "cdx:gomod:build:env:GOVERSION",
-          "value": "go1.18.1"
+          "value": "go1.18.2"
         }
       ]
     }
   },
   "components": [
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.1.0?type=module",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.0?type=module",
       "type": "library",
       "name": "github.com/devops-kung-fu/common",
-      "version": "v0.1.0",
+      "version": "v0.2.0",
       "scope": "required",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "30749ed5b94219580a1edbedda5eae1302b6cfad4db0f476ed2423d042f29f53"
+          "content": "6bd1a4d5c6a8c3102b41d360c3180bc68729f0f46f4e1bbe1f34fafe66da6eae"
         }
       ],
-      "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.1.0?type=module",
+      "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.0?type=module",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/common",
@@ -276,7 +276,7 @@
     {
       "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v2.3.1-0.20210706231702-1c879079cb03?type=module",
       "dependsOn": [
-        "pkg:golang/github.com/devops-kung-fu/common@v0.1.0?type=module",
+        "pkg:golang/github.com/devops-kung-fu/common@v0.2.0?type=module",
         "pkg:golang/github.com/dustin/go-humanize@v1.0.0?type=module",
         "pkg:golang/github.com/gookit/color@v1.5.0?type=module",
         "pkg:golang/github.com/segmentio/ksuid@v1.0.4?type=module",
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/common@v0.1.0?type=module",
+      "ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.0?type=module",
       "dependsOn": [
         "pkg:golang/github.com/gookit/color@v1.5.0?type=module",
         "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778?type=module"

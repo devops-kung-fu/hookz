@@ -15,7 +15,7 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			util.PrintInfo("Updating sources and executables")
 			config := CheckConfig()
-			if util.IsErrorBool(lib.UpdateExecutables(Afs, config), "[ERROR]") {
+			if util.IsErrorBool(lib.UpdateExecutables(Afs, config)) {
 				return
 			}
 			util.PrintSuccess("Done!")

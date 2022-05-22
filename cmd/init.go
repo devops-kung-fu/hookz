@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/devops-kung-fu/common/util"
@@ -38,13 +37,8 @@ var (
 					util.PrintInfo("Installing sources")
 				})
 			}
-			err := lib.InstallSources(config.Sources)
-			if err != nil {
-				log.Println("There was a problem installing sources")
-				log.Println(err)
-				return
-			}
-			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, VerboseOutput), "[ERROR]") {
+			_ = InstallSources(config.Sources)
+			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, VerboseOutput)) {
 				return
 			}
 			util.DoIf(Verbose, func() {

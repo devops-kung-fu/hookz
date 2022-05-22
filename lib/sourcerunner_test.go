@@ -14,7 +14,7 @@ func TestInstallSources(t *testing.T) {
 		},
 	}
 	output := util.CaptureOutput(func() {
-		_ = InstallSources(sources)
+		_ = InstallSource(sources[len(sources)-1])
 	})
 
 	assert.NotNil(t, output)

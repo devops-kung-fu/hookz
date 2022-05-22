@@ -17,7 +17,7 @@ var (
 			util.DoIf(Verbose, func() {
 				util.PrintInfo("Removing hooks and supporting files...")
 			})
-			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose), "[ERROR]") {
+			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose)) {
 				return
 			}
 			util.DoIf(Verbose, func() {

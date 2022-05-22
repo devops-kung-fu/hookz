@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/devops-kung-fu/common/util"
 	"github.com/spf13/cobra"
@@ -19,16 +18,12 @@ var (
 			util.PrintInfo("Resetting Hooks")
 			fmt.Println()
 
-			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose), "[ERROR]") {
+			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose)) {
 				return
 			}
 			config := CheckConfig()
-			err := lib.InstallSources(config.Sources)
-			if err != nil {
-				util.PrintErr("There was a problem installing sources", err)
-				log.Println(err)
-			}
-			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, VerboseOutput), "[ERROR]") {
+			_ = InstallSources(config.Sources)
+			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, VerboseOutput)) {
 				return
 			}
 			util.PrintSuccess("Done")
