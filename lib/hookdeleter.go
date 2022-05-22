@@ -40,7 +40,7 @@ func RemoveHooks(afs *afero.Afero, verbose bool) (err error) {
 			}
 			parts := strings.Split(hookName, "/")
 			util.DoIf(verbose, func() {
-				util.PrintTabbed(fmt.Sprintf("Deleted %s", parts[len(parts)-1]))
+				util.PrintTabbedf("Deleted %s", parts[len(parts)-1])
 			})
 		}
 	}
