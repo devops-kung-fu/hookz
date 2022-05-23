@@ -32,11 +32,6 @@ var (
 				util.PrintInfo("Creating hooks")
 			})
 			config := CheckConfig()
-			if len(config.Sources) > 0 && Verbose {
-				util.DoIf(Verbose, func() {
-					util.PrintInfo("Installing sources")
-				})
-			}
 			_ = InstallSources(config.Sources)
 			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, VerboseOutput)) {
 				return

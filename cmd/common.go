@@ -28,9 +28,12 @@ func CheckConfig() (config lib.Configuration) {
 }
 
 func InstallSources(sources []lib.Source) (err error) {
-	util.DoIf(Verbose, func() {
-		util.PrintInfo("Installing Sources...")
-	})
+	if len(sources) > 0 && Verbose {
+		util.DoIf(Verbose, func() {
+			util.PrintInfo("Installing sources...")
+		})
+		return
+	}
 	for _, s := range sources {
 		util.DoIf(Verbose, func() {
 			util.PrintTabbedf("Installing Source: %s", s.Source)
