@@ -93,12 +93,12 @@ __Check out the [tacklebox](tackle/README.md) for a curated collection of action
 
 ### Dynamic Architecture URLs
 
-Quite often, downloadable binaries exist for multiple platforms when downloading. In order to get the right architecture for your current platform, Hookz ```v2.3.0``` introduces dynamic architecture URL support. For example, [hinge](https://github.com/devops-kung-fu/hinge) is available for multiple architectures such as ```linux```, ```darwin``` (Mac), etc. By using the ```%%PLATFORM%%``` tag in your URL to replace an architecture, the download functionality will retrieve the right binary for your current architecture.
+Quite often, downloadable binaries exist for multiple platforms when downloading. In order to get the right architecture for your current platform, Hookz ```v2.4.0``` introduces dynamic architecture URL support. For example, [hinge](https://github.com/devops-kung-fu/hinge) is available for multiple architectures such as ```linux```, ```darwin``` (Mac), etc. By using the ```%%PLATFORM%%``` tag in your URL to replace an architecture, the download functionality will retrieve the right binary for your current architecture.
 
 You can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
 
 ``` yaml
-version: 2.3.0
+version: 2.4.0
 hooks:
   - type: pre-commit
     actions:
