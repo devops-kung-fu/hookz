@@ -10,7 +10,7 @@ Manages git hooks inside a local git repository based on a configuration.
 
 Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed ```Hookz```. ```Hookz``` allows us to do a ton of commit tasks _before_ our code even hits our branches. As you commit and push code to a git based source repository, Hookz will trigger scripts, run tasks, or do just about anything for you.
 
-The best thing? We don't care what IDE you use to develop, what your back end source control system is, or what languages you program in. Operating System? We don't care. We wrote this in Go and have compiled it for every OS and architecture you'd ever want.
+The best thing? ```hookz``` **doesn't care what IDE you develop with, what your back end source control system is, or what languages you program in.** Operating System? We don't care. We've compiled ```hookz``` for every OS and architecture you'd ever want.
 
 Here's what happens when we use ```hookz``` on ```Hookz``` itself:
 
@@ -22,7 +22,7 @@ Git hooks are a great way to run supplemental commands as you interact with git.
 
 ## What Hookz Does
 
-```Hooks``` generates scripts from a configuration that get triggered when interacting with git locally. For example, in a pre-commit you could lint your code, test it, and then add any modifications of files into the commit before pushing it to your remote. As seen in the screenshot above, tasks come back with a status.
+```Hookz``` generates scripts from a configuration that get triggered when interacting with git locally. For example, in a pre-commit you could lint your code, test it, and then add any modifications of files into the commit before pushing it to your remote. As seen in the screenshot above, tasks come back with a status.
 
 ```Hookz``` may return one of three different status codes as it executes the action pipeline:
 
@@ -42,6 +42,16 @@ Linux Example:
 sudo chmod +x hookz-2.4.0-linux-amd64
 sudo mv hookz-2.4.0-linux-amd64 /usr/local/bin/hookz
 ```
+
+If you have a Go development environment set up, you can also simply do this:
+
+``` bash
+
+go install github.com/devops-kung-fu/hookz@latest
+
+```
+
+If you'd like to contribute to the development of ```hookz``` then check out the [Development](#development) section below.
 
 ## Configuration
 
