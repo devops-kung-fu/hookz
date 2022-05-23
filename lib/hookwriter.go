@@ -90,7 +90,7 @@ func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, verboseOut
 	for _, hook := range config.Hooks {
 		var commands []command
 		util.DoIf(verbose, func() {
-			util.PrintInfof("Writing %s", hook.Type)
+			util.PrintInfof("Writing %s\n", hook.Type)
 		})
 
 		for _, action := range hook.Actions {
@@ -99,7 +99,7 @@ func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, verboseOut
 				return err
 			}
 			util.DoIf(verbose, func() {
-				util.PrintTabbedf("Adding %s action: %s", hook.Type, action.Name)
+				util.PrintTabbedf("Adding %s action: %s\n", hook.Type, action.Name)
 			})
 
 			fullCommand := buildFullCommand(action, verboseOutput)

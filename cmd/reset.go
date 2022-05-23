@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/devops-kung-fu/common/util"
 	"github.com/spf13/cobra"
 
@@ -16,8 +14,6 @@ var (
 		Long:  "Rebuilds the hooks as defined in the .hookz.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
 			util.PrintInfo("Resetting Hooks")
-			fmt.Println()
-
 			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose)) {
 				return
 			}

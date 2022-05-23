@@ -34,11 +34,10 @@ func InstallSources(sources []lib.Source) (err error) {
 		util.DoIf(Verbose, func() {
 			util.PrintInfo("Installing sources...")
 		})
-		return
 	}
 	for _, s := range sources {
 		util.DoIf(Verbose, func() {
-			util.PrintTabbedf("Installing Source: %s", s.Source)
+			util.PrintTabbedf("Installing Source: %s\n", s.Source)
 		})
 		err = lib.InstallSource(s)
 		if err != nil {
