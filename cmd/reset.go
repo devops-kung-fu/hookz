@@ -13,7 +13,9 @@ var (
 		Short: "Rebuilds the hooks as defined in the .hookz.yaml file.",
 		Long:  "Rebuilds the hooks as defined in the .hookz.yaml file.",
 		Run: func(cmd *cobra.Command, args []string) {
-			util.PrintInfo("Resetting Hooks")
+			util.DoIf(Verbose, func() {
+				util.PrintInfo("Resetting Hooks")
+			})
 			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose)) {
 				return
 			}
@@ -22,7 +24,9 @@ var (
 			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, VerboseOutput)) {
 				return
 			}
-			util.PrintSuccess("Done")
+			util.DoIf(Verbose, func() {
+				util.PrintSuccess("Done")
+			})
 		},
 	}
 )

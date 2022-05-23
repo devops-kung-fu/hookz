@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:7ff166d8-59c1-49c7-8a0e-3a8987ed0987",
+  "serialNumber": "urn:uuid:85592065-995c-4808-8bca-08c0907a3feb",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-05-23T12:41:09-06:00",
+    "timestamp": "2022-05-23T12:53:49-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -78,18 +78,18 @@
   },
   "components": [
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.0?type=module",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.1?type=module",
       "type": "library",
       "name": "github.com/devops-kung-fu/common",
-      "version": "v0.2.0",
+      "version": "v0.2.1",
       "scope": "required",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "6bd1a4d5c6a8c3102b41d360c3180bc68729f0f46f4e1bbe1f34fafe66da6eae"
+          "content": "5b2ddb5b63b6ebd09674276c265acebd102a22777fbd1f4b3c848547c537357d"
         }
       ],
-      "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.0?type=module",
+      "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.1?type=module",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/common",
@@ -276,7 +276,7 @@
     {
       "ref": "pkg:golang/github.com/devops-kung-fu/hookz@v2.3.1-0.20210706231702-1c879079cb03?type=module",
       "dependsOn": [
-        "pkg:golang/github.com/devops-kung-fu/common@v0.2.0?type=module",
+        "pkg:golang/github.com/devops-kung-fu/common@v0.2.1?type=module",
         "pkg:golang/github.com/dustin/go-humanize@v1.0.0?type=module",
         "pkg:golang/github.com/gookit/color@v1.5.0?type=module",
         "pkg:golang/github.com/segmentio/ksuid@v1.0.4?type=module",
@@ -286,7 +286,7 @@
       ]
     },
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.0?type=module",
+      "ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.1?type=module",
       "dependsOn": [
         "pkg:golang/github.com/gookit/color@v1.5.0?type=module",
         "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778?type=module"
