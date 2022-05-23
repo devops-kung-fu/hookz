@@ -3,12 +3,14 @@ package lib
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strings"
 	"text/template"
 
-	"github.com/gookit/color"
+	"github.com/devops-kung-fu/common/util"
 	"github.com/segmentio/ksuid"
+	"github.com/spf13/afero"
 )
 
 type command struct {
@@ -20,9 +22,9 @@ type command struct {
 }
 
 //CreateFile creates a file for a provided FileSystem and file name
-func CreateFile(fs FileSystem, name string) (err error) {
+func CreateFile(afs *afero.Afero, name string) (err error) {
 
-	file, err := fs.fs.Create(name)
+	file, err := afs.Fs.Create(name)
 	if err != nil {
 		return err
 	}
@@ -35,11 +37,11 @@ func CreateFile(fs FileSystem, name string) (err error) {
 }
 
 //CreateScriptFile creates an executable script file with a random name given a string of content
-func CreateScriptFile(fs FileSystem, content string) (name string, err error) {
+func CreateScriptFile(afs *afero.Afero, content string) (name string, err error) {
 
 	k, idErr := ksuid.NewRandom()
 	name = k.String()
-	if IsErrorBool(idErr, "ERROR") {
+	if util.IsErrorBool(idErr) {
 		err = idErr
 		return
 	}
@@ -49,17 +51,17 @@ func CreateScriptFile(fs FileSystem, content string) (name string, err error) {
 	hookzFile := fmt.Sprintf("%s/%s.hookz", p, name)
 	scriptName := fmt.Sprintf("%s/%s", p, name)
 
-	err = CreateFile(fs, hookzFile)
+	err = CreateFile(afs, hookzFile)
 	if err != nil {
 		return
 	}
 
-	err = fs.Afero().WriteFile(scriptName, []byte(content), 0644)
+	err = afs.WriteFile(scriptName, []byte(content), 0644)
 	if err != nil {
 		return
 	}
 
-	err = fs.fs.Chmod(scriptName, 0777)
+	err = afs.Fs.Chmod(scriptName, 0777)
 	if err != nil {
 		return
 	}
@@ -83,63 +85,56 @@ func buildFullCommand(action Action, debug bool) string {
 }
 
 //WriteHooks writes all of the generated scripts to the .git/hooks directory
-func WriteHooks(fs FileSystem, config Configuration, verbose bool, debug bool) (err error) {
-
+func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, verboseOutput bool) (err error) {
+	log.Println("Writing hooks")
 	for _, hook := range config.Hooks {
-
 		var commands []command
-		DoIf(func() {
-			color.Style{color.FgLightYellow}.Print("■")
-			fmt.Printf(" Writing %s \n", hook.Type)
-		}, verbose)
+		util.DoIf(verbose, func() {
+			util.PrintInfof("Writing %s", hook.Type)
+		})
 
 		for _, action := range hook.Actions {
-			err = buildExec(fs, &action)
+			err = buildExec(afs, &action)
 			if err != nil {
 				return err
 			}
-			DoIf(func() {
-				fmt.Printf("  Adding %s action: %s\n", hook.Type, action.Name)
-			}, verbose)
+			util.DoIf(verbose, func() {
+				util.PrintTabbedf("Adding %s action: %s", hook.Type, action.Name)
+			})
 
-			fullCommand := buildFullCommand(action, debug)
+			fullCommand := buildFullCommand(action, verboseOutput)
 
 			commands = append(commands, command{
 				Name:         action.Name,
 				Type:         hook.Type,
 				ShortCommand: *action.Exec,
 				FullCommand:  fullCommand,
-				Debug:        debug,
+				Debug:        verboseOutput,
 			})
 		}
-		err = writeTemplate(fs, commands, hook.Type)
+		err = writeTemplate(afs, commands, hook.Type)
 		if err != nil {
 			return
 		}
-		DoIf(func() {
-			color.Style{color.FgGreen}.Print("■")
-			fmt.Printf(" Successfully wrote %s\n", hook.Type)
-		}, verbose)
-
-		DoIf(func() {
-			fmt.Println()
-		}, verbose)
+		util.DoIf(verbose, func() {
+			util.PrintSuccess(fmt.Sprintf("Successfully wrote %s", hook.Type))
+		})
 	}
 
-	_ = WriteShasum(fs)
-	return nil
+	_ = WriteShasum(afs)
+	return
 }
 
-func buildExec(fs FileSystem, action *Action) (err error) {
+func buildExec(afs *afero.Afero, action *Action) (err error) {
 	if action.Exec == nil && action.URL != nil {
-		filename, err := DownloadFile(fs, ".git/hooks", *action.URL)
+		filename, err := DownloadFile(afs, ".git/hooks", *action.URL)
 		action.Exec = &filename
 		if err != nil {
 			return err
 		}
 	}
 	if action.Exec == nil && action.Script != nil {
-		scriptFileName, _ := CreateScriptFile(fs, *action.Script)
+		scriptFileName, _ := CreateScriptFile(afs, *action.Script)
 		path, err := os.Getwd()
 		if err != nil {
 			return err
@@ -150,18 +145,18 @@ func buildExec(fs FileSystem, action *Action) (err error) {
 	return
 }
 
-func writeTemplate(fs FileSystem, commands []command, hookType string) (err error) {
+func writeTemplate(afs *afero.Afero, commands []command, hookType string) (err error) {
 	path, _ := os.Getwd()
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
 
 	hookzFile := fmt.Sprintf("%s/%s.hookz", p, hookType)
-	err = CreateFile(fs, hookzFile)
+	err = CreateFile(afs, hookzFile)
 	if err != nil {
 		return
 	}
 
 	filename := fmt.Sprintf("%s/%s", p, hookType)
-	file, err := fs.Afero().Create(filename)
+	file, err := afs.Create(filename)
 	if err != nil {
 		return err
 	}
@@ -170,7 +165,7 @@ func writeTemplate(fs FileSystem, commands []command, hookType string) (err erro
 	if err != nil {
 		return err
 	}
-	err = fs.fs.Chmod(filename, 0777)
+	err = afs.Fs.Chmod(filename, 0777)
 	if err != nil {
 		return err
 	}
@@ -179,18 +174,18 @@ func writeTemplate(fs FileSystem, commands []command, hookType string) (err erro
 }
 
 //HasExistingHookz determines if any .hookz touch files exist in the .git/hooks directory
-func HasExistingHookz(fs FileSystem) (exists bool) {
+func HasExistingHookz(afs *afero.Afero) (exists bool) {
 	path, _ := os.Getwd()
 	ext := ".hookz"
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
-	dirFiles, _ := fs.Afero().ReadDir(p)
+	dirFiles, _ := afs.ReadDir(p)
 
 	for index := range dirFiles {
 		file := dirFiles[index]
 
 		name := file.Name()
 		fullPath := fmt.Sprintf("%s/%s", p, name)
-		info, _ := fs.Afero().Stat(fullPath)
+		info, _ := afs.Stat(fullPath)
 		isHookzFile := strings.Contains(info.Name(), ext)
 		if isHookzFile {
 			return true
@@ -222,7 +217,7 @@ if [ "$check" != "$shasum" ]; then
 	echo "Please regenerate your hooks with the following"
 	echo "command and try again."
 	echo
-	echo "        hookz reset [--verbose] [--debug]"
+	echo "        hookz reset [--verbose] [--debug] [--verbose-output]"
 	echo
 	echo "Run 'hookz --help' for usage."
 	echo

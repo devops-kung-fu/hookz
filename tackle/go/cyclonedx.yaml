@@ -3,4 +3,4 @@
 # HOOK: pre-commit 
         - name: "cyclone-dx: Generate a Software Bill of Materials (SBoM)"
           exec: cyclonedx-gomod
-          args: ["-json", "-output", "hookz-sbom.json", "-std", "-licenses"]
+          args: ["app", "-json", "-output", "hookz-sbom.json"]

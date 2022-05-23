@@ -4,36 +4,53 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"os"
 
-	"github.com/devops-kung-fu/hookz/lib"
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 )
 
 var (
-	version = "2.3.0"
-	debug   bool
-	verbose bool
-	rootCmd = &cobra.Command{
+	version       = "2.4.0"
+	Afs           = &afero.Afero{Fs: afero.NewOsFs()}
+	debug         bool
+	Verbose       bool
+	VerboseOutput bool
+	rootCmd       = &cobra.Command{
 		Use:     "hookz",
 		Short:   `Manages commit hooks inside a local git repository`,
 		Version: version,
+		PersistentPreRun: func(cmd *cobra.Command, args []string) {
+			if !debug {
+				log.SetOutput(ioutil.Discard)
+			}
+			util.DoIf(Verbose, func() {
+				fmt.Println()
+				color.Style{color.FgWhite, color.OpBold}.Println("█ █ █▀█ █▀█ █▄▀ ▀█")
+				color.Style{color.FgWhite, color.OpBold}.Println("█▀█ █▄█ █▄█ █░█ █▄")
+				fmt.Println()
+				fmt.Println("DKFM - DevOps Kung Fu Mafia")
+				fmt.Println("https://github.com/devops-kung-fu/hookz")
+				fmt.Printf("Version: %s\n", version)
+				fmt.Println()
+			})
+		},
 	}
 )
 
 // Execute creates the command tree and handles any error condition returned
 func Execute() {
 	cobra.OnInitialize(func() {
-		var fs = afero.NewOsFs()
-		afs := &afero.Afero{Fs: fs}
-		b, err := afs.DirExists(".git")
-		lib.IfErrorLog(err, "[ERROR]")
+		b, err := Afs.DirExists(".git")
+		util.IfErrorLog(err)
 
 		if !b {
-			e := errors.New("Hookz must be run in a local .git repository")
-			lib.IfErrorLog(e, "ERROR")
+			e := errors.New("hookz must be run in a local .git repository")
+			util.PrintErr(e)
 			os.Exit(1)
 		}
 	})
@@ -45,10 +62,7 @@ func Execute() {
 }
 
 func init() {
-	color.Style{color.FgWhite, color.OpBold}.Println("Hookz")
-	fmt.Println("https://github.com/devops-kung-fu/hookz")
-	fmt.Printf("Version: %s\n", version)
-	fmt.Println("")
-
-	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Extended output as hookz executes.")
+	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "d", false, "show debug output")
+	rootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", true, "show verbose output")
+	rootCmd.PersistentFlags().BoolVar(&VerboseOutput, "verbose-output", false, "show verbose hook output while executing hooks")
 }

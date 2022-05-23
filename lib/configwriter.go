@@ -3,14 +3,20 @@ package lib
 import (
 	"path/filepath"
 
+	"github.com/spf13/afero"
 	"gopkg.in/yaml.v2"
 )
 
 //CreateConfig creates a starter .hookz.yaml file
-func CreateConfig(fs FileSystem, version string) (config Configuration, err error) {
+func CreateConfig(afs *afero.Afero, version string) (config Configuration, err error) {
 	command := "echo"
 	config = Configuration{
 		Version: version,
+		Sources: []Source{
+			{
+				Source: "github.com/devops-kung-fu/hinge@latest",
+			},
+		},
 		Hooks: []Hook{
 			{
 				Type: "pre-commit",
@@ -31,7 +37,7 @@ func CreateConfig(fs FileSystem, version string) (config Configuration, err erro
 		return
 	}
 	filename, _ := filepath.Abs(".hookz.yaml")
-	err = fs.Afero().WriteFile(filename, file, 0644)
+	err = afs.WriteFile(filename, file, 0644)
 
 	return
 }

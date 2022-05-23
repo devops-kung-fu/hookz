@@ -11,7 +11,9 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/dustin/go-humanize"
+	"github.com/spf13/afero"
 )
 
 //WriteCounter encapsulates the total number of bytes captured and rendered
@@ -36,18 +38,18 @@ func (wc WriteCounter) PrintProgress() {
 
 //UpdateExecutables parses the configuration for URL's and re-downloads
 //the contents into the .git/hooks folder
-func UpdateExecutables(fs FileSystem, config Configuration) (err error) {
+func UpdateExecutables(afs *afero.Afero, config Configuration) (err error) {
 	var updateCount = 0
 	for _, hook := range config.Hooks {
 		for _, action := range hook.Actions {
 			if action.URL != nil {
 				updateCount++
-				_, err = DownloadFile(fs, ".git/hooks", *action.URL)
+				_, err = DownloadFile(afs, ".git/hooks", *action.URL)
 			}
 		}
 	}
 	if updateCount == 0 {
-		fmt.Println("Nothing to Update!")
+		util.PrintInfo("Nothing to Update!")
 	}
 
 	return
@@ -56,7 +58,7 @@ func UpdateExecutables(fs FileSystem, config Configuration) (err error) {
 // DownloadFile will download a url to a local file. It's efficient because it will
 // write as it downloads and not load the whole file into memory. We pass an io.TeeReader
 // into Copy() to report progress on the download.
-func DownloadFile(fs FileSystem, filepath string, URL string) (filename string, err error) {
+func DownloadFile(afs *afero.Afero, filepath string, URL string) (filename string, err error) {
 	URL = platformURLIfDefined(URL)
 	_, err = url.ParseRequestURI(URL)
 	if err != nil {
@@ -64,7 +66,7 @@ func DownloadFile(fs FileSystem, filepath string, URL string) (filename string, 
 	}
 	filename = path.Base(URL)
 	fullFileName := fmt.Sprintf("%s/%s", filepath, filename)
-	out, err := fs.Afero().Create(fmt.Sprintf("%s.tmp", fullFileName))
+	out, err := afs.Create(fmt.Sprintf("%s.tmp", fullFileName))
 	if err != nil {
 		return
 	}

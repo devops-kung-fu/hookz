@@ -1,16 +1,20 @@
-  version: 2.3.0
+  version: 2.4.0
+  sources:
+    - source: github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
+    - source: github.com/devops-kung-fu/lucha@latest
+    - source: github.com/devops-kung-fu/hinge@latest
+    - source: github.com/kisielk/errcheck@latest      
+    - source: golang.org/x/lint/golint@latest
+    - source: github.com/fzipp/gocyclo/cmd/gocyclo@latest
   hooks:
     - type: pre-commit
       actions:
         - name: "git: Pull (Ensure there are no upstream changes that are not local)"
           exec: git
-          args: ["pull"]
-        - name: "go: Tidy (Recursive)"
-          script: "
-            #!/bin/bash \n
-            echo -e Tidying all found go.mod occurrences\n
-            find . -name go.mod -print0 | xargs -0 -n1 dirname |  xargs -L 1 bash -c 'cd \"$0\" && pwd && go mod tidy' \n
-            "
+          args: ["pull"]  
+        - name: "go: Tidy mod file"
+          exec: go
+          args: ["mod", "tidy"]
         - name: "go: Update all dependencies to latest"
           exec: go
           args: ["get", "-u", "./..."]
@@ -20,12 +24,15 @@
         - name: "golint: Lint all go files"
           exec: golint
           args: ["./..."] #to error out, add the arg "-set_exit_status"
-        - name: "errcheck: Check that errors are checked"
+        - name: "errcheck: Ensure that errors are checked"
           exec: errcheck
           args: ["-ignoretests", "./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
           args: ["-over", "7", "."]
+        - name: Hinge
+          exec: hinge
+          args: ["."]
         - name: "go: Build (Ensure pulled modules do not break the build)"
           exec: go
           args: ["build", "-v"]
@@ -37,10 +44,7 @@
           args: ["tool", "cover", "-func=coverage.out"]
         - name: "cyclone-dx: Generate a Software Bill of Materials (SBoM)"
           exec: cyclonedx-gomod
-          args: ["-json", "-output", "hookz-sbom.json", "-std", "-licenses"]
-        - name: Hinge
-          url: https://github.com/devops-kung-fu/hinge/releases/download/v0.1.0/hinge-0.1.0-%%PLATFORM%%-amd64
-          args: ["."]
+          args: ["app", "-json", "-output", "hookz-sbom.json"]
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]

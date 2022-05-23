@@ -7,63 +7,49 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/gookit/color"
+	"github.com/devops-kung-fu/common/util"
+	"github.com/spf13/afero"
 )
 
 //RemoveHooks purges all hooks from the filesystem that Hookz has created
 //and deletes any generated scripts
-func RemoveHooks(fs FileSystem, verbose bool) (err error) {
-	DoIf(func() {
-		color.Style{color.FgLightYellow}.Print("■")
-		fmt.Println(" Removing existing hooks...")
-	}, verbose)
-
+func RemoveHooks(afs *afero.Afero, verbose bool) (err error) {
 	path, _ := os.Getwd()
 
 	ext := ".hookz"
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
 
-	dirFiles, _ := fs.Afero().ReadDir(p)
+	dirFiles, _ := afs.ReadDir(p)
 
 	for index := range dirFiles {
 		file := dirFiles[index]
 
 		name := file.Name()
 		fullPath := fmt.Sprintf("%s/%s", p, name)
-		info, _ := fs.Afero().Stat(fullPath)
+		info, _ := afs.Stat(fullPath)
 		isHookzFile := strings.Contains(info.Name(), ext)
 		if isHookzFile {
 			var hookName = fullPath[0 : len(fullPath)-len(ext)]
-			removeErr := fs.fs.Remove(fullPath)
+			removeErr := afs.Fs.Remove(fullPath)
 			if removeErr != nil {
 				return removeErr
 			}
-			removeErr = fs.fs.Remove(hookName)
+			removeErr = afs.Fs.Remove(hookName)
 			if removeErr != nil {
 				return removeErr
 			}
 			parts := strings.Split(hookName, "/")
-			DoIf(func() {
-				fmt.Printf("  Deleted %s\n", parts[len(parts)-1])
-			}, verbose)
+			util.DoIf(verbose, func() {
+				util.PrintTabbedf("Deleted %s", parts[len(parts)-1])
+			})
 		}
 	}
 
-	removeShasum(fs)
-
-	DoIf(func() {
-		color.Style{color.FgGreen}.Print("■")
-		fmt.Print(" Successfully removed existing hooks!\n")
-	}, verbose)
-
-	DoIf(func() {
-		fmt.Println()
-	}, verbose)
-
+	removeShasum(afs)
 	return
 }
 
-func removeShasum(fs FileSystem) {
+func removeShasum(afs *afero.Afero) {
 	filename, _ := filepath.Abs(".git/hooks/hookz.shasum")
-	_ = fs.Afero().Remove(filename)
+	_ = afs.Remove(filename)
 }

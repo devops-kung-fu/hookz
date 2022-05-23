@@ -1,26 +1,28 @@
 package cmd
 
 import (
-	"fmt"
+	"github.com/devops-kung-fu/common/util"
+	"github.com/spf13/cobra"
 
 	"github.com/devops-kung-fu/hookz/lib"
-	"github.com/gookit/color"
-	"github.com/spf13/cobra"
 )
 
 var (
 	removeCmd = &cobra.Command{
 		Use:     "remove",
 		Aliases: []string{"delete"},
-		Short:   "Removes the hooks as defined in the .hooks.yaml file and any generated scripts.",
-		Long:    "Removes the hooks as defined in the .hooks.yaml file and any generated scripts.",
+		Short:   "Removes the hooks as defined in the .hookz.yaml file and any generated scripts.",
+		Long:    "Removes the hooks as defined in the .hookz.yaml file and any generated scripts.",
 		Run: func(cmd *cobra.Command, args []string) {
-			color.Style{color.FgLightBlue, color.OpBold}.Println("Removing Hooks")
-			fmt.Println()
-			if lib.IsErrorBool(lib.RemoveHooks(lib.NewOsFs(), verbose), "[ERROR]") {
+			util.DoIf(Verbose, func() {
+				util.PrintInfo("Removing hooks and supporting files...")
+			})
+			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose)) {
 				return
 			}
-			color.Style{color.FgLightGreen}.Println("Done!")
+			util.DoIf(Verbose, func() {
+				util.PrintSuccess("Done")
+			})
 		},
 	}
 )

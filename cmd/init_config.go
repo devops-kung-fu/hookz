@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/devops-kung-fu/hookz/lib"
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
+
+	"github.com/devops-kung-fu/hookz/lib"
 )
 
 var (
@@ -15,8 +17,7 @@ var (
 		Short: "Creates a starter .hookz.yaml file.",
 		Long:  "Creates a starter .hookz.yaml file.",
 		PreRun: func(cmd *cobra.Command, args []string) {
-			existingHookz := lib.HasExistingHookzYaml(lib.NewOsFs())
-			if existingHookz {
+			if lib.HasExistingHookzYaml(Afs) {
 				color.Style{color.FgRed, color.OpBold}.Println("Existing .hookz.yaml file detected!")
 				fmt.Println("\nThis file must be deleted before running this command.")
 				fmt.Println()
@@ -24,14 +25,12 @@ var (
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			fs := lib.NewOsFs()
-			color.Style{color.FgLightBlue, color.OpBold}.Println("Creating Sample Config")
-			fmt.Println()
-			_, err := lib.CreateConfig(fs, version)
-			if lib.IsErrorBool(err, "[ERROR]") {
+			util.PrintInfo("Creating Sample Config")
+			_, err := lib.CreateConfig(Afs, version)
+			if util.IsErrorBool(err) {
 				return
 			}
-			color.Style{color.FgLightGreen}.Println("Done!")
+			util.PrintSuccess("Done")
 		},
 	}
 )

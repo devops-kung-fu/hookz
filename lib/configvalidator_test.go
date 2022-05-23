@@ -1,8 +1,7 @@
 package lib
 
 import (
-	"fmt"
-	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/spf13/afero"
@@ -10,42 +9,38 @@ import (
 )
 
 func Test_generateShasum(t *testing.T) {
-	newFs := FileSystem{
-		fs: afero.NewMemMapFs(),
-	}
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	CreateConfig(newFs, version)
+	CreateConfig(afs, version)
 
-	shasum, err := generateShasum(newFs)
+	shasum, err := generateShasum(afs)
 	assert.NoError(t, err, "Likely .hookz.yaml couldn't be read")
-	assert.Equal(t, "bae340195673fed855200d34dace2fc3c6ed44ff37678a2a941b1e58557882e9", shasum, "shasums do not match, but should")
+	assert.Equal(t, "0213f04ee70cc7b48d6de58e7dd62338259d16ae8e52016d19f83559051dd57c", shasum, "shasums do not match, but should")
 }
 
 func Test_WriteShasum(t *testing.T) {
-	newFs := FileSystem{
-		fs: afero.NewMemMapFs(),
-	}
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	CreateConfig(newFs, version)
+	CreateConfig(afs, version)
 
-	err := WriteShasum(newFs)
+	err := WriteShasum(afs)
 	assert.NoError(t, err, "A shasum write should not have caused an error")
 
-	path, _ := os.Getwd()
-	filename := fmt.Sprintf("%s/%s", path, ".git/hooks/hookz.shasum")
+	filename, _ := filepath.Abs(".git/hooks/hookz.shasum")
 
-	contains, _ := newFs.Afero().FileContainsBytes(filename, []byte("bae340195673fed855200d34dace2fc3c6ed44ff37678a2a941b1e58557882e9"))
+	exists, _ := afs.Exists(filename)
+	assert.True(t, exists)
+
+	contains, _ := afs.FileContainsBytes(filename, []byte("0213f04ee70cc7b48d6de58e7dd62338259d16ae8e52016d19f83559051dd57c"))
 	assert.True(t, contains, "The expected shasum was not written to the hookz.shasum file")
 }
 
 func TestDeps_CheckVersion(t *testing.T) {
-	newFs := FileSystem{
-		fs: afero.NewMemMapFs(),
-	}
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	CreateConfig(newFs, version)
+	CreateConfig(afs, version)
 
-	readConfig, err := ReadConfig(newFs, version)
+	readConfig, err := ReadConfig(afs, version)
 	assert.NoError(t, err, "ReadConfig should not have generated an error")
 
 	err = ValidateVersion(readConfig, version)
