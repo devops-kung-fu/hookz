@@ -24,6 +24,7 @@ type Action struct {
 	Script *string  `json:"script,omitempty"`
 }
 
+//Source defines a go repository that should be installed when hookz is initializing, updating, or resetting
 type Source struct {
 	Source string `json:"source"`
 }
