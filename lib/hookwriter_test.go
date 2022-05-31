@@ -39,7 +39,7 @@ func Test_buildFullCommand(t *testing.T) {
 	assert.NotNil(t, action, "Action should not be nil")
 
 	command := buildFullCommand(action, true)
-	assert.Equal(t, "echo -e Hello Hookz!", command, "Values are not equal")
+	assert.Equal(t, "/bin/echo -e Hello Hookz!", command, "Values are not equal")
 }
 
 func Test_WriteHooks(t *testing.T) {

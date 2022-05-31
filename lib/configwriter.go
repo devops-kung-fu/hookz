@@ -9,7 +9,7 @@ import (
 
 //CreateConfig creates a starter .hookz.yaml file
 func CreateConfig(afs *afero.Afero, version string) (config Configuration, err error) {
-	command := "echo"
+	command := "/bin/echo"
 	config = Configuration{
 		Version: version,
 		Sources: []Source{

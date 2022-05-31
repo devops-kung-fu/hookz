@@ -34,7 +34,7 @@ Git hooks are a great way to run supplemental commands as you interact with git.
 
 ## Installation
 
-To install ```hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
+To install ```Hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
 
 Linux Example:
 
@@ -51,7 +51,7 @@ go install github.com/devops-kung-fu/hookz@latest
 
 ```
 
-If you'd like to contribute to the development of ```hookz``` then check out the [Development](#development) section below.
+If you'd like to contribute to the development of ```Hookz``` then check out the [Development](#development) section below.
 
 ## Configuration
 
@@ -103,7 +103,7 @@ __Check out the [tacklebox](tackle/README.md) for a curated collection of action
 
 ### Dynamic Architecture URLs
 
-Quite often, downloadable binaries exist for multiple platforms when downloading. In order to get the right architecture for your current platform, Hookz ```v2.4.0``` introduces dynamic architecture URL support. For example, [hinge](https://github.com/devops-kung-fu/hinge) is available for multiple architectures such as ```linux```, ```darwin``` (Mac), etc. By using the ```%%PLATFORM%%``` tag in your URL to replace an architecture, the download functionality will retrieve the right binary for your current architecture.
+Quite often, downloadable binaries exist for multiple platforms when downloading. In order to get the right architecture for your current platform, Hookz ```v2.3.0``` introduced dynamic architecture URL support. For example, [hinge](https://github.com/devops-kung-fu/hinge) is available for multiple architectures such as ```linux```, ```darwin``` (Mac), etc. By using the ```%%PLATFORM%%``` tag in your URL to replace an architecture, the download functionality will retrieve the right binary for your current architecture.
 
 You can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
 
@@ -117,7 +117,7 @@ hooks:
           args: ["."]
 ```
 
-If you are running Hookz on a Mac, this will bring down the ```hinge-0.1.0-darwin-amd64``` binary, if on linux, the ```hinge-0.1.0-linux-amd64``` binary will be downloaded.
+If you are running ```Hookz``` on a Mac, this will bring down the ```hinge-0.1.0-darwin-amd64``` binary, if on linux, the ```hinge-0.1.0-linux-amd64``` binary will be downloaded.
 
 ### Optional elements
 
@@ -212,9 +212,9 @@ hookz reset
 
 ### Debug option
 
-The ```initialize``` (init) and ```reset``` command optionally take a debug flag to indicate extended output should be displayed while a hook executes. All output from any action will be displayed during the commit/push process when this flag is used to build the hooks. This is handy for debugging or seeing errors that may be suppressed by hookz. 
+The ```initialize``` (init) and ```reset``` command optionally take a debug flag to indicate extended output should be displayed while ```hookz``` generates git hooks. 
 
-```
+``` bash
 hookz init --debug
 hookz reset --debug
 ```
@@ -223,9 +223,18 @@ hookz reset --debug
 
 If you want to see a log of what is happening when ```hookz``` executes, use the ```--verbose``` flag.
 
+``` bash
+hookz init --verbose
+hookz reset --verbose
 ```
-hookz init --debug
-hookz reset --debug
+
+### Verbose Output flag
+
+Passing the  ```--verbose-output``` flag when running a ```hookz init``` or ```hookz reset``` command will trigger ```Hookz``` to output extended information as ```git``` executes the hooks during the commit, push, etc. process. All output from any action will be displayed during the commit/push process when this flag is used to build the hooks. This is handy for debugging or seeing errors that may be suppressed by hookz. 
+
+``` bash
+hookz init --verbose-output
+hookz reset --verbose-output
 ```
 
 ## Tacklebox (Curated Example Actions)
