@@ -11,7 +11,6 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/devops-kung-fu/common/util"
 	"github.com/dustin/go-humanize"
 	"github.com/spf13/afero"
 )
@@ -33,13 +32,12 @@ func (wc *WriteCounter) Write(p []byte) (int, error) {
 //PrintProgress prints the current download progress to STDOUT
 func (wc WriteCounter) PrintProgress() {
 	fmt.Printf("\r%s", strings.Repeat(" ", 35))
-	fmt.Printf("\r  Downloading %s... %s complete", wc.FileName, humanize.Bytes(wc.Total))
+	fmt.Printf("\r	Downloading %s... %s complete", wc.FileName, humanize.Bytes(wc.Total))
 }
 
 //UpdateExecutables parses the configuration for URL's and re-downloads
 //the contents into the .git/hooks folder
-func UpdateExecutables(afs *afero.Afero, config Configuration) (err error) {
-	var updateCount = 0
+func UpdateExecutables(afs *afero.Afero, config Configuration) (updateCount int, err error) {
 	for _, hook := range config.Hooks {
 		for _, action := range hook.Actions {
 			if action.URL != nil {
@@ -48,10 +46,6 @@ func UpdateExecutables(afs *afero.Afero, config Configuration) (err error) {
 			}
 		}
 	}
-	if updateCount == 0 {
-		util.PrintInfo("Nothing to Update!")
-	}
-
 	return
 }
 

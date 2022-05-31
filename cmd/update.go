@@ -18,11 +18,12 @@ var (
 			})
 			config := CheckConfig()
 			_ = InstallSources(config.Sources)
-			if util.IsErrorBool(lib.UpdateExecutables(Afs, config)) {
-				return
-			}
+			updateCount, _ := lib.UpdateExecutables(Afs, config)
+			util.DoIf(updateCount == 0, func() {
+				util.PrintInfo("Nothing to Update!")
+			})
 			util.DoIf(Verbose, func() {
-				util.PrintSuccess("Done!")
+				util.PrintSuccess("Done")
 			})
 		},
 	}

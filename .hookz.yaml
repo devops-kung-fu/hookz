@@ -23,7 +23,7 @@
           args: ["-s", "-w", "**/*.go"]
         - name: "golint: Lint all go files"
           exec: golint
-          args: ["./..."] #to error out, add the arg "-set_exit_status"
+          args: ["-set_exit_status", "./..."] #to error out, add the arg "-set_exit_status"
         - name: "errcheck: Ensure that errors are checked"
           exec: errcheck
           args: ["-ignoretests", "./..."]
@@ -48,3 +48,8 @@
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]
+    - type: pre-push
+      actions:
+        - name: "hookz: example pre-push hook"
+          exec: /bin/echo
+          args: ["Pushing changes..."]

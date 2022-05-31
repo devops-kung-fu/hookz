@@ -24,7 +24,7 @@ func TestUpdateExecutables(t *testing.T) {
 			},
 		},
 	}
-	err := UpdateExecutables(afs, botchedConfig)
+	_, err := UpdateExecutables(afs, botchedConfig)
 	assert.NoError(t, err, "UpdateExecutables should only happen if action.URL != nil")
 }
 

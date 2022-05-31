@@ -8,9 +8,9 @@ Manages git hooks inside a local git repository based on a configuration.
 
 ## Overview
 
-Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed ```Hookz```. ```Hookz``` allows us to do a ton of commit tasks _before_ our code even hits our branches. As you commit and push code to a git based source repository, Hookz will trigger scripts, run tasks, or do just about anything for you.
+Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed ```Hookz```. ```Hookz``` allows us to do a ton of commit tasks **_before_** our code even hits our branches. As you commit and push code to a git based source repository, Hookz will trigger scripts, run tasks, or do just about anything for you.
 
-The best thing? ```hookz``` **doesn't care what IDE you develop with, what your back end source control system is, or what languages you program in.** Operating System? We don't care. We've compiled ```hookz``` for every OS and architecture you'd ever want.
+The best thing? ```Hookz``` **doesn't care what IDE you develop with, what your back end source control system is, or what languages you program in.** Operating System? We don't care. We've compiled ```Hookz``` for every OS and architecture you'd ever want.
 
 Here's what happens when we use ```hookz``` on ```Hookz``` itself:
 
@@ -85,7 +85,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
       actions:
       - name: "Post Echo"
         exec: echo
-        args: ["-e", "Done!"]
+        args: ["-e", "Done"]
     - type: pre-push
       actions:
         - name: "Add all changed files during the pre-commit stage"
