@@ -25,12 +25,16 @@ var (
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			util.PrintInfo("Creating Sample Config")
+			util.DoIf(Verbose, func() {
+				util.PrintInfo("Creating Sample Config")
+			})
 			_, err := lib.CreateConfig(Afs, version)
 			if util.IsErrorBool(err) {
 				return
 			}
-			util.PrintSuccess("Done")
+			util.DoIf(Verbose, func() {
+				util.PrintSuccess("Done")
+			})
 		},
 	}
 )

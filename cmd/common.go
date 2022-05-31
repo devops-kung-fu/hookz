@@ -19,6 +19,7 @@ func noConfig() {
 	os.Exit(1)
 }
 
+//CheckConfig ensures that there is a .hookz.yaml file locally and the version is supported by the current version of hookz
 func CheckConfig() (config lib.Configuration) {
 	config, err := lib.ReadConfig(Afs, version)
 	if err != nil && err.Error() == "NO_CONFIG" {
@@ -27,16 +28,16 @@ func CheckConfig() (config lib.Configuration) {
 	return
 }
 
+//InstallSources installs all go repositories that are found in the Sources section of the .hookz.yaml file.
 func InstallSources(sources []lib.Source) (err error) {
 	if len(sources) > 0 && Verbose {
 		util.DoIf(Verbose, func() {
 			util.PrintInfo("Installing sources...")
 		})
-		return
 	}
 	for _, s := range sources {
 		util.DoIf(Verbose, func() {
-			util.PrintTabbedf("Installing Source: %s", s.Source)
+			util.PrintTabbedf("Installing Source: %s\n", s.Source)
 		})
 		err = lib.InstallSource(s)
 		if err != nil {

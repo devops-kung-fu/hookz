@@ -15,10 +15,13 @@ import (
 )
 
 var (
-	version       = "2.4.0"
-	Afs           = &afero.Afero{Fs: afero.NewOsFs()}
-	debug         bool
-	Verbose       bool
+	version = "2.4.0"
+	//Afs stores a global OS Filesystem that is used throughout hookz
+	Afs   = &afero.Afero{Fs: afero.NewOsFs()}
+	debug bool
+	//Verbose determines if the execution of hookz should output verbose information
+	Verbose bool
+	//VerboseOutput is set to true if you wish to see debug information in the hooks as they execute in bash
 	VerboseOutput bool
 	rootCmd       = &cobra.Command{
 		Use:     "hookz",

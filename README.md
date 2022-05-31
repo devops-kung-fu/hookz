@@ -8,9 +8,9 @@ Manages git hooks inside a local git repository based on a configuration.
 
 ## Overview
 
-Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed ```Hookz```. ```Hookz``` allows us to do a ton of commit tasks _before_ our code even hits our branches. As you commit and push code to a git based source repository, Hookz will trigger scripts, run tasks, or do just about anything for you.
+Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed ```Hookz```. ```Hookz``` allows us to do a ton of commit tasks **_before_** our code even hits our branches. As you commit and push code to a git based source repository, Hookz will trigger scripts, run tasks, or do just about anything for you.
 
-The best thing? We don't care what IDE you use to develop, what your back end source control system is, or what languages you program in. Operating System? We don't care. We wrote this in Go and have compiled it for every OS and architecture you'd ever want.
+The best thing? ```Hookz``` **doesn't care what IDE you develop with, what your back end source control system is, or what languages you program in.** Operating System? We don't care. We've compiled ```Hookz``` for every OS and architecture you'd ever want.
 
 Here's what happens when we use ```hookz``` on ```Hookz``` itself:
 
@@ -22,7 +22,7 @@ Git hooks are a great way to run supplemental commands as you interact with git.
 
 ## What Hookz Does
 
-```Hooks``` generates scripts from a configuration that get triggered when interacting with git locally. For example, in a pre-commit you could lint your code, test it, and then add any modifications of files into the commit before pushing it to your remote. As seen in the screenshot above, tasks come back with a status.
+```Hookz``` generates scripts from a configuration that get triggered when interacting with git locally. For example, in a pre-commit you could lint your code, test it, and then add any modifications of files into the commit before pushing it to your remote. As seen in the screenshot above, tasks come back with a status.
 
 ```Hookz``` may return one of three different status codes as it executes the action pipeline:
 
@@ -34,7 +34,7 @@ Git hooks are a great way to run supplemental commands as you interact with git.
 
 ## Installation
 
-To install ```hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
+To install ```Hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
 
 Linux Example:
 
@@ -42,6 +42,16 @@ Linux Example:
 sudo chmod +x hookz-2.4.0-linux-amd64
 sudo mv hookz-2.4.0-linux-amd64 /usr/local/bin/hookz
 ```
+
+If you have a Go development environment set up, you can also simply do this:
+
+``` bash
+
+go install github.com/devops-kung-fu/hookz@latest
+
+```
+
+If you'd like to contribute to the development of ```Hookz``` then check out the [Development](#development) section below.
 
 ## Configuration
 
@@ -75,7 +85,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
       actions:
       - name: "Post Echo"
         exec: echo
-        args: ["-e", "Done!"]
+        args: ["-e", "Done"]
     - type: pre-push
       actions:
         - name: "Add all changed files during the pre-commit stage"
@@ -93,12 +103,12 @@ __Check out the [tacklebox](tackle/README.md) for a curated collection of action
 
 ### Dynamic Architecture URLs
 
-Quite often, downloadable binaries exist for multiple platforms when downloading. In order to get the right architecture for your current platform, Hookz ```v2.3.0``` introduces dynamic architecture URL support. For example, [hinge](https://github.com/devops-kung-fu/hinge) is available for multiple architectures such as ```linux```, ```darwin``` (Mac), etc. By using the ```%%PLATFORM%%``` tag in your URL to replace an architecture, the download functionality will retrieve the right binary for your current architecture.
+Quite often, downloadable binaries exist for multiple platforms when downloading. In order to get the right architecture for your current platform, Hookz ```v2.3.0``` introduced dynamic architecture URL support. For example, [hinge](https://github.com/devops-kung-fu/hinge) is available for multiple architectures such as ```linux```, ```darwin``` (Mac), etc. By using the ```%%PLATFORM%%``` tag in your URL to replace an architecture, the download functionality will retrieve the right binary for your current architecture.
 
 You can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
 
 ``` yaml
-version: 2.3.0
+version: 2.4.0
 hooks:
   - type: pre-commit
     actions:
@@ -107,7 +117,7 @@ hooks:
           args: ["."]
 ```
 
-If you are running Hookz on a Mac, this will bring down the ```hinge-0.1.0-darwin-amd64``` binary, if on linux, the ```hinge-0.1.0-linux-amd64``` binary will be downloaded.
+If you are running ```Hookz``` on a Mac, this will bring down the ```hinge-0.1.0-darwin-amd64``` binary, if on linux, the ```hinge-0.1.0-linux-amd64``` binary will be downloaded.
 
 ### Optional elements
 
@@ -202,9 +212,9 @@ hookz reset
 
 ### Debug option
 
-The ```initialize``` (init) and ```reset``` command optionally take a debug flag to indicate extended output should be displayed while a hook executes. All output from any action will be displayed during the commit/push process when this flag is used to build the hooks. This is handy for debugging or seeing errors that may be suppressed by hookz. 
+The ```initialize``` (init) and ```reset``` command optionally take a debug flag to indicate extended output should be displayed while ```hookz``` generates git hooks. 
 
-```
+``` bash
 hookz init --debug
 hookz reset --debug
 ```
@@ -213,9 +223,18 @@ hookz reset --debug
 
 If you want to see a log of what is happening when ```hookz``` executes, use the ```--verbose``` flag.
 
+``` bash
+hookz init --verbose
+hookz reset --verbose
 ```
-hookz init --debug
-hookz reset --debug
+
+### Verbose Output flag
+
+Passing the  ```--verbose-output``` flag when running a ```hookz init``` or ```hookz reset``` command will trigger ```Hookz``` to output extended information as ```git``` executes the hooks during the commit, push, etc. process. All output from any action will be displayed during the commit/push process when this flag is used to build the hooks. This is handy for debugging or seeing errors that may be suppressed by hookz. 
+
+``` bash
+hookz init --verbose-output
+hookz reset --verbose-output
 ```
 
 ## Tacklebox (Curated Example Actions)

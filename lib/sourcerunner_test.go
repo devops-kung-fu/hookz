@@ -18,7 +18,7 @@ func TestInstallSources(t *testing.T) {
 	})
 
 	assert.NotNil(t, output)
-	assert.Contains(t, output, "installing: github.com/devops-kung-fu/hinge@latest\n")
+	assert.Contains(t, output, "go install github.com/devops-kung-fu/hinge@latest\n")
 
 	sources = []Source{
 		{
