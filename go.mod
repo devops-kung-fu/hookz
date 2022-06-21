@@ -8,7 +8,7 @@ require (
 	github.com/jarcoal/httpmock v1.2.0
 	github.com/segmentio/ksuid v1.0.4
 	github.com/spf13/afero v1.8.2
-	github.com/spf13/cobra v1.4.0
+	github.com/spf13/cobra v1.5.0
 	github.com/stretchr/testify v1.7.1
 	gopkg.in/yaml.v2 v2.4.0
 )
