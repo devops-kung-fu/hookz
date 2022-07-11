@@ -1,6 +1,14 @@
 {
     "cSpell.words": [
         "Afero",
-        "hookz"
+        "coverprofile",
+        "cyclomatic",
+        "cyclonedx",
+        "errcheck",
+        "gofmt",
+        "gomod",
+        "hookz",
+        "ignoretests",
+        "sbom"
     ]
 }
