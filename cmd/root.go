@@ -34,7 +34,7 @@ var (
 			util.DoIf(Verbose, func() {
 				fmt.Println()
 				color.Style{color.FgWhite, color.OpBold}.Println("█ █ █▀█ █▀█ █▄▀ ▀█")
-				color.Style{color.FgWhite, color.OpBold}.Println("█▀█ █▄█ █▄█ █░█ █▄")
+				color.Style{color.FgWhite, color.OpBold}.Println("█▀█ █▄█ █▄█ █ █ █▄")
 				fmt.Println()
 				fmt.Println("DKFM - DevOps Kung Fu Mafia")
 				fmt.Println("https://github.com/devops-kung-fu/hookz")
