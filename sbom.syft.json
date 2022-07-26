@@ -1,0 +1,1176 @@
+{
+ "artifacts": [
+  {
+   "id": "82cf8b15f7c32de3",
+   "name": "github.com/davecgh/go-spew",
+   "version": "v1.1.1",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:davecgh:go-spew:v1.1.1:*:*:*:*:*:*:*",
+    "cpe:2.3:a:davecgh:go_spew:v1.1.1:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/davecgh/go-spew@v1.1.1"
+  },
+  {
+   "id": "f6b7bd83237af4e8",
+   "name": "github.com/devops-kung-fu/common",
+   "version": "v0.2.3",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:devops-kung-fu:common:v0.2.3:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:common:v0.2.3:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:common:v0.2.3:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:common:v0.2.3:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:common:v0.2.3:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.3"
+  },
+  {
+   "id": "d09a1629966f806a",
+   "name": "github.com/devops-kung-fu/common",
+   "version": "v0.2.3",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:devops-kung-fu:common:v0.2.3:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:common:v0.2.3:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:common:v0.2.3:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:common:v0.2.3:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:common:v0.2.3:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.3",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:xUJdi1A7kP1nPaFq/GZTEABvtxuaDRVUlaKSRUglxuw=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "b653b2ae57dc9008",
+   "name": "github.com/devops-kung-fu/heybo",
+   "version": "v0.0.5",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-darwin-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:devops-kung-fu:heybo:v0.0.5:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:heybo:v0.0.5:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:heybo:v0.0.5:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:heybo:v0.0.5:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:heybo:v0.0.5:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/devops-kung-fu/heybo@v0.0.5",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "amd64",
+    "h1Digest": "h1:Io7Aqclac4LK/muBJL5c/yqR4PQ0kGTXBXKkk3bvGjs=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "51cef8ea0eecc9a0",
+   "name": "github.com/devops-kung-fu/heybo",
+   "version": "v0.0.5",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-linux-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:devops-kung-fu:heybo:v0.0.5:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:heybo:v0.0.5:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:heybo:v0.0.5:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:heybo:v0.0.5:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:heybo:v0.0.5:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/devops-kung-fu/heybo@v0.0.5",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "x86_64",
+    "h1Digest": "h1:Io7Aqclac4LK/muBJL5c/yqR4PQ0kGTXBXKkk3bvGjs=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "5f89334f96d16a19",
+   "name": "github.com/devops-kung-fu/hinge",
+   "version": "(devel)",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-darwin-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:devops-kung-fu:hinge:\\(devel\\):*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:hinge:\\(devel\\):*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:hinge:\\(devel\\):*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:hinge:\\(devel\\):*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:hinge:\\(devel\\):*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/devops-kung-fu/hinge@(devel)",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "amd64",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "9be01f75e3874e50",
+   "name": "github.com/devops-kung-fu/hinge",
+   "version": "(devel)",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-linux-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:devops-kung-fu:hinge:\\(devel\\):*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:hinge:\\(devel\\):*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:hinge:\\(devel\\):*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:hinge:\\(devel\\):*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:hinge:\\(devel\\):*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/devops-kung-fu/hinge@(devel)",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "x86_64",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "ecaef3d3db2965a",
+   "name": "github.com/devops-kung-fu/hookz",
+   "version": "v0.0.0-20220722152240-b5e87c582716",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20220722152240-b5e87c582716:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20220722152240-b5e87c582716:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:hookz:v0.0.0-20220722152240-b5e87c582716:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:hookz:v0.0.0-20220722152240-b5e87c582716:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:hookz:v0.0.0-20220722152240-b5e87c582716:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20220722152240-b5e87c582716",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goBuildSettings": {
+     "-compiler": "gc",
+     "CGO_CFLAGS": "",
+     "CGO_CPPFLAGS": "",
+     "CGO_CXXFLAGS": "",
+     "CGO_ENABLED": "1",
+     "CGO_LDFLAGS": "",
+     "GOAMD64": "v1",
+     "GOARCH": "amd64",
+     "GOOS": "darwin",
+     "vcs": "git",
+     "vcs.modified": "true",
+     "vcs.revision": "b5e87c582716bb3591b01f73a68aaa923ad8f7a6",
+     "vcs.time": "2022-07-22T15:22:40Z"
+    },
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "ab8fb6cb90d73e16",
+   "name": "github.com/dustin/go-humanize",
+   "version": "v1.0.0",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:dustin:go-humanize:v1.0.0:*:*:*:*:*:*:*",
+    "cpe:2.3:a:dustin:go_humanize:v1.0.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/dustin/go-humanize@v1.0.0"
+  },
+  {
+   "id": "b66b5da0a5b5aba3",
+   "name": "github.com/dustin/go-humanize",
+   "version": "v1.0.0",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:dustin:go-humanize:v1.0.0:*:*:*:*:*:*:*",
+    "cpe:2.3:a:dustin:go_humanize:v1.0.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/dustin/go-humanize@v1.0.0",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:VSnTsYCnlFHaM2/igO1h6X3HA71jcobQuxemgkq4zYo=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "4e1e7e7a5e93821e",
+   "name": "github.com/gookit/color",
+   "version": "v1.4.2",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-darwin-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:gookit:color:v1.4.2:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/gookit/color@v1.4.2",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "amd64",
+    "h1Digest": "h1:tXy44JFSFkKnELV6WaMo/lLfu/meqITX3iAV52do7lk=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "7bc44a79afd64507",
+   "name": "github.com/gookit/color",
+   "version": "v1.4.2",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-linux-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:gookit:color:v1.4.2:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/gookit/color@v1.4.2",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "x86_64",
+    "h1Digest": "h1:tXy44JFSFkKnELV6WaMo/lLfu/meqITX3iAV52do7lk=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "7c3dd4825d9774",
+   "name": "github.com/gookit/color",
+   "version": "v1.5.1",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:gookit:color:v1.5.1:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/gookit/color@v1.5.1"
+  },
+  {
+   "id": "383a6ecd9bdeab60",
+   "name": "github.com/gookit/color",
+   "version": "v1.5.1",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:gookit:color:v1.5.1:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/gookit/color@v1.5.1",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:Vjg2VEcdHpwq+oY63s/ksHrgJYCTo0bwWvmmYWdE9fQ=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "ac4ead091b5593ab",
+   "name": "github.com/inconshreveable/mousetrap",
+   "version": "v1.0.0",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:inconshreveable:mousetrap:v1.0.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/inconshreveable/mousetrap@v1.0.0"
+  },
+  {
+   "id": "f469f5e014abf07c",
+   "name": "github.com/jarcoal/httpmock",
+   "version": "v1.2.0",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:jarcoal:httpmock:v1.2.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/jarcoal/httpmock@v1.2.0"
+  },
+  {
+   "id": "fc0265ef2c7b8e50",
+   "name": "github.com/pmezard/go-difflib",
+   "version": "v1.0.0",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:pmezard:go-difflib:v1.0.0:*:*:*:*:*:*:*",
+    "cpe:2.3:a:pmezard:go_difflib:v1.0.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0"
+  },
+  {
+   "id": "53ac2adbd0a87ac",
+   "name": "github.com/segmentio/ksuid",
+   "version": "v1.0.4",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:segmentio:ksuid:v1.0.4:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/segmentio/ksuid@v1.0.4"
+  },
+  {
+   "id": "981b33ddc73d6688",
+   "name": "github.com/segmentio/ksuid",
+   "version": "v1.0.4",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:segmentio:ksuid:v1.0.4:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/segmentio/ksuid@v1.0.4",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:sBo2BdShXjmcugAMwjugoGUdUV0pcxY5mW4xKRn3v4c=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "8e802022102fe88f",
+   "name": "github.com/spf13/afero",
+   "version": "v1.6.0",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-darwin-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:afero:v1.6.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/afero@v1.6.0",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "amd64",
+    "h1Digest": "h1:xoax2sJ2DT8S8xA2paPFjDCScCNeWsg75VG0DLRreiY=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "f3ee87e65f0de9d9",
+   "name": "github.com/spf13/afero",
+   "version": "v1.6.0",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-linux-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:afero:v1.6.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/afero@v1.6.0",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "x86_64",
+    "h1Digest": "h1:xoax2sJ2DT8S8xA2paPFjDCScCNeWsg75VG0DLRreiY=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "1ab8d71708e8ef0a",
+   "name": "github.com/spf13/afero",
+   "version": "v1.9.2",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:afero:v1.9.2:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/afero@v1.9.2"
+  },
+  {
+   "id": "d23e1846fdd7a65",
+   "name": "github.com/spf13/afero",
+   "version": "v1.9.2",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:afero:v1.9.2:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/afero@v1.9.2",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:j49Hj62F0n+DaZ1dDCvhABaPNSGNkt32oRFxI33IEMw=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "9202bd767a85753d",
+   "name": "github.com/spf13/cobra",
+   "version": "v1.1.3",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-darwin-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:cobra:v1.1.3:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/cobra@v1.1.3",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "amd64",
+    "h1Digest": "h1:xghbfqPkxzxP3C/f3n5DdpAbdKLj4ZE4BWQI362l53M=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "9fd5908825daed79",
+   "name": "github.com/spf13/cobra",
+   "version": "v1.1.3",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-linux-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:cobra:v1.1.3:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/cobra@v1.1.3",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "x86_64",
+    "h1Digest": "h1:xghbfqPkxzxP3C/f3n5DdpAbdKLj4ZE4BWQI362l53M=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "a34663c05b4edc16",
+   "name": "github.com/spf13/cobra",
+   "version": "v1.5.0",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:cobra:v1.5.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/cobra@v1.5.0"
+  },
+  {
+   "id": "c98181ed6bc60a5a",
+   "name": "github.com/spf13/cobra",
+   "version": "v1.5.0",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:cobra:v1.5.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/cobra@v1.5.0",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:X+jTBEBqF0bHN+9cSMgmfuvv2VHJ9ezmFNf9Y/XstYU=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "9342d0a93ecf0753",
+   "name": "github.com/spf13/pflag",
+   "version": "v1.0.5",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-darwin-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:pflag:v1.0.5:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "amd64",
+    "h1Digest": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "1b8ecbd6e07b3741",
+   "name": "github.com/spf13/pflag",
+   "version": "v1.0.5",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-linux-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:pflag:v1.0.5:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "x86_64",
+    "h1Digest": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "b5f60d334205548",
+   "name": "github.com/spf13/pflag",
+   "version": "v1.0.5",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:pflag:v1.0.5:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5"
+  },
+  {
+   "id": "d74b3cbc2252fadd",
+   "name": "github.com/spf13/pflag",
+   "version": "v1.0.5",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:spf13:pflag:v1.0.5:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "384b2b91069c12ca",
+   "name": "github.com/stretchr/testify",
+   "version": "v1.8.0",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:stretchr:testify:v1.8.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/stretchr/testify@v1.8.0"
+  },
+  {
+   "id": "bd5011ae3a61281c",
+   "name": "github.com/xo/terminfo",
+   "version": "v0.0.0-20210125001918-ca9a967f8778",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-darwin-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:xo:terminfo:v0.0.0-20210125001918-ca9a967f8778:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "amd64",
+    "h1Digest": "h1:QldyIu/L63oPpyvQmHgvgickp1Yw510KJOqX7H24mg8=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "63f3b12ca1d1a1d8",
+   "name": "github.com/xo/terminfo",
+   "version": "v0.0.0-20210125001918-ca9a967f8778",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-linux-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:xo:terminfo:v0.0.0-20210125001918-ca9a967f8778:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "x86_64",
+    "h1Digest": "h1:QldyIu/L63oPpyvQmHgvgickp1Yw510KJOqX7H24mg8=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "6145d58d9f60cbd4",
+   "name": "github.com/xo/terminfo",
+   "version": "v0.0.0-20210125001918-ca9a967f8778",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:xo:terminfo:v0.0.0-20210125001918-ca9a967f8778:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778"
+  },
+  {
+   "id": "62216a30da6f7e7e",
+   "name": "github.com/xo/terminfo",
+   "version": "v0.0.0-20210125001918-ca9a967f8778",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:xo:terminfo:v0.0.0-20210125001918-ca9a967f8778:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:QldyIu/L63oPpyvQmHgvgickp1Yw510KJOqX7H24mg8=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "80260c7a41642897",
+   "name": "golang.org/x/sys",
+   "version": "v0.0.0-20220722155257-8c9f86f7a55f",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220722155257-8c9f86f7a55f:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20220722155257-8c9f86f7a55f"
+  },
+  {
+   "id": "ef1f6802c206dd2a",
+   "name": "golang.org/x/text",
+   "version": "v0.3.6",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-darwin-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:golang:x\\/text:v0.3.6:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/golang.org/x/text@v0.3.6",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "amd64",
+    "h1Digest": "h1:aRYxNxv6iGQlyVaZmk6ZgYEDa+Jg18DxebPSrd6bg1M=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "6059b7cc93473396",
+   "name": "golang.org/x/text",
+   "version": "v0.3.6",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-linux-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:golang:x\\/text:v0.3.6:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/golang.org/x/text@v0.3.6",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "x86_64",
+    "h1Digest": "h1:aRYxNxv6iGQlyVaZmk6ZgYEDa+Jg18DxebPSrd6bg1M=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "ae70283ea710ca92",
+   "name": "golang.org/x/text",
+   "version": "v0.3.7",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:golang:x\\/text:v0.3.7:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/golang.org/x/text@v0.3.7"
+  },
+  {
+   "id": "d3236a0b5f011bd7",
+   "name": "golang.org/x/text",
+   "version": "v0.3.7",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:golang:x\\/text:v0.3.7:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/golang.org/x/text@v0.3.7",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:olpwvP2KacW1ZWvsR7uQhoyTYvKAupfQrRGBFM352Gk=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "6861e978714952d1",
+   "name": "gopkg.in/yaml.v2",
+   "version": "v2.4.0",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-darwin-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [],
+   "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "amd64",
+    "h1Digest": "h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "b96108f78f063232",
+   "name": "gopkg.in/yaml.v2",
+   "version": "v2.4.0",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": ".git/hooks/hinge-0.1.0-linux-amd64"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [],
+   "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.16.4",
+    "architecture": "x86_64",
+    "h1Digest": "h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY=",
+    "mainModule": "github.com/devops-kung-fu/hinge"
+   }
+  },
+  {
+   "id": "8f2bb9bdbe3059d6",
+   "name": "gopkg.in/yaml.v2",
+   "version": "v2.4.0",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [],
+   "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0"
+  },
+  {
+   "id": "f1b1f56af9592ff2",
+   "name": "gopkg.in/yaml.v2",
+   "version": "v2.4.0",
+   "type": "go-module",
+   "foundBy": "go-module-binary-cataloger",
+   "locations": [
+    {
+     "path": "hookz"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [],
+   "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+   "metadataType": "GolangBinMetadata",
+   "metadata": {
+    "goCompiledVersion": "go1.18.3",
+    "architecture": "amd64",
+    "h1Digest": "h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY=",
+    "mainModule": "github.com/devops-kung-fu/hookz"
+   }
+  },
+  {
+   "id": "7d36a1c0c358a2f8",
+   "name": "gopkg.in/yaml.v3",
+   "version": "v3.0.1",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [],
+   "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1"
+  }
+ ],
+ "artifactRelationships": [],
+ "source": {
+  "type": "directory",
+  "target": "."
+ },
+ "distro": {},
+ "descriptor": {
+  "name": "syft",
+  "version": "[not provided]",
+  "configuration": {
+   "configPath": "",
+   "verbosity": 0,
+   "quiet": false,
+   "output": [
+    "json=sbom.syft.json",
+    "spdx-json=sbom.spdx.json",
+    "cyclonedx-json=sbom.cyclonedx.json"
+   ],
+   "output-template-path": "",
+   "file": "",
+   "check-for-app-update": true,
+   "anchore": {
+    "host": "",
+    "path": "",
+    "dockerfile": "",
+    "overwrite-existing-image": false,
+    "import-timeout": 30
+   },
+   "dev": {
+    "profile-cpu": false,
+    "profile-mem": false
+   },
+   "log": {
+    "structured": false,
+    "level": "warning",
+    "file-location": ""
+   },
+   "catalogers": null,
+   "package": {
+    "cataloger": {
+     "enabled": true,
+     "scope": "Squashed"
+    },
+    "search-unindexed-archives": false,
+    "search-indexed-archives": true
+   },
+   "file-metadata": {
+    "cataloger": {
+     "enabled": false,
+     "scope": "Squashed"
+    },
+    "digests": [
+     "sha256"
+    ]
+   },
+   "file-classification": {
+    "cataloger": {
+     "enabled": false,
+     "scope": "Squashed"
+    }
+   },
+   "file-contents": {
+    "cataloger": {
+     "enabled": false,
+     "scope": "Squashed"
+    },
+    "skip-files-above-size": 1048576,
+    "globs": []
+   },
+   "secrets": {
+    "cataloger": {
+     "enabled": false,
+     "scope": "AllLayers"
+    },
+    "additional-patterns": {},
+    "exclude-pattern-names": [],
+    "reveal-values": false,
+    "skip-files-above-size": 1048576
+   },
+   "registry": {
+    "insecure-skip-tls-verify": false,
+    "insecure-use-http": false,
+    "auth": []
+   },
+   "exclude": [],
+   "attest": {
+    "key": "",
+    "cert": "",
+    "noUpload": false,
+    "force": false,
+    "recursive": false,
+    "replace": false,
+    "fulcioUrl": "https://fulcio.sigstore.dev",
+    "fulcio_identity_token": "",
+    "insecure_skip_verify": false,
+    "rekorUrl": "https://rekor.sigstore.dev",
+    "oidcIssuer": "https://oauth2.sigstore.dev/auth",
+    "oidcClientId": "sigstore",
+    "OIDCRedirectURL": ""
+   },
+   "platform": ""
+  }
+ },
+ "schema": {
+  "version": "3.3.1",
+  "url": "https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-3.3.1.json"
+ }
+}

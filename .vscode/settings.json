@@ -9,6 +9,7 @@
         "gomod",
         "hookz",
         "ignoretests",
-        "sbom"
+        "sbom",
+        "syft"
     ]
 }

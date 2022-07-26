@@ -1,6 +1,7 @@
   version: 2.4.0
   sources:
     - source: github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
+    - source: github.com/anchore/syft/cmd/syft@latest
     - source: github.com/devops-kung-fu/lucha@latest
     - source: github.com/devops-kung-fu/hinge@latest
     - source: github.com/kisielk/errcheck@latest      
@@ -42,9 +43,9 @@
         - name: "go: Test coverage"
           exec: go
           args: ["tool", "cover", "-func=coverage.out"]
-        - name: "cyclone-dx: Generate a Software Bill of Materials (SBoM)"
-          exec: cyclonedx-gomod
-          args: ["-json", "-output", "hookz-sbom.json"]
+        - name: "syft: Generate a Software Bill of Materials (SBoM)"
+          exec: syft
+          args: [".","-o ","json=sbom.syft.json","-o", "spdx-json=sbom.spdx.json", "-o", "cyclonedx-json=sbom.cyclonedx.json"]
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]

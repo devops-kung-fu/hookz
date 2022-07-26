@@ -306,9 +306,9 @@ go install github.com/fzipp/gocyclo@latest
 
 ## Software Bill of Materials
 
-```Hookz``` uses the CycloneDX to generate a Software Bill of Materials in CycloneDX format (v1.4) every time a developer commits code to this repository. More information for CycloneDX is available [here](https://cyclonedx.org)
+```Hookz``` uses [syft](https://github.com/anchore/syft) to generate a Software Bill of Materials every time a developer commits code to this repository. 
 
-The current SBoM for ```Hookz``` is available [here](hookz-sbom.json).
+The current CycloneDX SBoM for ```Hookz``` is available [here](sbom.cyclonedx.json) and the current SPDX SBoM for ```Hookz``` is available [here](sbom.spdx.json)
 
 ## Credits
 
