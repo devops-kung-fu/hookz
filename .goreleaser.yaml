@@ -8,11 +8,7 @@ builds:
       - linux
     goarch:
       - amd64
-      - arm
       - arm64
-    goarm:
-      - 6
-      - 7
 
 release:
   prerelease: auto
@@ -42,5 +38,4 @@ nfpms:
     formats:
       - deb
       - rpm
-      - apk
 

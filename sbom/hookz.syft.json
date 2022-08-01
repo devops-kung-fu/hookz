@@ -185,9 +185,9 @@
    }
   },
   {
-   "id": "18ed2b7705ee5164",
+   "id": "27bb4d46877e5e64",
    "name": "github.com/devops-kung-fu/hookz",
-   "version": "v0.0.0-20220801203314-9bdec8810e0f",
+   "version": "v0.0.0-20220801213222-342c1b6ad25e",
    "type": "go-module",
    "foundBy": "go-module-binary-cataloger",
    "locations": [
@@ -198,13 +198,13 @@
    "licenses": [],
    "language": "go",
    "cpes": [
-    "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops-kung:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops_kung:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*"
+    "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*"
    ],
-   "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20220801203314-9bdec8810e0f",
+   "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20220801213222-342c1b6ad25e",
    "metadataType": "GolangBinMetadata",
    "metadata": {
     "goBuildSettings": {
@@ -219,8 +219,8 @@
      "GOOS": "darwin",
      "vcs": "git",
      "vcs.modified": "true",
-     "vcs.revision": "9bdec8810e0fe72149ebc97435cc3a85d04979a9",
-     "vcs.time": "2022-08-01T20:33:14Z"
+     "vcs.revision": "342c1b6ad25e5e1f1e11be2620b5a5bc560b2951",
+     "vcs.time": "2022-08-01T21:32:22Z"
     },
     "goCompiledVersion": "go1.18.4",
     "architecture": "amd64",
