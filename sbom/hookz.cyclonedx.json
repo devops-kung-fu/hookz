@@ -432,7 +432,6 @@
         {
           "name": "syft:cpe23",
           "value": "cpe:2.3:a:devops:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*"
-        },
         {
           "name": "syft:location:0:path",
           "value": "hookz"
