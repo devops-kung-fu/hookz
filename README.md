@@ -34,13 +34,22 @@ Git hooks are a great way to run supplemental commands as you interact with git.
 
 ## Installation
 
-To install ```Hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) , make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
+### Mac
 
-Linux Example:
+You can use [Homebrew](https://brew.sh) to install ```Hookz``` using the following:
+
+``` bash
+brew tap devops-kung-fu/homebrew-tap
+brew install devops-kung-fu/homebrew-tap/hookz
+```
+
+### Linux
+
+To install ```Hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases), extract the binary from the compressed file, make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
 
 ```bash
-sudo chmod +x hookz-2.4.0-linux-amd64
-sudo mv hookz-2.4.0-linux-amd64 /usr/local/bin/hookz
+sudo chmod +x hookz-2.4.1-linux-amd64
+sudo mv hookz-2.4.1-linux-amd64 /usr/local/bin/hookz
 ```
 
 If you have a Go development environment set up, you can also simply do this:
@@ -60,9 +69,8 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-  version: 2.4.0
+  version: 2.4.1
   tools:
-    - tool: github.com/devops-kung-fu/hookz@latest
     - tool: github.com/devops-kung-fu/lucha@latest
     - tool: github.com/devops-kung-fu/hinge@latest
     - tool: github.com/devops-kung-fu/gardener@latest
@@ -108,7 +116,7 @@ Quite often, downloadable binaries exist for multiple platforms when downloading
 You can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
 
 ``` yaml
-version: 2.4.0
+version: 2.4.1
 hooks:
   - type: pre-commit
     actions:
@@ -248,7 +256,7 @@ Check out the collection [here](tackle/README.md).
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.4.0
+version: 2.4.1
 hooks:
   - type: pre-commit
     actions:
@@ -271,7 +279,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.4.0
+version: 2.4.1
 hooks:
   - type: pre-commit
     actions:
@@ -308,7 +316,7 @@ go install github.com/fzipp/gocyclo@latest
 
 ```Hookz``` uses [syft](https://github.com/anchore/syft) to generate a Software Bill of Materials every time a developer commits code to this repository. 
 
-The current CycloneDX SBoM for ```Hookz``` is available [here](sbom.cyclonedx.json) and the current SPDX SBoM for ```Hookz``` is available [here](sbom.spdx.json)
+The current CycloneDX SBoM for ```Hookz``` is available [here](sbom/hookz.cyclonedx.json) and the current SPDX SBoM for ```Hookz``` is available [here](sbom/hookz.spdx.json)
 
 ## Credits
 
