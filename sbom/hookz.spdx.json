@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-08-01T20:32:31.91143Z",
+  "created": "2022-08-01T20:41:16.070815Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,7 +11,7 @@
   "licenseListVersion": "3.17"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/ce935626-8805-4068-a2dd-70e63a7d3b76",
+ "documentNamespace": "https://anchore.com/syft/dir/d9ec099a-4c75-4aae-a1a3-2614b3753c40",
  "packages": [
   {
    "SPDXID": "SPDXRef-82cf8b15f7c32de3",
@@ -293,46 +293,46 @@
    "versionInfo": "(devel)"
   },
   {
-   "SPDXID": "SPDXRef-b72d361f99d32940",
+   "SPDXID": "SPDXRef-18ed2b7705ee5164",
    "name": "github.com/devops-kung-fu/hookz",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20220801203135-ace350e73584:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20220801203135-ace350e73584:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung:hookz:v0.0.0-20220801203135-ace350e73584:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung:hookz:v0.0.0-20220801203135-ace350e73584:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops:hookz:v0.0.0-20220801203135-ace350e73584:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops:hookz:v0.0.0-20220801203314-9bdec8810e0f:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20220801203135-ace350e73584",
+     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20220801203314-9bdec8810e0f",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: hookz",
-   "versionInfo": "v0.0.0-20220801203135-ace350e73584"
+   "versionInfo": "v0.0.0-20220801203314-9bdec8810e0f"
   },
   {
    "SPDXID": "SPDXRef-ab8fb6cb90d73e16",

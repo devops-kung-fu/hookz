@@ -13,10 +13,6 @@ builds:
     goarm:
       - 6
       - 7
-    env:
-      - CGO_ENABLED=0
-    flags:
-      - -mod=vendor
 
 release:
   prerelease: auto
