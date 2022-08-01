@@ -1,11 +1,18 @@
+project_name: hookz
+
 builds:
-  - binary: hookz
+  - 
+    binary: hookz
     goos:
       - darwin
       - linux
     goarch:
       - amd64
+      - arm
       - arm64
+    goarm:
+      - 6
+      - 7
     env:
       - CGO_ENABLED=0
     flags:
@@ -31,12 +38,12 @@ brews:
 checksum:
   name_template: 'checksums.txt'
 
-  nfpms:
+nfpms:
   - maintainer: DJ Schleen <djschleen@gmail.com>
     description: Manages client side git hooks resulting in the ability to create git action pipelines.
     homepage: https://github.com/devops-kung-fu/hookz
     license: MPL
-  formats:
+formats:
   - deb
   - rpm
   - apk
