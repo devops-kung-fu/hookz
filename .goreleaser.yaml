@@ -43,7 +43,8 @@ nfpms:
     description: Manages client side git hooks resulting in the ability to create git action pipelines.
     homepage: https://github.com/devops-kung-fu/hookz
     license: MPL
-formats:
-  - deb
-  - rpm
-  - apk
+    formats:
+      - deb
+      - rpm
+      - apk
+
