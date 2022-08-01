@@ -1,0 +1,1910 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "serialNumber": "urn:uuid:56e4fd7f-3793-4eb9-bdfd-061a83bfe43b",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2022-08-01T13:42:03-06:00",
+    "tools": [
+      {
+        "vendor": "anchore",
+        "name": "syft",
+        "version": "[not provided]"
+      }
+    ],
+    "component": {
+      "bom-ref": "af63bd4c8601b7f1",
+      "type": "file",
+      "name": "."
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "pkg:golang/github.com/davecgh/go-spew@v1.1.1?package-id=82cf8b15f7c32de3",
+      "type": "library",
+      "name": "github.com/davecgh/go-spew",
+      "version": "v1.1.1",
+      "cpe": "cpe:2.3:a:davecgh:go-spew:v1.1.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/davecgh/go-spew@v1.1.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:davecgh:go_spew:v1.1.1:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.3?package-id=f6b7bd83237af4e8",
+      "type": "library",
+      "name": "github.com/devops-kung-fu/common",
+      "version": "v0.2.3",
+      "cpe": "cpe:2.3:a:devops-kung-fu:common:v0.2.3:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung_fu:common:v0.2.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops-kung:common:v0.2.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung:common:v0.2.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops:common:v0.2.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.3?package-id=e2a3ad729c0c5a35",
+      "type": "library",
+      "name": "github.com/devops-kung-fu/common",
+      "version": "v0.2.3",
+      "cpe": "cpe:2.3:a:devops-kung-fu:common:v0.2.3:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung_fu:common:v0.2.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops-kung:common:v0.2.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung:common:v0.2.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops:common:v0.2.3:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:xUJdi1A7kP1nPaFq/GZTEABvtxuaDRVUlaKSRUglxuw="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/heybo@v0.0.5?package-id=b653b2ae57dc9008",
+      "type": "library",
+      "name": "github.com/devops-kung-fu/heybo",
+      "version": "v0.0.5",
+      "cpe": "cpe:2.3:a:devops-kung-fu:heybo:v0.0.5:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/heybo@v0.0.5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung_fu:heybo:v0.0.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops-kung:heybo:v0.0.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung:heybo:v0.0.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops:heybo:v0.0.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-darwin-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Io7Aqclac4LK/muBJL5c/yqR4PQ0kGTXBXKkk3bvGjs="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/heybo@v0.0.5?package-id=51cef8ea0eecc9a0",
+      "type": "library",
+      "name": "github.com/devops-kung-fu/heybo",
+      "version": "v0.0.5",
+      "cpe": "cpe:2.3:a:devops-kung-fu:heybo:v0.0.5:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/heybo@v0.0.5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung_fu:heybo:v0.0.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops-kung:heybo:v0.0.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung:heybo:v0.0.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops:heybo:v0.0.5:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-linux-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "x86_64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Io7Aqclac4LK/muBJL5c/yqR4PQ0kGTXBXKkk3bvGjs="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hinge@(devel)?package-id=5f89334f96d16a19",
+      "type": "library",
+      "name": "github.com/devops-kung-fu/hinge",
+      "version": "(devel)",
+      "cpe": "cpe:2.3:a:devops-kung-fu:hinge:\\(devel\\):*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hinge@(devel)",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung_fu:hinge:\\(devel\\):*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops-kung:hinge:\\(devel\\):*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung:hinge:\\(devel\\):*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops:hinge:\\(devel\\):*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-darwin-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hinge@(devel)?package-id=9be01f75e3874e50",
+      "type": "library",
+      "name": "github.com/devops-kung-fu/hinge",
+      "version": "(devel)",
+      "cpe": "cpe:2.3:a:devops-kung-fu:hinge:\\(devel\\):*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hinge@(devel)",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung_fu:hinge:\\(devel\\):*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops-kung:hinge:\\(devel\\):*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung:hinge:\\(devel\\):*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops:hinge:\\(devel\\):*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-linux-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "x86_64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20220726192036-ec5d07a89480?package-id=35b16b997128fd30",
+      "type": "library",
+      "name": "github.com/devops-kung-fu/hookz",
+      "version": "v0.0.0-20220726192036-ec5d07a89480",
+      "cpe": "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20220726192036-ec5d07a89480:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20220726192036-ec5d07a89480",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20220726192036-ec5d07a89480:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops-kung:hookz:v0.0.0-20220726192036-ec5d07a89480:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops_kung:hookz:v0.0.0-20220726192036-ec5d07a89480:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:devops:hookz:v0.0.0-20220726192036-ec5d07a89480:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/dustin/go-humanize@v1.0.0?package-id=ab8fb6cb90d73e16",
+      "type": "library",
+      "name": "github.com/dustin/go-humanize",
+      "version": "v1.0.0",
+      "cpe": "cpe:2.3:a:dustin:go-humanize:v1.0.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/dustin/go-humanize@v1.0.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:dustin:go_humanize:v1.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/dustin/go-humanize@v1.0.0?package-id=9cd039e24c854bc6",
+      "type": "library",
+      "name": "github.com/dustin/go-humanize",
+      "version": "v1.0.0",
+      "cpe": "cpe:2.3:a:dustin:go-humanize:v1.0.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/dustin/go-humanize@v1.0.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:dustin:go_humanize:v1.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:VSnTsYCnlFHaM2/igO1h6X3HA71jcobQuxemgkq4zYo="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/gookit/color@v1.4.2?package-id=4e1e7e7a5e93821e",
+      "type": "library",
+      "name": "github.com/gookit/color",
+      "version": "v1.4.2",
+      "cpe": "cpe:2.3:a:gookit:color:v1.4.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/gookit/color@v1.4.2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-darwin-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:tXy44JFSFkKnELV6WaMo/lLfu/meqITX3iAV52do7lk="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/gookit/color@v1.4.2?package-id=7bc44a79afd64507",
+      "type": "library",
+      "name": "github.com/gookit/color",
+      "version": "v1.4.2",
+      "cpe": "cpe:2.3:a:gookit:color:v1.4.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/gookit/color@v1.4.2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-linux-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "x86_64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:tXy44JFSFkKnELV6WaMo/lLfu/meqITX3iAV52do7lk="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/gookit/color@v1.5.1?package-id=7c3dd4825d9774",
+      "type": "library",
+      "name": "github.com/gookit/color",
+      "version": "v1.5.1",
+      "cpe": "cpe:2.3:a:gookit:color:v1.5.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/gookit/color@v1.5.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/gookit/color@v1.5.1?package-id=aa8a11dd00bdbafc",
+      "type": "library",
+      "name": "github.com/gookit/color",
+      "version": "v1.5.1",
+      "cpe": "cpe:2.3:a:gookit:color:v1.5.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/gookit/color@v1.5.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Vjg2VEcdHpwq+oY63s/ksHrgJYCTo0bwWvmmYWdE9fQ="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/inconshreveable/mousetrap@v1.0.0?package-id=ac4ead091b5593ab",
+      "type": "library",
+      "name": "github.com/inconshreveable/mousetrap",
+      "version": "v1.0.0",
+      "cpe": "cpe:2.3:a:inconshreveable:mousetrap:v1.0.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/inconshreveable/mousetrap@v1.0.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/jarcoal/httpmock@v1.2.0?package-id=f469f5e014abf07c",
+      "type": "library",
+      "name": "github.com/jarcoal/httpmock",
+      "version": "v1.2.0",
+      "cpe": "cpe:2.3:a:jarcoal:httpmock:v1.2.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/jarcoal/httpmock@v1.2.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0?package-id=fc0265ef2c7b8e50",
+      "type": "library",
+      "name": "github.com/pmezard/go-difflib",
+      "version": "v1.0.0",
+      "cpe": "cpe:2.3:a:pmezard:go-difflib:v1.0.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:pmezard:go_difflib:v1.0.0:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/segmentio/ksuid@v1.0.4?package-id=53ac2adbd0a87ac",
+      "type": "library",
+      "name": "github.com/segmentio/ksuid",
+      "version": "v1.0.4",
+      "cpe": "cpe:2.3:a:segmentio:ksuid:v1.0.4:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/segmentio/ksuid@v1.0.4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/segmentio/ksuid@v1.0.4?package-id=3bc2d2cf54c001b7",
+      "type": "library",
+      "name": "github.com/segmentio/ksuid",
+      "version": "v1.0.4",
+      "cpe": "cpe:2.3:a:segmentio:ksuid:v1.0.4:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/segmentio/ksuid@v1.0.4",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:sBo2BdShXjmcugAMwjugoGUdUV0pcxY5mW4xKRn3v4c="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.6.0?package-id=8e802022102fe88f",
+      "type": "library",
+      "name": "github.com/spf13/afero",
+      "version": "v1.6.0",
+      "cpe": "cpe:2.3:a:spf13:afero:v1.6.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/afero@v1.6.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-darwin-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:xoax2sJ2DT8S8xA2paPFjDCScCNeWsg75VG0DLRreiY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.6.0?package-id=f3ee87e65f0de9d9",
+      "type": "library",
+      "name": "github.com/spf13/afero",
+      "version": "v1.6.0",
+      "cpe": "cpe:2.3:a:spf13:afero:v1.6.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/afero@v1.6.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-linux-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "x86_64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:xoax2sJ2DT8S8xA2paPFjDCScCNeWsg75VG0DLRreiY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.9.2?package-id=1ab8d71708e8ef0a",
+      "type": "library",
+      "name": "github.com/spf13/afero",
+      "version": "v1.9.2",
+      "cpe": "cpe:2.3:a:spf13:afero:v1.9.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/afero@v1.9.2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.9.2?package-id=d2f1df8aa38f2e3",
+      "type": "library",
+      "name": "github.com/spf13/afero",
+      "version": "v1.9.2",
+      "cpe": "cpe:2.3:a:spf13:afero:v1.9.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/afero@v1.9.2",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:j49Hj62F0n+DaZ1dDCvhABaPNSGNkt32oRFxI33IEMw="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.1.3?package-id=9202bd767a85753d",
+      "type": "library",
+      "name": "github.com/spf13/cobra",
+      "version": "v1.1.3",
+      "cpe": "cpe:2.3:a:spf13:cobra:v1.1.3:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/cobra@v1.1.3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-darwin-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:xghbfqPkxzxP3C/f3n5DdpAbdKLj4ZE4BWQI362l53M="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.1.3?package-id=9fd5908825daed79",
+      "type": "library",
+      "name": "github.com/spf13/cobra",
+      "version": "v1.1.3",
+      "cpe": "cpe:2.3:a:spf13:cobra:v1.1.3:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/cobra@v1.1.3",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-linux-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "x86_64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:xghbfqPkxzxP3C/f3n5DdpAbdKLj4ZE4BWQI362l53M="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.5.0?package-id=a34663c05b4edc16",
+      "type": "library",
+      "name": "github.com/spf13/cobra",
+      "version": "v1.5.0",
+      "cpe": "cpe:2.3:a:spf13:cobra:v1.5.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/cobra@v1.5.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.5.0?package-id=9c14f19bce872f53",
+      "type": "library",
+      "name": "github.com/spf13/cobra",
+      "version": "v1.5.0",
+      "cpe": "cpe:2.3:a:spf13:cobra:v1.5.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/cobra@v1.5.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:X+jTBEBqF0bHN+9cSMgmfuvv2VHJ9ezmFNf9Y/XstYU="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=9342d0a93ecf0753",
+      "type": "library",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.5",
+      "cpe": "cpe:2.3:a:spf13:pflag:v1.0.5:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-darwin-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=1b8ecbd6e07b3741",
+      "type": "library",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.5",
+      "cpe": "cpe:2.3:a:spf13:pflag:v1.0.5:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-linux-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "x86_64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=b5f60d334205548",
+      "type": "library",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.5",
+      "cpe": "cpe:2.3:a:spf13:pflag:v1.0.5:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=df54ac6a0f1c94e8",
+      "type": "library",
+      "name": "github.com/spf13/pflag",
+      "version": "v1.0.5",
+      "cpe": "cpe:2.3:a:spf13:pflag:v1.0.5:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.0?package-id=384b2b91069c12ca",
+      "type": "library",
+      "name": "github.com/stretchr/testify",
+      "version": "v1.8.0",
+      "cpe": "cpe:2.3:a:stretchr:testify:v1.8.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/stretchr/testify@v1.8.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778?package-id=bd5011ae3a61281c",
+      "type": "library",
+      "name": "github.com/xo/terminfo",
+      "version": "v0.0.0-20210125001918-ca9a967f8778",
+      "cpe": "cpe:2.3:a:xo:terminfo:v0.0.0-20210125001918-ca9a967f8778:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-darwin-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:QldyIu/L63oPpyvQmHgvgickp1Yw510KJOqX7H24mg8="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778?package-id=63f3b12ca1d1a1d8",
+      "type": "library",
+      "name": "github.com/xo/terminfo",
+      "version": "v0.0.0-20210125001918-ca9a967f8778",
+      "cpe": "cpe:2.3:a:xo:terminfo:v0.0.0-20210125001918-ca9a967f8778:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-linux-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "x86_64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:QldyIu/L63oPpyvQmHgvgickp1Yw510KJOqX7H24mg8="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778?package-id=6145d58d9f60cbd4",
+      "type": "library",
+      "name": "github.com/xo/terminfo",
+      "version": "v0.0.0-20210125001918-ca9a967f8778",
+      "cpe": "cpe:2.3:a:xo:terminfo:v0.0.0-20210125001918-ca9a967f8778:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778?package-id=8e719645124d0c88",
+      "type": "library",
+      "name": "github.com/xo/terminfo",
+      "version": "v0.0.0-20210125001918-ca9a967f8778",
+      "cpe": "cpe:2.3:a:xo:terminfo:v0.0.0-20210125001918-ca9a967f8778:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/xo/terminfo@v0.0.0-20210125001918-ca9a967f8778",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:QldyIu/L63oPpyvQmHgvgickp1Yw510KJOqX7H24mg8="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.0.0-20220731174439-a90be440212d?package-id=25c42e37d7076a0b",
+      "type": "library",
+      "name": "golang.org/x/sys",
+      "version": "v0.0.0-20220731174439-a90be440212d",
+      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220731174439-a90be440212d:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20220731174439-a90be440212d",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.3.6?package-id=ef1f6802c206dd2a",
+      "type": "library",
+      "name": "golang.org/x/text",
+      "version": "v0.3.6",
+      "cpe": "cpe:2.3:a:golang:x\\/text:v0.3.6:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/text@v0.3.6",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-darwin-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:aRYxNxv6iGQlyVaZmk6ZgYEDa+Jg18DxebPSrd6bg1M="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.3.6?package-id=6059b7cc93473396",
+      "type": "library",
+      "name": "golang.org/x/text",
+      "version": "v0.3.6",
+      "cpe": "cpe:2.3:a:golang:x\\/text:v0.3.6:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/text@v0.3.6",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-linux-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "x86_64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:aRYxNxv6iGQlyVaZmk6ZgYEDa+Jg18DxebPSrd6bg1M="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.3.7?package-id=ae70283ea710ca92",
+      "type": "library",
+      "name": "golang.org/x/text",
+      "version": "v0.3.7",
+      "cpe": "cpe:2.3:a:golang:x\\/text:v0.3.7:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/text@v0.3.7",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.3.7?package-id=f35b8f4be33fa66d",
+      "type": "library",
+      "name": "golang.org/x/text",
+      "version": "v0.3.7",
+      "cpe": "cpe:2.3:a:golang:x\\/text:v0.3.7:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/text@v0.3.7",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:olpwvP2KacW1ZWvsR7uQhoyTYvKAupfQrRGBFM352Gk="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0?package-id=6861e978714952d1",
+      "type": "library",
+      "name": "gopkg.in/yaml.v2",
+      "version": "v2.4.0",
+      "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-darwin-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0?package-id=b96108f78f063232",
+      "type": "library",
+      "name": "gopkg.in/yaml.v2",
+      "version": "v2.4.0",
+      "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": ".git/hooks/hinge-0.1.0-linux-amd64"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "x86_64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.16.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hinge"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0?package-id=8f2bb9bdbe3059d6",
+      "type": "library",
+      "name": "gopkg.in/yaml.v2",
+      "version": "v2.4.0",
+      "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v2@v2.4.0?package-id=756ce68d3a696c63",
+      "type": "library",
+      "name": "gopkg.in/yaml.v2",
+      "version": "v2.4.0",
+      "purl": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "hookz"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.18.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:D8xgwECY7CYvx+Y2n4sBz93Jn9JRvxdiyyo8CTfuKaY="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/hookz"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v3@v3.0.1?package-id=7d36a1c0c358a2f8",
+      "type": "library",
+      "name": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    }
+  ]
+}
