@@ -1,3 +1,5 @@
+project_name: hookz
+
 builds:
   - 
     binary: hookz
@@ -45,3 +47,4 @@ nfpms:
       - deb
       - rpm
       - apk
+
