@@ -1,4 +1,4 @@
-//Package lib Functionality for the Hookz CLI
+// Package lib Functionality for the Hookz CLI
 package lib
 
 import (

@@ -31,7 +31,8 @@ checksum:
   name_template: 'checksums.txt'
 
 nfpms:
-  - maintainer: DJ Schleen <djschleen@gmail.com>
+  - 
+    maintainer: DevOps Kung Fu Mafia <admin@dkfm.io>
     description: Manages client side git hooks resulting in the ability to create git action pipelines.
     homepage: https://github.com/devops-kung-fu/hookz
     license: MPL
@@ -39,3 +40,20 @@ nfpms:
       - deb
       - rpm
 
+snapcrafts:
+  - 
+    id: hookz
+    name: hookz
+    summary: 'Manages client side git hooks resulting in the ability to create git action pipelines.'
+    description: |
+      Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed hookz. hookz allows us to do a ton of commit tasks before our code even hits our branches. As you commit and push code to a git based source repository, hookz will trigger scripts, run tasks, or do just about anything for you.
+
+      The best thing? hookz doesn't care what IDE you develop with, what your back end source control system is, or what languages you program in. Operating System? We don't care. We've compiled hookz for every OS and architecture you'd ever want. 
+    grade: stable
+    confinement: classic
+    base: core20
+
+    apps:
+      hookz:
+        command: hookz
+        completer: hookz completion bash

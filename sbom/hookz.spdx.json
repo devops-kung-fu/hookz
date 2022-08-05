@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-08-01T21:33:01.184869Z",
+  "created": "2022-08-05T20:29:14.52843Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,7 +11,7 @@
   "licenseListVersion": "3.17"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/60965d86-7389-4e77-a375-906113de66ce",
+ "documentNamespace": "https://anchore.com/syft/dir/d185e13c-d027-4163-9ab4-1d8a9b2ff5de",
  "packages": [
   {
    "SPDXID": "SPDXRef-82cf8b15f7c32de3",
@@ -83,7 +83,7 @@
    "versionInfo": "v0.2.3"
   },
   {
-   "SPDXID": "SPDXRef-e2a3ad729c0c5a35",
+   "SPDXID": "SPDXRef-4440d4e6b66c29f1",
    "name": "github.com/devops-kung-fu/common",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
@@ -293,46 +293,46 @@
    "versionInfo": "(devel)"
   },
   {
-   "SPDXID": "SPDXRef-27bb4d46877e5e64",
+   "SPDXID": "SPDXRef-f36dcb770f08de82",
    "name": "github.com/devops-kung-fu/hookz",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20220801214007-ab6514ce54f8:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20220801214007-ab6514ce54f8:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung:hookz:v0.0.0-20220801214007-ab6514ce54f8:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung:hookz:v0.0.0-20220801214007-ab6514ce54f8:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops:hookz:v0.0.0-20220801213222-342c1b6ad25e:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops:hookz:v0.0.0-20220801214007-ab6514ce54f8:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20220801213222-342c1b6ad25e",
+     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20220801214007-ab6514ce54f8",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: hookz",
-   "versionInfo": "v0.0.0-20220801213222-342c1b6ad25e"
+   "versionInfo": "v0.0.0-20220801214007-ab6514ce54f8"
   },
   {
    "SPDXID": "SPDXRef-ab8fb6cb90d73e16",
@@ -362,7 +362,7 @@
    "versionInfo": "v1.0.0"
   },
   {
-   "SPDXID": "SPDXRef-9cd039e24c854bc6",
+   "SPDXID": "SPDXRef-623696e652a7aeb9",
    "name": "github.com/dustin/go-humanize",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
@@ -455,7 +455,7 @@
    "versionInfo": "v1.5.1"
   },
   {
-   "SPDXID": "SPDXRef-aa8a11dd00bdbafc",
+   "SPDXID": "SPDXRef-497c840675d95926",
    "name": "github.com/gookit/color",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
@@ -570,7 +570,7 @@
    "versionInfo": "v1.0.4"
   },
   {
-   "SPDXID": "SPDXRef-3bc2d2cf54c001b7",
+   "SPDXID": "SPDXRef-8527d1bc8f4a5f9e",
    "name": "github.com/segmentio/ksuid",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
@@ -658,7 +658,7 @@
    "versionInfo": "v1.9.2"
   },
   {
-   "SPDXID": "SPDXRef-d2f1df8aa38f2e3",
+   "SPDXID": "SPDXRef-dffaa3d33f35ddca",
    "name": "github.com/spf13/afero",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
@@ -746,7 +746,7 @@
    "versionInfo": "v1.5.0"
   },
   {
-   "SPDXID": "SPDXRef-9c14f19bce872f53",
+   "SPDXID": "SPDXRef-ccc0609fb0bb7877",
    "name": "github.com/spf13/cobra",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
@@ -834,7 +834,7 @@
    "versionInfo": "v1.0.5"
   },
   {
-   "SPDXID": "SPDXRef-df54ac6a0f1c94e8",
+   "SPDXID": "SPDXRef-3e24652e78283820",
    "name": "github.com/spf13/pflag",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
@@ -944,7 +944,7 @@
    "versionInfo": "v0.0.0-20210125001918-ca9a967f8778"
   },
   {
-   "SPDXID": "SPDXRef-8e719645124d0c88",
+   "SPDXID": "SPDXRef-3b7b03381346ed78",
    "name": "github.com/xo/terminfo",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
@@ -966,26 +966,26 @@
    "versionInfo": "v0.0.0-20210125001918-ca9a967f8778"
   },
   {
-   "SPDXID": "SPDXRef-25c42e37d7076a0b",
+   "SPDXID": "SPDXRef-6f8e5121f50da3f0",
    "name": "golang.org/x/sys",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220731174439-a90be440212d:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220804214406-8e32c043e418:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220731174439-a90be440212d",
+     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220804214406-8e32c043e418",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v0.0.0-20220731174439-a90be440212d"
+   "versionInfo": "v0.0.0-20220804214406-8e32c043e418"
   },
   {
    "SPDXID": "SPDXRef-ef1f6802c206dd2a",
@@ -1054,7 +1054,7 @@
    "versionInfo": "v0.3.7"
   },
   {
-   "SPDXID": "SPDXRef-f35b8f4be33fa66d",
+   "SPDXID": "SPDXRef-45719299f7df0dbb",
    "name": "golang.org/x/text",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
@@ -1127,7 +1127,7 @@
    "versionInfo": "v2.4.0"
   },
   {
-   "SPDXID": "SPDXRef-756ce68d3a696c63",
+   "SPDXID": "SPDXRef-5d317ccc04d9f94a",
    "name": "gopkg.in/yaml.v2",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",

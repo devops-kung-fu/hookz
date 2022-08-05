@@ -45,12 +45,9 @@ brew install devops-kung-fu/homebrew-tap/hookz
 
 ### Linux
 
-To install ```Hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases), extract the binary from the compressed file, make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
+The best way to install ```hookz``` is via snap.
 
-```bash
-sudo chmod +x hookz-2.4.1-linux-amd64
-sudo mv hookz-2.4.1-linux-amd64 /usr/local/bin/hookz
-```
+To install ```hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases), extract the binary from the compressed file, make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
 
 If you have a Go development environment set up, you can also simply do this:
 

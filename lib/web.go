@@ -1,4 +1,4 @@
-//Package lib Functionality for the Hookz CLI
+// Package lib Functionality for the Hookz CLI
 package lib
 
 import (
@@ -15,13 +15,13 @@ import (
 	"github.com/spf13/afero"
 )
 
-//WriteCounter encapsulates the total number of bytes captured and rendered
+// WriteCounter encapsulates the total number of bytes captured and rendered
 type WriteCounter struct {
 	Total    uint64
 	FileName string
 }
 
-//Write increments the total number of bytes and prints progress to STDOUT
+// Write increments the total number of bytes and prints progress to STDOUT
 func (wc *WriteCounter) Write(p []byte) (int, error) {
 	n := len(p)
 	wc.Total += uint64(n)
@@ -29,14 +29,14 @@ func (wc *WriteCounter) Write(p []byte) (int, error) {
 	return n, nil
 }
 
-//PrintProgress prints the current download progress to STDOUT
+// PrintProgress prints the current download progress to STDOUT
 func (wc WriteCounter) PrintProgress() {
 	fmt.Printf("\r%s", strings.Repeat(" ", 35))
 	fmt.Printf("\r	Downloading %s... %s complete", wc.FileName, humanize.Bytes(wc.Total))
 }
 
-//UpdateExecutables parses the configuration for URL's and re-downloads
-//the contents into the .git/hooks folder
+// UpdateExecutables parses the configuration for URL's and re-downloads
+// the contents into the .git/hooks folder
 func UpdateExecutables(afs *afero.Afero, config Configuration) (updateCount int, err error) {
 	for _, hook := range config.Hooks {
 		for _, action := range hook.Actions {
