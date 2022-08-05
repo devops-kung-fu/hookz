@@ -7,7 +7,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-//CreateConfig creates a starter .hookz.yaml file
+// CreateConfig creates a starter .hookz.yaml file
 func CreateConfig(afs *afero.Afero, version string) (config Configuration, err error) {
 	command := "/bin/echo"
 	config = Configuration{

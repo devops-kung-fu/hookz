@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	version = "2.4.1"
+	version = "2.4.2"
 	//Afs stores a global OS Filesystem that is used throughout hookz
 	Afs   = &afero.Afero{Fs: afero.NewOsFs()}
 	debug bool

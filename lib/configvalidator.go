@@ -22,7 +22,7 @@ func generateShasum(afs *afero.Afero) (shasum string, err error) {
 	return
 }
 
-//WriteShasum writes the shasum of the JSON representation of the configuration to hookz.shasum
+// WriteShasum writes the shasum of the JSON representation of the configuration to hookz.shasum
 func WriteShasum(afs *afero.Afero) (err error) {
 	shasum, err := generateShasum(afs)
 	if err != nil {
@@ -35,7 +35,7 @@ func WriteShasum(afs *afero.Afero) (err error) {
 	return
 }
 
-//ValidateVersion ensures that the configuration that is read matches the hookz binary version
+// ValidateVersion ensures that the configuration that is read matches the hookz binary version
 func ValidateVersion(config Configuration, version string) (err error) {
 	if config.Version == "" {
 		err = errors.New("no configuration version value found in .hookz.yaml")

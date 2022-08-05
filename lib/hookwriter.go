@@ -1,4 +1,4 @@
-//Package lib Functionality for the Hookz CLI
+// Package lib Functionality for the Hookz CLI
 package lib
 
 import (
@@ -21,7 +21,7 @@ type command struct {
 	Debug        bool
 }
 
-//CreateFile creates a file for a provided FileSystem and file name
+// CreateFile creates a file for a provided FileSystem and file name
 func CreateFile(afs *afero.Afero, name string) (err error) {
 
 	file, err := afs.Fs.Create(name)
@@ -36,7 +36,7 @@ func CreateFile(afs *afero.Afero, name string) (err error) {
 	return
 }
 
-//CreateScriptFile creates an executable script file with a random name given a string of content
+// CreateScriptFile creates an executable script file with a random name given a string of content
 func CreateScriptFile(afs *afero.Afero, content string) (name string, err error) {
 
 	k, idErr := ksuid.NewRandom()
@@ -84,7 +84,7 @@ func buildFullCommand(action Action, debug bool) string {
 	return fullCommand
 }
 
-//WriteHooks writes all of the generated scripts to the .git/hooks directory
+// WriteHooks writes all of the generated scripts to the .git/hooks directory
 func WriteHooks(afs *afero.Afero, config Configuration, verbose bool, verboseOutput bool) (err error) {
 	log.Println("Writing hooks")
 	for _, hook := range config.Hooks {
@@ -173,7 +173,7 @@ func writeTemplate(afs *afero.Afero, commands []command, hookType string) (err e
 	return
 }
 
-//HasExistingHookz determines if any .hookz touch files exist in the .git/hooks directory
+// HasExistingHookz determines if any .hookz touch files exist in the .git/hooks directory
 func HasExistingHookz(afs *afero.Afero) (exists bool) {
 	path, _ := os.Getwd()
 	ext := ".hookz"
@@ -205,7 +205,7 @@ func genTemplate(hookType string) (t *template.Template) {
 echo -e "\n$(tput bold)Hookz$(tput sgr0)"
 echo -e "DKFM - DevOps Kung Fu Mafia"
 echo -e "https://github.com/devops-kung-fu/hookz"
-echo -e "Version: 2.4.1"
+echo -e "Version: 2.4.2"
 echo
 
 shasum=$(cat .git/hooks/hookz.shasum)

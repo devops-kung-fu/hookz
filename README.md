@@ -45,12 +45,9 @@ brew install devops-kung-fu/homebrew-tap/hookz
 
 ### Linux
 
-To install ```Hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases), extract the binary from the compressed file, make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
+The best way to install ```hookz``` is via snap.
 
-```bash
-sudo chmod +x hookz-2.4.1-linux-amd64
-sudo mv hookz-2.4.1-linux-amd64 /usr/local/bin/hookz
-```
+To install ```hookz```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases), extract the binary from the compressed file, make is executable, rename it to ```hookz``` and toss it in your ```/usr/local/bin``` directory for Linux, or on your path for other operating systems.
 
 If you have a Go development environment set up, you can also simply do this:
 
@@ -69,7 +66,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-  version: 2.4.1
+  version: 2.4.2
   tools:
     - tool: github.com/devops-kung-fu/lucha@latest
     - tool: github.com/devops-kung-fu/hinge@latest
@@ -116,7 +113,7 @@ Quite often, downloadable binaries exist for multiple platforms when downloading
 You can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
 
 ``` yaml
-version: 2.4.1
+version: 2.4.2
 hooks:
   - type: pre-commit
     actions:
@@ -256,7 +253,7 @@ Check out the collection [here](tackle/README.md).
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.4.1
+version: 2.4.2
 hooks:
   - type: pre-commit
     actions:
@@ -279,7 +276,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.4.1
+version: 2.4.2
 hooks:
   - type: pre-commit
     actions:

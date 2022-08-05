@@ -1,4 +1,4 @@
-//Package lib Functionality for the Hookz CLI
+// Package lib Functionality for the Hookz CLI
 package lib
 
 import (
@@ -11,8 +11,8 @@ import (
 	"github.com/spf13/afero"
 )
 
-//RemoveHooks purges all hooks from the filesystem that Hookz has created
-//and deletes any generated scripts
+// RemoveHooks purges all hooks from the filesystem that Hookz has created
+// and deletes any generated scripts
 func RemoveHooks(afs *afero.Afero, verbose bool) (err error) {
 	path, _ := os.Getwd()
 
