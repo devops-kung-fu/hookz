@@ -52,6 +52,7 @@ snapcrafts:
     grade: stable
     confinement: classic
     base: core20
+    publish: true
 
     apps:
       hookz:
