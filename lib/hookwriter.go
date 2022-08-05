@@ -205,7 +205,7 @@ func genTemplate(hookType string) (t *template.Template) {
 echo -e "\n$(tput bold)Hookz$(tput sgr0)"
 echo -e "DKFM - DevOps Kung Fu Mafia"
 echo -e "https://github.com/devops-kung-fu/hookz"
-echo -e "Version: 2.4.1"
+echo -e "Version: 2.4.2"
 echo
 
 shasum=$(cat .git/hooks/hookz.shasum)
