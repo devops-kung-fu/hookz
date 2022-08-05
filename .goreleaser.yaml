@@ -56,4 +56,3 @@ snapcrafts:
     apps:
       hookz:
         command: hookz
-        completer: hookz completion bash
