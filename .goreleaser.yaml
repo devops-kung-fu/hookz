@@ -40,20 +40,20 @@ nfpms:
       - deb
       - rpm
 
-snapcrafts:
-  - 
-    id: hookz
-    name: hookz
-    summary: 'Manages client side git hooks resulting in the ability to create git action pipelines.'
-    description: |
-      Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed hookz. hookz allows us to do a ton of commit tasks before our code even hits our branches. As you commit and push code to a git based source repository, hookz will trigger scripts, run tasks, or do just about anything for you.
+# snapcrafts:
+#   - 
+#     id: hookz
+#     name: hookz
+#     summary: 'Manages client side git hooks resulting in the ability to create git action pipelines.'
+#     description: |
+#       Have you ever wanted to integrate custom functionality into your code commit and push workflows without using IDE plugins, hacks, or gnarly scripts? We have, and that's why we developed hookz. hookz allows us to do a ton of commit tasks before our code even hits our branches. As you commit and push code to a git based source repository, hookz will trigger scripts, run tasks, or do just about anything for you.
 
-      The best thing? hookz doesn't care what IDE you develop with, what your back end source control system is, or what languages you program in. Operating System? We don't care. We've compiled hookz for every OS and architecture you'd ever want. 
-    grade: stable
-    confinement: classic
-    base: core20
-    publish: true
+#       The best thing? hookz doesn't care what IDE you develop with, what your back end source control system is, or what languages you program in. Operating System? We don't care. We've compiled hookz for every OS and architecture you'd ever want. 
+#     grade: stable
+#     confinement: classic
+#     base: core20
+#     publish: true
 
-    apps:
-      hookz:
-        command: hookz
+#     apps:
+#       hookz:
+#         command: hookz
