@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:831da247-d0cc-4978-873a-aa4630db9774",
+  "serialNumber": "urn:uuid:5519e132-41dc-4fd7-8ac3-94e738b8c3b1",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-10-24T19:07:21-06:00",
+    "timestamp": "2022-10-24T19:12:29-06:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -394,12 +394,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20221025002745-f567f72f5832?package-id=4da1e9cdb885eee6",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20221025011036-af19aa9b28eb?package-id=29e24eb0e949028b",
       "type": "library",
       "name": "github.com/devops-kung-fu/hookz",
-      "version": "v0.0.0-20221025002745-f567f72f5832",
-      "cpe": "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20221025002745-f567f72f5832:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20221025002745-f567f72f5832",
+      "version": "v0.0.0-20221025011036-af19aa9b28eb",
+      "cpe": "cpe:2.3:a:devops-kung-fu:hookz:v0.0.0-20221025011036-af19aa9b28eb:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/hookz@v0.0.0-20221025011036-af19aa9b28eb",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -419,19 +419,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20221025002745-f567f72f5832:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:hookz:v0.0.0-20221025011036-af19aa9b28eb:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:hookz:v0.0.0-20221025002745-f567f72f5832:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:hookz:v0.0.0-20221025011036-af19aa9b28eb:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:hookz:v0.0.0-20221025002745-f567f72f5832:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:hookz:v0.0.0-20221025011036-af19aa9b28eb:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:hookz:v0.0.0-20221025002745-f567f72f5832:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:hookz:v0.0.0-20221025011036-af19aa9b28eb:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
