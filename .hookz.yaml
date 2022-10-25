@@ -1,4 +1,4 @@
-  version: 2.4.2
+  version: 2.4.3
   sources:
     - source: github.com/anchore/syft/cmd/syft@latest
     - source: github.com/devops-kung-fu/hinge@latest
@@ -43,7 +43,7 @@
           args: ["tool", "cover", "-func=coverage.out"]
         - name: "syft: Generate a Software Bill of Materials (SBoM)"
           exec: syft
-          args: [".","-o ","json=sbom/hookz.syft.json","-o", "spdx-json=sbom/hookz.spdx.json", "-o", "cyclonedx-json=sbom/hookz.cyclonedx.json"]
+          args: [".", "-o", "cyclonedx-json=sbom/hookz.cyclonedx.json"]
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]
