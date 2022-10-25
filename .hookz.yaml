@@ -1,4 +1,4 @@
-  version: 2.4.3
+  version: 2.4.2
   sources:
     - source: github.com/anchore/syft/cmd/syft@latest
     - source: github.com/devops-kung-fu/hinge@latest

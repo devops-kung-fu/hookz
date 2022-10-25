@@ -66,7 +66,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-  version: 2.4.3
+  version: 2.4.2
   tools:
     - tool: github.com/devops-kung-fu/lucha@latest
     - tool: github.com/devops-kung-fu/hinge@latest
@@ -113,7 +113,7 @@ Quite often, downloadable binaries exist for multiple platforms when downloading
 You can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
 
 ``` yaml
-version: 2.4.3
+version: 2.4.2
 hooks:
   - type: pre-commit
     actions:
@@ -253,7 +253,7 @@ Check out the collection [here](tackle/README.md).
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.4.3
+version: 2.4.2
 hooks:
   - type: pre-commit
     actions:
@@ -276,7 +276,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.4.3
+version: 2.4.2
 hooks:
   - type: pre-commit
     actions:
