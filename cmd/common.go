@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -19,11 +20,18 @@ func noConfig() {
 	os.Exit(1)
 }
 
+func badYaml() {
+	util.PrintErr(errors.New("configuration in .hookz.yaml is not valid YAML syntax"))
+	os.Exit(1)
+}
+
 // CheckConfig ensures that there is a .hookz.yaml file locally and the version is supported by the current version of hookz
 func CheckConfig() (config lib.Configuration) {
 	config, err := lib.ReadConfig(Afs, version)
 	if err != nil && err.Error() == "NO_CONFIG" {
 		noConfig()
+	} else if err != nil && err.Error() == "BAD_YAML" {
+		badYaml()
 	}
 	return
 }

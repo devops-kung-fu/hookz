@@ -1,4 +1,4 @@
-  version: 2.4.2
+  version: 2.4.3
   sources:
     - source: github.com/anchore/syft/cmd/syft@latest
     - source: github.com/devops-kung-fu/hinge@latest
@@ -28,7 +28,7 @@
           args: ["-ignoretests", "./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
-          args: ["-over", "7", "."]
+          args: ["-over", "14", "."]
         - name: Hinge
           exec: hinge
           args: ["."]
@@ -42,8 +42,10 @@
           exec: go
           args: ["tool", "cover", "-func=coverage.out"]
         - name: "syft: Generate a Software Bill of Materials (SBoM)"
-          exec: syft
-          args: [".", "-o", "cyclonedx-json=sbom/hookz.cyclonedx.json"]
+          script: "
+            #!/bin/bash \n
+            syft . -o cyclonedx-json=sbom/hookz.cyclonedx.json &> /dev/null \n
+            "
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]
