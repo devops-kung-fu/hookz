@@ -3,7 +3,7 @@ module github.com/devops-kung-fu/hookz
 go 1.18
 
 require (
-	github.com/dustin/go-humanize v1.0.0
+	github.com/dustin/go-humanize v1.0.1
 	github.com/gookit/color v1.5.2
 	github.com/jarcoal/httpmock v1.2.0
 	github.com/segmentio/ksuid v1.0.4
