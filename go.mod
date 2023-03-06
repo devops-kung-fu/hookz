@@ -7,7 +7,7 @@ require (
 	github.com/gookit/color v1.5.2
 	github.com/jarcoal/httpmock v1.2.0
 	github.com/segmentio/ksuid v1.0.4
-	github.com/spf13/afero v1.9.2
+	github.com/spf13/afero v1.9.5
 	github.com/spf13/cobra v1.6.1
 	github.com/stretchr/testify v1.8.0
 	gopkg.in/yaml.v2 v2.4.0
