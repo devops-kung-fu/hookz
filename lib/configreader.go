@@ -28,6 +28,7 @@ func ReadConfig(afs *afero.Afero, version string) (config Configuration, err err
 
 	err = yaml.Unmarshal(yamlFile, &config)
 	if err != nil {
+		err = errors.New("BAD_YAML")
 		return
 	}
 
