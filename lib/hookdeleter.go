@@ -2,7 +2,6 @@
 package lib
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -11,42 +10,45 @@ import (
 	"github.com/spf13/afero"
 )
 
-// RemoveHooks purges all hooks from the filesystem that Hookz has created
-// and deletes any generated scripts
-func RemoveHooks(afs *afero.Afero, verbose bool) (err error) {
-	path, _ := os.Getwd()
+// RemoveHooks removes hooks with a specific extension and their corresponding files in the Git hooks directory.
+// It also optionally prints information about deleted hooks if verbose is set to true.
+func RemoveHooks(afs *afero.Afero, verbose bool) error {
+	path, err := os.Getwd()
+	if err != nil {
+		return err
+	}
 
 	ext := ".hookz"
-	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
+	hooksPath := filepath.Join(path, ".git/hooks")
 
-	dirFiles, _ := afs.ReadDir(p)
+	dirFiles, err := afs.ReadDir(hooksPath)
+	if err != nil {
+		return err
+	}
 
-	for index := range dirFiles {
-		file := dirFiles[index]
-
-		name := file.Name()
-		fullPath := fmt.Sprintf("%s/%s", p, name)
-		info, _ := afs.Stat(fullPath)
-		isHookzFile := strings.Contains(info.Name(), ext)
-		if isHookzFile {
-			var hookName = fullPath[0 : len(fullPath)-len(ext)]
-			if removeErr := afs.Fs.Remove(fullPath); removeErr != nil {
+	for _, file := range dirFiles {
+		fullPath := filepath.Join(hooksPath, file.Name())
+		if strings.Contains(file.Name(), ext) {
+			if removeErr := afs.Remove(fullPath); removeErr != nil {
 				return removeErr
 			}
-			if removeErr := afs.Fs.Remove(hookName); removeErr != nil {
+
+			correspondingFile := fullPath[:len(fullPath)-len(ext)]
+			if removeErr := afs.Remove(correspondingFile); removeErr != nil {
 				return removeErr
 			}
-			parts := strings.Split(hookName, "/")
+
 			util.DoIf(verbose, func() {
-				util.PrintTabbedf("Deleted %s\n", parts[len(parts)-1])
+				util.PrintTabbedf("Deleted %s\n", filepath.Base(correspondingFile))
 			})
 		}
 	}
 
 	removeShasum(afs)
-	return
+	return nil
 }
 
+// removeShasum removes the shasum file from the Git hooks directory.
 func removeShasum(afs *afero.Afero) {
 	filename, _ := filepath.Abs(".git/hooks/hookz.shasum")
 	_ = afs.Remove(filename)
