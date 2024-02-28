@@ -30,12 +30,10 @@ func RemoveHooks(afs *afero.Afero, verbose bool) (err error) {
 		isHookzFile := strings.Contains(info.Name(), ext)
 		if isHookzFile {
 			var hookName = fullPath[0 : len(fullPath)-len(ext)]
-			removeErr := afs.Fs.Remove(fullPath)
-			if removeErr != nil {
+			if removeErr := afs.Fs.Remove(fullPath); removeErr != nil {
 				return removeErr
 			}
-			removeErr = afs.Fs.Remove(hookName)
-			if removeErr != nil {
+			if removeErr := afs.Fs.Remove(hookName); removeErr != nil {
 				return removeErr
 			}
 			parts := strings.Split(hookName, "/")
