@@ -16,8 +16,7 @@ func HasExistingHookzYaml(afs *afero.Afero) bool {
 	return readErr == nil
 }
 
-// ReadConfig reads the .hookz.yaml file in from the filesystem and
-// ensures it matches the provided version
+// ReadConfig method reads a file named .hookz.yaml from the filesystem using the provided Afero interface. It then checks if the version specified in the function parameter matches the version specified in the configuration file. If the versions match, the configuration file is parsed using YAML and the resulting Configuration struct is returned. If the versions don't match or there is an error while reading or parsing the file, an error is returned.
 func ReadConfig(afs *afero.Afero, version string) (config Configuration, err error) {
 	filename, _ := filepath.Abs(".hookz.yaml")
 	yamlFile, readErr := afs.ReadFile(filename)
@@ -26,8 +25,7 @@ func ReadConfig(afs *afero.Afero, version string) (config Configuration, err err
 		return
 	}
 
-	err = yaml.Unmarshal(yamlFile, &config)
-	if err != nil {
+	if err = yaml.Unmarshal(yamlFile, &config); err != nil {
 		err = errors.New("BAD_YAML")
 		return
 	}

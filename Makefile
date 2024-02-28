@@ -20,6 +20,7 @@ check: build ## Tests the pre-commit hooks if they exist
 
 test: ## Runs tests and coverage
 	@go test -v -coverprofile=coverage.out ./... && go tool cover -func=coverage.out
+	@go tool cover -html=coverage.out -o coverage.html
 
 install: build ## Builds an executable local version of Hookz and puts in in /usr/local/bin
 	@sudo chmod +x hookz

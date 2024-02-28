@@ -1,10 +1,10 @@
   version: 2.4.3
   sources:
-    - source: github.com/anchore/syft/cmd/syft@latest
-    - source: github.com/devops-kung-fu/hinge@latest
-    - source: github.com/kisielk/errcheck@latest      
-    - source: golang.org/x/lint/golint@latest
-    - source: github.com/fzipp/gocyclo/cmd/gocyclo@latest
+      - source: github.com/devops-kung-fu/hinge@latest
+      - source: github.com/kisielk/errcheck@latest      
+      - source: honnef.co/go/tools/cmd/staticcheck@latest
+      - source: github.com/fzipp/gocyclo/cmd/gocyclo@latest
+      - source: golang.org/x/vuln/cmd/govulncheck@latest
   hooks:
     - type: pre-commit
       actions:
@@ -20,32 +20,30 @@
         - name: "gofmt: Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
-        - name: "golint: Lint all go files"
-          exec: golint
-          args: ["-set_exit_status", "./..."] #to error out, add the arg "-set_exit_status"
+        # - name: "staticcheck: Lint all go files"
+        #   exec: staticcheck
+        #   args: ["-f", "stylish", "-checks", "all", "./..."] #to error out, add the arg "-set_exit_status"
         - name: "errcheck: Ensure that errors are checked"
           exec: errcheck
           args: ["-ignoretests", "./..."]
+        - name: "govulncheck: Check for vulnerabilities"
+          exec: govulncheck
+          args: ["./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
-          args: ["-over", "14", "."]
+          args: ["-over", "9", "."]
         - name: Hinge
           exec: hinge
           args: ["."]
         - name: "go: Build (Ensure pulled modules do not break the build)"
           exec: go
-          args: ["build", "-v"]
+          args: ["build", "-v", "./..."]
         - name: "go: Run all tests"
           exec: go
           args: ["test", "-v", "-coverprofile=coverage.out", "./..."]
         - name: "go: Test coverage"
           exec: go
           args: ["tool", "cover", "-func=coverage.out"]
-        - name: "syft: Generate a Software Bill of Materials (SBoM)"
-          script: "
-            #!/bin/bash \n
-            syft . -o cyclonedx-json=sbom/hookz.cyclonedx.json &> /dev/null \n
-            "
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]
