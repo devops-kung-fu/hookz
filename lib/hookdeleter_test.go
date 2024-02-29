@@ -15,7 +15,7 @@ func TestFileSystem_RemoveHooks(t *testing.T) {
 	path, _ := os.Getwd()
 
 	content := "Test Script"
-	CreateScriptFile(afs, content)
+	_, _ = CreateScriptFile(afs, content)
 
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
 	dirFiles, _ := afs.ReadDir(p)
@@ -32,7 +32,7 @@ func TestFileSystem_RemoveHooks(t *testing.T) {
 func Test_removeShasum(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	CreateConfig(afs, version)
+	_, _ = CreateConfig(afs, version)
 	_ = WriteShasum(afs)
 
 	path, _ := os.Getwd()

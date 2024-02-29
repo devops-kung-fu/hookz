@@ -12,22 +12,16 @@ import (
 	"github.com/spf13/afero"
 )
 
-func generateShasum(afs *afero.Afero) (shasum string, err error) {
+func generateShasum(afs *afero.Afero) (shasum string) {
 	filename, _ := filepath.Abs(".hookz.yaml")
-	yamlFile, err := afs.ReadFile(filename)
-	if err != nil {
-		return
-	}
+	yamlFile, _ := afs.ReadFile(filename)
 	shasum = fmt.Sprintf("%x", sha256.Sum256(yamlFile))
 	return
 }
 
 // WriteShasum writes the shasum of the JSON representation of the configuration to hookz.shasum
 func WriteShasum(afs *afero.Afero) (err error) {
-	shasum, err := generateShasum(afs)
-	if err != nil {
-		return err
-	}
+	shasum := generateShasum(afs)
 	filename, _ := filepath.Abs(".git/hooks/hookz.shasum")
 	err = afs.WriteFile(filename, []byte(shasum), 0644)
 	util.IfErrorLog(err)

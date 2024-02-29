@@ -13,10 +13,7 @@ import (
 // RemoveHooks removes hooks with a specific extension and their corresponding files in the Git hooks directory.
 // It also optionally prints information about deleted hooks if verbose is set to true.
 func RemoveHooks(afs *afero.Afero, verbose bool) error {
-	path, err := os.Getwd()
-	if err != nil {
-		return err
-	}
+	path, _ := os.Getwd()
 
 	ext := ".hookz"
 	hooksPath := filepath.Join(path, ".git/hooks")

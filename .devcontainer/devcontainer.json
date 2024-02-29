@@ -1,7 +1,70 @@
 {
-  "name": "hookz-devcontainer",
+  "name": "devcontainer-test",
   "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/starship:1": {}
-  }
+      "ghcr.io/devcontainers-contrib/features/starship:1": {},
+      "ghcr.io/azutake/devcontainer-features/go-packages-install:0": {
+          "packages": [
+              "github.com/jandelgado/gcov2lcov@latest",
+              "github.com/kisielk/errcheck@latest",
+              "github.com/fzipp/gocyclo/cmd/gocyclo@latest",
+              "golang.org/x/vuln/cmd/govulncheck@latest",
+              "honnef.co/go/tools/cmd/staticcheck@latest"
+          ]
+      }
+  },
+  "customizations": {
+      "vscode": {
+          "settings": {
+              "files.eol": "\n",
+              "terminal.integrated.fontFamily": "DroidSansMNerdFont-Regular",
+              "editor.formatOnSave": true,
+              "go.buildTags": "",
+              "go.toolsEnvVars": {
+                  "CGO_ENABLED": "0"
+              },
+              "go.useLanguageServer": true,
+              "go.testEnvVars": {
+                  "CGO_ENABLED": "1"
+              },
+              "go.testFlags": [
+                  "-v",
+                  "-race"
+              ],
+              "go.testTimeout": "10s",
+              "go.coverOnSingleTest": true,
+              "go.coverOnSingleTestFile": true,
+              "go.coverOnTestPackage": true,
+              "go.lintTool": "golangci-lint",
+              "go.lintOnSave": "package",
+              "[go]": {
+                  "editor.codeActionsOnSave": {
+                      "source.organizeImports": "always"
+                  }
+              },
+              "gopls": {
+                  "usePlaceholders": false,
+                  "staticcheck": true,
+                  "vulncheck": "Imports"
+              },
+          },
+          "extensions": [
+              "ms-vscode.go",
+              "golang.go",
+              "github.vscode-pull-request-github",
+              "github.vscode-github-actions",
+              "github.vscode-codeql",
+              "aleksandra.go-group-imports",
+              "oderwat.indent-rainbow",
+              "yzhang.markdown-all-in-one",
+              "quicktype.quicktype",
+              "jebbs.plantuml",
+              "foxundermoon.shell-format",
+              "ahebrank.yaml2json",
+              "defaltd.go-coverage-viewer",
+              "Gruntfuggly.todo-tree", // Highlights TODO comments"
+          ]
+      }
+  },
+  "postCreateCommand": "go mod download && go mod tidy && mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf"
 }

@@ -24,47 +24,32 @@ type command struct {
 // CreateFile creates a file for a provided FileSystem and file name
 func CreateFile(afs *afero.Afero, name string) (err error) {
 
-	file, err := afs.Fs.Create(name)
+	_, err = afs.Create(name)
 	if err != nil {
 		return err
 	}
 
-	defer func() {
-		err = file.Close()
-	}()
+	// defer func() {
+	// 	err = file.Close()
+	// }()
 
 	return
 }
 
 // CreateScriptFile creates an executable script file with a random name given a string of content
 func CreateScriptFile(afs *afero.Afero, content string) (name string, err error) {
-
-	k, idErr := ksuid.NewRandom()
+	k, _ := ksuid.NewRandom()
 	name = k.String()
-	if util.IsErrorBool(idErr) {
-		err = idErr
-		return
-	}
 	path, _ := os.Getwd()
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
 
 	hookzFile := fmt.Sprintf("%s/%s.hookz", p, name)
 	scriptName := fmt.Sprintf("%s/%s", p, name)
 
-	err = CreateFile(afs, hookzFile)
-	if err != nil {
-		return
-	}
+	_, _ = afs.Create(hookzFile)
+	_ = afs.WriteFile(scriptName, []byte(content), 0644)
 
-	err = afs.WriteFile(scriptName, []byte(content), 0644)
-	if err != nil {
-		return
-	}
-
-	err = afs.Fs.Chmod(scriptName, 0777)
-	if err != nil {
-		return
-	}
+	_ = afs.Fs.Chmod(scriptName, 0777)
 
 	return
 }
