@@ -7,7 +7,7 @@ toolchain go1.22.0
 require (
 	github.com/dustin/go-humanize v1.0.1
 	github.com/gookit/color v1.5.4
-	github.com/jarcoal/httpmock v1.2.0
+	github.com/jarcoal/httpmock v1.3.1
 	github.com/segmentio/ksuid v1.0.4
 	github.com/spf13/afero v1.11.0
 	github.com/spf13/cobra v1.8.0
