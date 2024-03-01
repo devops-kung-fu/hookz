@@ -31,7 +31,7 @@ var (
 			util.DoIf(Verbose, func() {
 				util.PrintInfo("Creating hooks")
 			})
-			config, err := CheckConfig()
+			config, err := CheckConfig(Afs)
 			if err != nil {
 				if err != nil && err.Error() == "NO_CONFIG" {
 					NoConfig()

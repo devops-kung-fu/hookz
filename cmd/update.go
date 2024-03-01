@@ -18,7 +18,7 @@ var (
 			util.DoIf(Verbose, func() {
 				util.PrintInfo("Updating sources and executables")
 			})
-			config, err := CheckConfig()
+			config, err := CheckConfig(Afs)
 			if err != nil {
 				if err != nil && err.Error() == "NO_CONFIG" {
 					NoConfig()

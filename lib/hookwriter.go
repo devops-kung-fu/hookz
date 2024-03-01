@@ -21,20 +21,7 @@ type command struct {
 	Debug        bool
 }
 
-// CreateFile creates a file for a provided FileSystem and file name
-func CreateFile(afs *afero.Afero, name string) (err error) {
-
-	_, err = afs.Create(name)
-	if err != nil {
-		return err
-	}
-
-	// defer func() {
-	// 	err = file.Close()
-	// }()
-
-	return
-}
+//TODO: improve test coverage
 
 // CreateScriptFile creates an executable script file with a random name given a string of content
 func CreateScriptFile(afs *afero.Afero, content string) (name string, err error) {
@@ -132,10 +119,7 @@ func writeTemplate(afs *afero.Afero, commands []command, hookType string) (err e
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
 
 	hookzFile := fmt.Sprintf("%s/%s.hookz", p, hookType)
-	err = CreateFile(afs, hookzFile)
-	if err != nil {
-		return
-	}
+	_, _ = afs.Create(hookzFile)
 
 	filename := fmt.Sprintf("%s/%s", p, hookType)
 	file, err := afs.Create(filename)

@@ -12,6 +12,7 @@ import (
 	"strings"
 
 	"github.com/dustin/go-humanize"
+	"github.com/microcosm-cc/bluemonday"
 	"github.com/spf13/afero"
 )
 
@@ -68,7 +69,9 @@ func DownloadFile(afs *afero.Afero, filepath string, URL string) (filename strin
 		err = out.Close()
 	}()
 
-	resp, err := http.Get(URL)
+	p := bluemonday.UGCPolicy()
+	url := p.Sanitize(URL)
+	resp, err := http.Get(url)
 	if err != nil {
 		return
 	}

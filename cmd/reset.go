@@ -21,7 +21,7 @@ var (
 			if util.IsErrorBool(lib.RemoveHooks(Afs, Verbose)) {
 				return
 			}
-			config, err := CheckConfig()
+			config, err := CheckConfig(Afs)
 			if err != nil {
 				if err != nil && err.Error() == "NO_CONFIG" {
 					NoConfig()

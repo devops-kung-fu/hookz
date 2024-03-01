@@ -10,6 +10,7 @@ import (
 	"github.com/spf13/afero"
 )
 
+// TODO: Fix code coverage
 // RemoveHooks removes hooks with a specific extension and their corresponding files in the Git hooks directory.
 // It also optionally prints information about deleted hooks if verbose is set to true.
 func RemoveHooks(afs *afero.Afero, verbose bool) error {

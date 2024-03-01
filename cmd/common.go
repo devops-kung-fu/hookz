@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"github.com/devops-kung-fu/common/util"
+	"github.com/spf13/afero"
 
 	"github.com/devops-kung-fu/hookz/lib"
 )
@@ -18,8 +19,9 @@ func NoConfig() {
 	fmt.Println()
 }
 
+// TODO: add code coverage
 // CheckConfig ensures that there is a .hookz.yaml file locally and the version is supported by the current version of hookz
-func CheckConfig() (config lib.Configuration, err error) {
+func CheckConfig(afs *afero.Afero) (config lib.Configuration, err error) {
 	config, err = lib.ReadConfig(Afs, version)
 	var returnErr error
 	if err != nil && err.Error() == "NO_CONFIG" {

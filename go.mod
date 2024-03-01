@@ -8,11 +8,20 @@ require (
 	github.com/dustin/go-humanize v1.0.1
 	github.com/gookit/color v1.5.4
 	github.com/jarcoal/httpmock v1.3.1
+	github.com/microcosm-cc/bluemonday v1.0.26
 	github.com/segmentio/ksuid v1.0.4
 	github.com/spf13/afero v1.11.0
 	github.com/spf13/cobra v1.8.0
 	github.com/stretchr/testify v1.9.0
+	gopkg.in/alessio/shellescape.v1 v1.0.0-20170105083845-52074bc9df61
 	gopkg.in/yaml.v2 v2.4.0
+)
+
+require (
+	github.com/alessio/shellescape v1.4.2 // indirect
+	github.com/aymerick/douceur v0.2.0 // indirect
+	github.com/gorilla/css v1.0.1 // indirect
+	golang.org/x/net v0.21.0 // indirect
 )
 
 require (

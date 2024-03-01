@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/devops-kung-fu/common/util"
+	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/devops-kung-fu/hookz/lib"
@@ -38,4 +39,18 @@ func TestNoConfig(t *testing.T) {
 		NoConfig()
 	})
 	assert.NotNil(t, output)
+}
+
+func TestCheckConfig(t *testing.T) {
+
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	_, err := CheckConfig(afs)
+	assert.Error(t, err, "There should be no config created so an error should be thrown.")
+	assert.Equal(t, "NO_CONFIG", err.Error())
+
+	_ = afs.WriteFile(".hookz.yaml", []byte(""), 0644)
+	_, err = CheckConfig(afs)
+	assert.Error(t, err)
+
 }
