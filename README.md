@@ -26,11 +26,11 @@ Git hooks are a great way to run supplemental commands as you interact with git.
 
 ```Hookz``` may return one of three different status codes as it executes the action pipeline:
 
-| Code | Description                                                  |
-| ---- | ------------------------------------------------------------ |
-| PASS | The action has successfully completed                        |
+| Code | Description                                                                                                                                                                                                          |
+| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PASS | The action has successfully completed                                                                                                                                                                                |
 | WARN | An executable defined in the ```.hookz.yaml``` file wasn't found on the local system. In this case, the action is ignored and no attempt is made to run it. Flow will continue without an exit code of PASS or FAIL. |
-| FAIL | The action has failed. Execution stops. Consider this like a build break in a CI/CD pipeline that executes on a pull request. Errors must be addressed before the code is allowed to be committed. |
+| FAIL | The action has failed. Execution stops. Consider this like a build break in a CI/CD pipeline that executes on a pull request. Errors must be addressed before the code is allowed to be committed.                   |
 
 ## Installation
 
@@ -66,7 +66,7 @@ Hookz uses a configuration file to generate hooks in your local git repository. 
 ### Example Configuration
 
 ``` yaml
-  version: 2.4.3
+  version: 2.4.4
   tools:
     - tool: github.com/devops-kung-fu/lucha@latest
     - tool: github.com/devops-kung-fu/hinge@latest
@@ -113,7 +113,7 @@ Quite often, downloadable binaries exist for multiple platforms when downloading
 You can use the following to retrieve the right architecture for [hinge](https://github.com/devops-kung-fu/hinge):
 
 ``` yaml
-version: 2.4.3
+version: 2.4.4
 hooks:
   - type: pre-commit
     actions:
@@ -128,12 +128,12 @@ If you are running ```Hookz``` on a Mac, this will bring down the ```hinge-0.1.0
 
 You must have at least an URL, exec, or script defined in your actions. If you select one, then you shouldn't define the others in the YAML. Don't worry if you do, we have you covered and explain what happens in the following table.
 
-|Attribute|Notes|
-|---|---|
-|```URL```|If this exists, then exec and script are ignored. The URL must be a link to an executable binary| If you are developing in go then use the ```sources``` node in your ```.hookz.yaml``` to define sources to be installed.
-|```exec```|If this exists then URL and script are ignored|
-|```script```|If this exists then URL, exec, and args are ignored|
-|```args```|Optional in all cases|
+| Attribute    | Notes                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------------ |
+| ```URL```    | If this exists, then exec and script are ignored. The URL must be a link to an executable binary | If you are developing in go then use the ```sources``` node in your ```.hookz.yaml``` to define sources to be installed. |
+| ```exec```   | If this exists then URL and script are ignored                                                   |
+| ```script``` | If this exists then URL, exec, and args are ignored                                              |
+| ```args```   | Optional in all cases                                                                            |
 
 ### Inline scripting
 
@@ -253,7 +253,7 @@ Check out the collection [here](tackle/README.md).
 Assumes `terraform` is in your `PATH` for `fmt`. 
 
 ```yaml
-version: 2.4.3
+version: 2.4.4
 hooks:
   - type: pre-commit
     actions:
@@ -276,7 +276,7 @@ hooks:
 ### NPM
 
 ```yaml
-version: 2.4.3
+version: 2.4.4
 hooks:
   - type: pre-commit
     actions:

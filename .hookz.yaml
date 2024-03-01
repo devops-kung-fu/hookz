@@ -1,4 +1,4 @@
-  version: 2.4.3
+  version: 2.4.4
   sources:
       - source: github.com/devops-kung-fu/hinge@latest
       - source: github.com/kisielk/errcheck@latest      
