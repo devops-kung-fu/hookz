@@ -120,10 +120,7 @@ func buildExec(afs *afero.Afero, action *Action) (err error) {
 	}
 	if action.Exec == nil && action.Script != nil {
 		scriptFileName, _ := CreateScriptFile(afs, *action.Script)
-		path, err := os.Getwd()
-		if err != nil {
-			return err
-		}
+		path, _ := os.Getwd()
 		fullScriptFileName := fmt.Sprintf("%s/%s/%s", path, ".git/hooks", scriptFileName)
 		action.Exec = &fullScriptFileName
 	}
