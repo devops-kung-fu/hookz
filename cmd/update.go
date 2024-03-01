@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"os"
+
 	"github.com/devops-kung-fu/common/util"
 	"github.com/spf13/cobra"
 
@@ -16,7 +18,15 @@ var (
 			util.DoIf(Verbose, func() {
 				util.PrintInfo("Updating sources and executables")
 			})
-			config := CheckConfig()
+			config, err := CheckConfig(Afs)
+			if err != nil {
+				if err != nil && err.Error() == "NO_CONFIG" {
+					NoConfig()
+				} else {
+					util.PrintErr(err)
+				}
+				os.Exit(1)
+			}
 			_ = InstallSources(config.Sources)
 			updateCount, _ := lib.UpdateExecutables(Afs, config)
 			util.DoIf(updateCount == 0, func() {

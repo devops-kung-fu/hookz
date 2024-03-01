@@ -21,7 +21,7 @@ func Test_ReadConfig(t *testing.T) {
 	assert.Error(t, err, "There should be no config created so an error should be thrown.")
 	assert.Equal(t, "NO_CONFIG", err.Error())
 
-	CreateConfig(afs, "1.0.0")
+	_, _ = CreateConfig(afs, "1.0.0")
 	readConfig, err := ReadConfig(afs, version)
 
 	assert.NoError(t, err, "ReadConfig should not have generated an error")
@@ -37,7 +37,7 @@ func Test_ReadConfig(t *testing.T) {
 func Test_badConfig(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 	filename, _ := filepath.Abs(".hookz.yaml")
-	afs.WriteFile(filename, badConfig(), 0644)
+	_ = afs.WriteFile(filename, badConfig(), 0644)
 
 	_, err := ReadConfig(afs, version)
 	assert.Error(t, err)

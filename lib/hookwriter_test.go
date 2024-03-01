@@ -55,14 +55,6 @@ func Test_WriteHooks(t *testing.T) {
 	assert.True(t, contains, "Generated hook should have the word Hookz in it")
 }
 
-func Test_createFile(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
-	err := CreateFile(afs, "test")
-	assert.NoError(t, err, "Create file should not generate an error")
-	exists, _ := afs.Exists("test")
-	assert.True(t, exists, "A file should have been created")
-}
-
 func Test_writeTemplate(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 	err := writeTemplate(afs, nil, "")

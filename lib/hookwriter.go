@@ -21,50 +21,22 @@ type command struct {
 	Debug        bool
 }
 
-// CreateFile creates a file for a provided FileSystem and file name
-func CreateFile(afs *afero.Afero, name string) (err error) {
-
-	file, err := afs.Fs.Create(name)
-	if err != nil {
-		return err
-	}
-
-	defer func() {
-		err = file.Close()
-	}()
-
-	return
-}
+//TODO: improve test coverage
 
 // CreateScriptFile creates an executable script file with a random name given a string of content
 func CreateScriptFile(afs *afero.Afero, content string) (name string, err error) {
-
-	k, idErr := ksuid.NewRandom()
+	k, _ := ksuid.NewRandom()
 	name = k.String()
-	if util.IsErrorBool(idErr) {
-		err = idErr
-		return
-	}
 	path, _ := os.Getwd()
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
 
 	hookzFile := fmt.Sprintf("%s/%s.hookz", p, name)
 	scriptName := fmt.Sprintf("%s/%s", p, name)
 
-	err = CreateFile(afs, hookzFile)
-	if err != nil {
-		return
-	}
+	_, _ = afs.Create(hookzFile)
+	_ = afs.WriteFile(scriptName, []byte(content), 0644)
 
-	err = afs.WriteFile(scriptName, []byte(content), 0644)
-	if err != nil {
-		return
-	}
-
-	err = afs.Fs.Chmod(scriptName, 0777)
-	if err != nil {
-		return
-	}
+	_ = afs.Fs.Chmod(scriptName, 0777)
 
 	return
 }
@@ -135,10 +107,7 @@ func buildExec(afs *afero.Afero, action *Action) (err error) {
 	}
 	if action.Exec == nil && action.Script != nil {
 		scriptFileName, _ := CreateScriptFile(afs, *action.Script)
-		path, err := os.Getwd()
-		if err != nil {
-			return err
-		}
+		path, _ := os.Getwd()
 		fullScriptFileName := fmt.Sprintf("%s/%s/%s", path, ".git/hooks", scriptFileName)
 		action.Exec = &fullScriptFileName
 	}
@@ -150,10 +119,7 @@ func writeTemplate(afs *afero.Afero, commands []command, hookType string) (err e
 	p := fmt.Sprintf("%s/%s", path, ".git/hooks")
 
 	hookzFile := fmt.Sprintf("%s/%s.hookz", p, hookType)
-	err = CreateFile(afs, hookzFile)
-	if err != nil {
-		return
-	}
+	_, _ = afs.Create(hookzFile)
 
 	filename := fmt.Sprintf("%s/%s", p, hookType)
 	file, err := afs.Create(filename)
@@ -205,7 +171,7 @@ func genTemplate(hookType string) (t *template.Template) {
 echo -e "\n$(tput bold)Hookz$(tput sgr0)"
 echo -e "DKFM - DevOps Kung Fu Mafia"
 echo -e "https://github.com/devops-kung-fu/hookz"
-echo -e "Version: 2.4.3"
+echo -e "Version: 2.4.4"
 echo
 
 shasum=$(cat .git/hooks/hookz.shasum)

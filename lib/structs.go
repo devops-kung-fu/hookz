@@ -5,7 +5,7 @@ package lib
 type Configuration struct {
 	Version string   `json:"version"`
 	Hooks   []Hook   `json:"hooks"`
-	Sources []Source `json:"source"`
+	Sources []Source `json:"source,omitempty"`
 }
 
 // Hook is the definition of a collection of actions to be run at

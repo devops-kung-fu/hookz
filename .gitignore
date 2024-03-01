@@ -17,5 +17,6 @@
 hookz
 coverage.out
 coverage.html
+coverage.lcov
 
 .DS_Store

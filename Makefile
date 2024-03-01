@@ -11,16 +11,16 @@ title:
 
 build: ## Builds the application
 	go get -u ./...
-	@go mod tidy
-	@go build
+	go mod tidy
+	go build
 
 check: build ## Tests the pre-commit hooks if they exist
 	./hookz reset --verbose --debug --verbose-output 
 	. .git/hooks/pre-commit
 
 test: ## Runs tests and coverage
-	@go test -v -coverprofile=coverage.out ./... && go tool cover -func=coverage.out
-	@go tool cover -html=coverage.out -o coverage.html
+	go test -v -coverprofile=coverage.out ./... && go tool cover -func=coverage.out && gcov2lcov -infile=coverage.out -outfile=coverage.lcov
+	go tool cover -html=coverage.out -o coverage.html
 
 install: build ## Builds an executable local version of Hookz and puts in in /usr/local/bin
 	@sudo chmod +x hookz

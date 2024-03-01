@@ -31,7 +31,15 @@ var (
 			util.DoIf(Verbose, func() {
 				util.PrintInfo("Creating hooks")
 			})
-			config := CheckConfig()
+			config, err := CheckConfig(Afs)
+			if err != nil {
+				if err != nil && err.Error() == "NO_CONFIG" {
+					NoConfig()
+				} else {
+					util.PrintErr(err)
+				}
+				os.Exit(1)
+			}
 			_ = InstallSources(config.Sources)
 			if util.IsErrorBool(lib.WriteHooks(Afs, config, Verbose, VerboseOutput)) {
 				return

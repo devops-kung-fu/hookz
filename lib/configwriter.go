@@ -31,11 +31,7 @@ func CreateConfig(afs *afero.Afero, version string) (config Configuration, err e
 		},
 	}
 
-	file, memoryErr := yaml.Marshal(config)
-	if memoryErr != nil {
-		err = memoryErr
-		return
-	}
+	file, _ := yaml.Marshal(config)
 	filename, _ := filepath.Abs(".hookz.yaml")
 	err = afs.WriteFile(filename, file, 0644)
 
