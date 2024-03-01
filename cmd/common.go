@@ -35,9 +35,7 @@ func CheckConfig(afs *afero.Afero) (config lib.Configuration, err error) {
 // InstallSources installs all go repositories that are found in the Sources section of the .hookz.yaml file.
 func InstallSources(sources []lib.Source) (err error) {
 	if len(sources) > 0 && Verbose {
-		util.DoIf(Verbose, func() {
-			util.PrintInfo("Installing sources...")
-		})
+		util.PrintInfo("Installing sources...")
 	}
 	for _, s := range sources {
 		util.DoIf(Verbose, func() {
